@@ -38,16 +38,25 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="Image", type="string", length=255)
+     * @ORM\Column(name="Image", type="string", length=255, nullable=true)
      */
     private $image;
 
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 
     /**
      * Get id
      *
      * @return integer 
      */
+
     public function getId()
     {
         return $this->id;
