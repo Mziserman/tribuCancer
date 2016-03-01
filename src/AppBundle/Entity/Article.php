@@ -26,14 +26,14 @@ class Article
      *
      * @ORM\Column(name="Titre", type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Corps", type="text")
      */
-    private $corps;
+    private $body;
 
     /**
      * @var string
@@ -51,52 +51,6 @@ class Article
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set titre
-     *
-     * @param string $titre
-     * @return Article
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string 
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * Set corps
-     *
-     * @param string $corps
-     * @return Article
-     */
-    public function setCorps($corps)
-    {
-        $this->corps = $corps;
-
-        return $this;
-    }
-
-    /**
-     * Get corps
-     *
-     * @return string 
-     */
-    public function getCorps()
-    {
-        return $this->corps;
     }
 
     /**
@@ -120,5 +74,51 @@ class Article
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     * @return Article
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string 
+     */
+    public function getBody()
+    {
+        return $this->body;
     }
 }
