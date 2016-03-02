@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: fr
 
+
 framework:
     #esi:             ~
     translator:      ~
@@ -90,3 +91,10 @@ easy_admin:
               class: AppBundle\Entity\Escape
           Isolation:
               class: AppBundle\Entity\Isolation
+
+assetic:
+    debug:       "%kernel.debug%"
+    bundles:    [AppBundle]
+    filters:
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
