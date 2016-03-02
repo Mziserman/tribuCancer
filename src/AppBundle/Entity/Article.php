@@ -31,7 +31,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="Corps", type="text")
+     * @ORM\Column(name="Corps", type="string")
      */
     private $body;
 
@@ -41,6 +41,13 @@ class Article
      * @ORM\Column(name="Image", type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordre", type="integer", length=11)
+     */
+    private $ordre;
 
     /**
      * toString
@@ -129,5 +136,28 @@ class Article
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return Article
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
     }
 }
