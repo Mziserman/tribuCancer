@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+
+/** VARIABLES **/
+
+$font: 'Lato';
+$lato-light: 300;
+$lato-regular: 400;
+$lato-bold: 700;
+$lato-black: 900;
+
+$black: #000000;
+$black-2: #1B1B1B;
+$black-3: #252525;
+$white: #FFFFFF;
+$white-op-9: rgba(255, 255, 255, 0.9);
+$white-op-5: rgba(255, 255, 255, 0.5);
+$white-op-3: rgba(255, 255, 255, 0.3);
+$grey-bg: #FAFAFA;
+$orange: #FF9F00;
+$red: #D74155;
+$blue: #3D6ED4;
+$dark-grey: #A2A2A2;
+
+/** IMPORT PARTIALS **/
+
+@import '_base';
+@import '_layout';
+@import '_header';
+@import '_footer';

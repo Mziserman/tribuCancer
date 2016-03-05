@@ -2,12 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Tribu Cancer{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        {% stylesheets filter="scssphp" output="css/style.css"
+        "@AppBundle/Resources/sass/main.scss"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        {# <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" /> #}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% block nav %}{% include '::nav.html.twig' %}{% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block footer %}{% include '::footer.html.twig' %}{% endblock %}
+        {% javascripts '@AppBundle/Resources/js/*' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
     </body>
 </html>

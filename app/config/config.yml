@@ -45,10 +45,11 @@ easy_admin:
           - email
           - enabled
 
-fos_user: 
+fos_user:
   db_driver: orm
   firewall_name: main
   user_class: AppBundle\Entity\User
+
 
 framework: 
   csrf_protection: ~
@@ -90,6 +91,35 @@ swiftmailer:
   transport: "%mailer_transport%"
   username: "%mailer_user%"
 
-twig: 
-  debug: "%kernel.debug%"
-  strict_variables: "%kernel.debug%"
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
+easy_admin:
+    entities:
+          Users:
+              class: AppBundle\Entity\User
+              list:
+                  fields: [id, username, email, roles]
+              edit:
+                  fields: [roles, password, username, email, enabled]
+              new:
+                  fields: [roles, plainPassword, username, email, enabled]
+          Config:
+              class: AppBundle\Entity\Config
+          Article:
+              class: AppBundle\Entity\Article
+          Currently:
+              class: AppBundle\Entity\Currently
+          Escape:
+              class: AppBundle\Entity\Escape
+          Isolation:
+              class: AppBundle\Entity\Isolation
+
+assetic:
+    debug:       "%kernel.debug%"
+    bundles:    [AppBundle]
+    filters:
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
