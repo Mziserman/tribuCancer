@@ -12,45 +12,6 @@ doctrine:
     auto_mapping: true
     naming_strategy: doctrine.orm.naming_strategy.underscore
 
-easy_admin: 
-  entities:
-    Config: 
-      class: AppBundle\Entity\Config
-    Currently: 
-      class: AppBundle\Entity\Currently
-    Escape: 
-      class: AppBundle\Entity\Escape
-    Isolation:
-      class: AppBundle\Entity\Isolation
-    Users:
-      class: AppBundle\Entity\User
-      edit: 
-        fields: 
-          - roles
-          - password
-          - username
-          - email
-          - enabled
-      list: 
-        fields: 
-          - id
-          - username
-          - email
-          - roles
-      new: 
-        fields: 
-          - roles
-          - plainPassword
-          - username
-          - email
-          - enabled
-
-fos_user:
-  db_driver: orm
-  firewall_name: main
-  user_class: AppBundle\Entity\User
-
-
 framework: 
   csrf_protection: ~
   default_locale: "%locale%"
@@ -92,31 +53,42 @@ swiftmailer:
   username: "%mailer_user%"
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: AppBundle\Entity\User
+  db_driver: orm
+  firewall_name: main
+  user_class: AppBundle\Entity\User
 
 easy_admin:
-    entities:
-          Users:
-              class: AppBundle\Entity\User
-              list:
-                  fields: [id, username, email, roles]
-              edit:
-                  fields: [roles, password, username, email, enabled]
-              new:
-                  fields: [roles, plainPassword, username, email, enabled]
-          Config:
-              class: AppBundle\Entity\Config
-          Article:
-              class: AppBundle\Entity\Article
-          Currently:
-              class: AppBundle\Entity\Currently
-          Escape:
-              class: AppBundle\Entity\Escape
-          Isolation:
-              class: AppBundle\Entity\Isolation
-
+  entities:
+    Users:
+      class: AppBundle\Entity\User
+      edit:
+        fields:
+          - roles
+          - password
+          - username
+          - email
+          - enabled
+      list:
+        fields:
+          - id
+          - username
+          - email
+          - roles
+      new:
+        fields:
+          - roles
+          - plainPassword
+          - username
+          - email
+          - enabled
+    Article:
+      class: AppBundle\Entity\Article
+    Event:
+      class: AppBundle\Entity\Event
+    Service:
+      class: AppBundle\Entity\Service
+    Volontary:
+      class: AppBundle\Entity\Volontary
 assetic:
     debug:       "%kernel.debug%"
     bundles:    [AppBundle]
