@@ -3,6 +3,9 @@
 // src/AppBundle/Controller/AdminController.php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Currently;
+use AppBundle\Entity\Escape;
+use AppBundle\Entity\Isolation;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
@@ -16,4 +19,5 @@ class AdminController extends EasyAdminController
     {
         return parent::indexAction($request);
     }
+
 }
