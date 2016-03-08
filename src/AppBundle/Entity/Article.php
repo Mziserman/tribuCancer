@@ -24,65 +24,40 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="Titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Corps", type="text")
+     * @ORM\Column(name="thumbnail", type="string", length=255)
      */
-    private $body;
+    private $thumbnail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="body", type="text")
      */
-    private $image;
+    private $body;
 
     /**
-     * toString
-     * @return string
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
      */
-    public function __toString()
-    {
-        return $this->getTitle();
-    }
+    private $position;
+
 
     /**
      * Get id
      *
      * @return integer 
      */
-
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return Article
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -109,12 +84,35 @@ class Article
     }
 
     /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return Article
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
      * Set body
      *
      * @param string $body
      * @return Article
      */
-    public function setBody($body)
+    public function setContent($body)
     {
         $this->body = $body;
 
@@ -126,8 +124,31 @@ class Article
      *
      * @return string 
      */
-    public function getBody()
+    public function getContent()
     {
         return $this->body;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Article
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
