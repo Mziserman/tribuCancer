@@ -13,9 +13,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block nav %}{% include '::nav.html.twig' %}{% endblock %}
+        {% block nav %}{% include 'partials/nav.html.twig' %}{% endblock %}
+        {% block headerBanner %}{% include 'partials/header.html.twig' %}{% endblock %}
         {% block body %}{% endblock %}
-        {% block footer %}{% include '::footer.html.twig' %}{% endblock %}
+        {% block footer %}{% include 'partials/footer.html.twig' %}{% endblock %}
         {% javascripts '@AppBundle/Resources/js/*' %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}

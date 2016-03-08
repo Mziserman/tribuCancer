@@ -1,0 +1,52 @@
+/* HERE IS THE HEADER BITCHES */
+
+header {
+  position: relative;
+  height: 70px;
+  background-color: $white;
+
+  .content {
+    display: flex;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 15px 0 25px;
+
+    .tribucancer-logo {
+      a {
+        display: inline-block;
+        img {  margin-top: 3px; } }
+    }
+
+    nav {
+      flex: 1;
+      text-align: center;
+
+      ul {
+
+        li {
+          display: inline-block;
+          text-transform: uppercase;
+          font-weight: $lato-black;
+          margin-right: 30px;
+          line-height: 70px;
+          &:last-child {  margin-right: 0;  }
+          a {
+            font-size: 11px;
+            font-weight: $lato-black;
+          }
+        }
+
+      }
+
+    }
+  }
+
+  .button {
+    width: 220px;
+    margin-top: 13px;
+    span {
+      margin: 0 4px 0 12px;
+    }
+  }
+
+}

@@ -2,7 +2,140 @@
 {% import 'partials/header.html.twig' as title %}
 
 {% block body %}
-    <h1>{{ title.valueTitle('Mail de nuit') }}</h1>
+    {# <h1>{{ title.valueTitle('Mail de nuit') }}</h1>#}
+    <main class="main-content main-home">
+        <aside class="main-menu">
+            <div class="main">
+                <div class="menu">
+                    <ul>
+                        <h4>Rompre l'isolement</h4>
+                        <li><a href="#">Mail de nuit</a></li>
+                        <li><a href="#">Bulle santé</a></li>
+                        <li><a href="#">Coaching prot</a></li>
+                    </ul>
+                    <ul>
+                        <h4>S'évader</h4>
+                        <li><a href="#">Voile</a></li>
+                        <li><a href="#">Foulées du printemps</a></li>
+                        <li><a href="#">Foulées du large</a></li>
+                        <li><a href="#">Plongée</a></li>
+
+                    </ul>
+                </div>
+                <div class="maildenuit-min">
+                    <span class="shadow"></span>
+                    <img src="assets/imgs/maildenuit-banner.png" alt="mail de nuit le soutien psychologique">
+                    <h4>Mail de nuit</h4>
+                    <p>Pour ne plus être seul avec la maladie</p>
+                    <a href="#" class="button button-orange">Accèder au service</a>
+                </div>
+                <div class="newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Inscrivez vous à la newsletter pour être tenu informé des actualités de l'association.</p>
+                    <form action="#">
+                        <input type="email" name="email" id="email-news" placeholder="Email">
+                        <button>Inscription</button>
+                    </form>
+                </div>
+                <div class="partner">
+                    <h4>Tribu cancer est partenaire de cancer info</h4>
+                    <img src="assets/imgs/logo-cancerinfo.png" alt="cancer info toute l'info sur le cancer">
+                </div>
+            </div>
+        </aside>
+
+        <div class="width-wrap">
+            <div class="line">
+                <div class="item">
+                    <h2>Rompre l'isolement</h2>
+                    <div class="rompre">
+                        <div class="item-rompre">
+                            <img class="icon" src="assets/icons/mail.svg" alt="mail de nuit">
+                            <h3 class="item-title">Mail de nuit</h3>
+                            <p>Un soutien psychologique et une écoute par mail pour les personnes malades du cancer et leur proche</p>
+                            <div class="see-more">
+                                <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                            </div>
+                        </div>
+                        <div class="item-rompre">
+                            <img class="icon" src="assets/icons/audio.svg" alt="bulle santé">
+                            <h3 class="item-title">Bulle santé</h3>
+                            <p>Des collections  de podcasts de 2 minutes pour prévenir le cancer et les maladies graves ou mieux vivre avec.</p>
+                            <div class="see-more">
+                                <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                            </div>
+                        </div>
+                        <div class="item-rompre">
+                            <img class="icon" src="assets/icons/coaching.svg" alt="coaching pro">
+                            <h3 class="item-title">Coaching pro</h3>
+                            <p>Un accompagnement pour votre projet professionnel</p>
+                            <div class="see-more">
+                                <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item support-us">
+                    <h2>Soutenez nous</h2>
+                    <div class="content">
+                        <img src="assets/imgs/support.png" alt="faites un don pour nous soutenir">
+                        <p>Aucun malade ne devrait être seul face à la maladie</p>
+                        <p>Faire un don</p>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="item">
+                    <h2>S'évader</h2>
+                    <div class="activities-list">
+                        <div class="activity">
+                            <span class="img"><img src="assets/imgs/activity-1.png" alt="voile"></span>
+                            <div class="content">
+                                <h3 class="item-title">Voile</h3>
+                                <p>Tribu Cancer offre aux personnes atteintes d’un cancer et à leurs proches des journées d’évasion en mer à bord de son voilier « Tribu Cancer » (un Bénéteau First 36.7 de 10 places) basé à Quiberon. </p>
+                                <div class="see-more">
+                                    <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity">
+                            <span class="img"><img src="assets/imgs/activity-2.png" alt="les foulées du large"></span>
+                            <div class="content">
+                                <h3 class="item-title">Les foulées du large</h3>
+                                <p>La 3ème édition des Foulées du Large s'est déroulée le 25 juillet 2015. Elle se composait cette année d'une marche "A Travers la Presqu’ile" suivie d'une course de 5 Km et d'une course de 10 km à Quiberon.</p>
+                                <div class="see-more">
+                                    <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity">
+                            <span class="img"><img src="assets/imgs/activity-2.png" alt="les foulées du large"></span>
+                            <div class="content">
+                                <h3 class="item-title">Les foulées du large</h3>
+                                <p>La 3ème édition des Foulées du Large s'est déroulée le 25 juillet 2015. Elle se composait cette année d'une marche "A Travers la Presqu’ile" suivie d'une course de 5 Km et d'une course de 10 km à Quiberon.</p>
+                                <div class="see-more">
+                                    <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity">
+                            <span class="img"><img src="assets/imgs/activity-2.png" alt="les foulées du large"></span>
+                            <div class="content">
+                                <h3 class="item-title">Les foulées du large</h3>
+                                <p>La 3ème édition des Foulées du Large s'est déroulée le 25 juillet 2015. Elle se composait cette année d'une marche "A Travers la Presqu’ile" suivie d'une course de 5 Km et d'une course de 10 km à Quiberon.</p>
+                                <div class="see-more">
+                                    <a href="">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h2>Actualités</h2><span>Faits marquants</span>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}

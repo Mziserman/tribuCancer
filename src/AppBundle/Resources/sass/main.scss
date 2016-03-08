@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
 /** VARIABLES **/
 
@@ -12,10 +12,8 @@ $black: #000000;
 $black-2: #1B1B1B;
 $black-3: #252525;
 $white: #FFFFFF;
-$white-op-9: rgba(255, 255, 255, 0.9);
-$white-op-5: rgba(255, 255, 255, 0.5);
-$white-op-3: rgba(255, 255, 255, 0.3);
 $grey-bg: #FAFAFA;
+$filet: #D8D8D8;
 $orange: #FF9F00;
 $red: #D74155;
 $blue: #3D6ED4;
@@ -25,5 +23,8 @@ $dark-grey: #A2A2A2;
 
 @import '_base';
 @import '_layout';
+@import '_navheader';
 @import '_header';
+@import '_sidebar';
+@import '_home';
 @import '_footer';
