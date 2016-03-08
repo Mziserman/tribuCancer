@@ -14,7 +14,7 @@ footer {
       padding-top: 60px;
       background-color: $black-3;
 
-      article {
+      div.footer-item {
         max-height: 170px;
         margin-right: 80px;
         &:first-child,
@@ -42,12 +42,12 @@ footer {
 
       p,
       a{
-        color: $white-op-5;
+        color: rgba($white, .5);
         line-height: 18px;
       }
       .section-title {
         margin-bottom: 15px;
-        color: $white-op-9;
+        color: rgba($white, .9);
       }
     }
 
@@ -68,7 +68,7 @@ footer {
             margin-bottom: 5px;
             &:first-child {
               text-transform: uppercase;
-              color: $white-op-3;
+              color: rgba($white, .9);
             }
           }
         }
@@ -83,7 +83,7 @@ footer {
           text-transform: uppercase;
           margin-right: 30px;
           a{
-            color: $white-op-3;
+            color: rgba($white, .3);
           }
         }
       }
@@ -96,7 +96,7 @@ footer {
     section {
       &:first-child {
 
-        article {
+        .footer-item {
           margin-right: 3%;
           &:last-child {
             flex: none;
