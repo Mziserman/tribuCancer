@@ -19,4 +19,77 @@ class DefaultController extends Controller
             'myTitle'=>  'Mail de nuit'
         ));
     }
+
+    /**
+     * @Route("/association", name="association")
+     */
+    public function assoAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'L\'association'
+        ));
+    }
+
+    /**
+     * @Route("/soutien", name="soutien")
+     */
+    public function soutienAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Nous soutenir'
+        ));
+    }
+
+    /**
+     * @Route("/isolement", name="isolement")
+     */
+    public function isolementAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Rompre l\'isolement'
+        ));
+    }
+
+
+    /**
+     * @Route("/evader", name="evader")
+     */
+    public function evaderAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'S\'évader'
+        ));
+    }
+
+    /**
+     * @Route("/partenaires", name="partenaires")
+     */
+    public function partenairesAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Partenaires'
+        ));
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Contact'
+        ));
+    }
 }
