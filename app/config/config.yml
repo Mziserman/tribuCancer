@@ -95,3 +95,6 @@ assetic:
     filters:
         scssphp:
             formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+
+vich_uploader:
+    db_driver: orm
