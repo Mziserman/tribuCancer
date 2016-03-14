@@ -43,6 +43,7 @@ imports:
 
 parameters: 
   locale: fr
+  app.path.images_article: /uploads/images/article
 
 swiftmailer: 
   host: "%mailer_host%"
@@ -83,6 +84,15 @@ easy_admin:
           - enabled
     Article:
       class: AppBundle\Entity\Article
+      list:
+        fields:
+          - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+      show:
+        fields:
+          - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+      form:
+        fields:
+          - { property: 'imageFile', type: 'vich_image' }
     Event:
       class: AppBundle\Entity\Event
     Service:
@@ -98,3 +108,7 @@ assetic:
 
 vich_uploader:
     db_driver: orm
+    mappings:
+        images_article:
+            uri_prefix:         %app.path.images_article%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/article
