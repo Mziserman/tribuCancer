@@ -44,6 +44,7 @@ imports:
 parameters: 
   locale: fr
   app.path.images_article: /uploads/images/article
+  app.path.images_event: /uploads/images/event
 
 swiftmailer: 
   host: "%mailer_host%"
@@ -86,15 +87,63 @@ easy_admin:
       class: AppBundle\Entity\Article
       list:
         fields:
+          - title
+          - content
+          - position
           - { property: 'image', type: 'image', base_path: %app.path.images_article% }
       show:
         fields:
+          - title
+          - content
+          - position
           - { property: 'image', type: 'image', base_path: %app.path.images_article% }
       form:
         fields:
+          - title
+          - content
+          - position
           - { property: 'imageFile', type: 'vich_image' }
     Event:
       class: AppBundle\Entity\Event
+      list:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+      show:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+      form:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnailFile', type: 'vich_image' }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'imageFile1', type: 'vich_image' }
+          - { property: 'imageFile2', type: 'vich_image' }
+          - { property: 'imageFile3', type: 'vich_image' }
     Service:
       class: AppBundle\Entity\Service
     Volontary:
@@ -112,3 +161,6 @@ vich_uploader:
         images_article:
             uri_prefix:         %app.path.images_article%
             upload_destination: %kernel.root_dir%/../web/uploads/images/article
+        images_event:
+            uri_prefix:         %app.path.images_event%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/event

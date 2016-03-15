@@ -25,12 +25,41 @@ class Article
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="images_article", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-    // ...
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text")
+     */
+    private $body;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
 
     public function setImageFile(File $image = null)
     {
@@ -59,45 +88,6 @@ class Article
     {
         return $this->image;
     }
-
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="thumbnail", type="string", length=255)
-     */
-    private $thumbnail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="body", type="text")
-     */
-    private $body;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="position", type="integer")
-     */
-    private $position;
-
 
     /**
      * Get id
@@ -130,29 +120,6 @@ class Article
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set thumbnail
-     *
-     * @param string $thumbnail
-     * @return Article
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
-
-    /**
-     * Get thumbnail
-     *
-     * @return string 
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
     }
 
     /**
