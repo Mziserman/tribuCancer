@@ -45,6 +45,7 @@ parameters:
   locale: fr
   app.path.images_article: /uploads/images/article
   app.path.images_event: /uploads/images/event
+  app.path.images_service: /uploads/images/service
 
 swiftmailer: 
   host: "%mailer_host%"
@@ -164,3 +165,7 @@ vich_uploader:
         images_event:
             uri_prefix:         %app.path.images_event%
             upload_destination: %kernel.root_dir%/../web/uploads/images/event
+        images_service:
+            uri_prefix:         %app.path.images_service%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/service
+
