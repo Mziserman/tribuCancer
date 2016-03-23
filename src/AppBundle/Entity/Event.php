@@ -55,7 +55,6 @@ class Event
 
     /**
      *
-     *
      * @Vich\UploadableField(mapping="images_event", fileNameProperty="thumbnail")
      * @var File
      */
