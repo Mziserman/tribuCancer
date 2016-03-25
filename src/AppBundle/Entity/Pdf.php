@@ -3,15 +3,31 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Pdf
  *
  * @ORM\Table(name="pdf")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PdfRepository")
+ * @Vich\Uploadable
  */
 class Pdf
 {
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $pdf;
+
+    /**
+     * @Vich\UploadableField(mapping="pdf_files", fileNameProperty="pdf")
+     * @var File
+     */
+    private $pdfFile;
+
     /**
      * @var int
      *
@@ -24,16 +40,16 @@ class Pdf
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $color;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255)
+     * @ORM\Column(name="color", type="string", length=255)
      */
-    private $position;
+    private $color;
 
     /**
      * @var string
@@ -42,6 +58,41 @@ class Pdf
      */
     private $location;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     */
+    private $position;
+
+
+    public function setPdfFile(File $file = null)
+    {
+        $this->pdfFile = $file;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPdfFile()
+    {
+        return $this->pdfFile;
+    }
+
+    public function setPdf($file)
+    {
+        $this->pdf = $file;
+    }
+
+    public function getPdf()
+    {
+        return $this->pdf;
+    }
 
     /**
      * Get id
@@ -51,6 +102,29 @@ class Pdf
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Pdf
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -77,29 +151,6 @@ class Pdf
     }
 
     /**
-     * Set position
-     *
-     * @param string $position
-     * @return Pdf
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return string 
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
      * Set location
      *
      * @param string $location
@@ -120,5 +171,28 @@ class Pdf
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     * @return Pdf
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
