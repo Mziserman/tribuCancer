@@ -43,6 +43,10 @@ imports:
 
 parameters: 
   locale: fr
+  app.path.images_article: /uploads/images/article
+  app.path.images_event: /uploads/images/event
+  app.path.images_service: /uploads/images/service
+  app.path.pdf_files: /uploads/files/pdf
 
 swiftmailer: 
   host: "%mailer_host%"
@@ -83,10 +87,90 @@ easy_admin:
           - enabled
     Article:
       class: AppBundle\Entity\Article
+      list:
+        fields:
+          - title
+          - content
+          - position
+          - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+      show:
+        fields:
+          - title
+          - content
+          - position
+          - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+      form:
+        fields:
+          - title
+          - content
+          - position
+          - { property: 'imageFile', type: 'vich_image' }
     Event:
       class: AppBundle\Entity\Event
+      list:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+      show:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
+          - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+      form:
+        fields:
+          - name
+          - shortDesc
+          - body
+          - { property: 'thumbnailFile', type: 'vich_image' }
+          - date
+          - inscription
+          - flickr
+          - youtube
+          - { property: 'imageFile1', type: 'vich_image' }
+          - { property: 'imageFile2', type: 'vich_image' }
+          - { property: 'imageFile3', type: 'vich_image' }
     Service:
       class: AppBundle\Entity\Service
+    Pdf:
+      class: AppBundle\Entity\Pdf
+      list:
+        fields:
+          - name
+          - color
+          - location
+          - position
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
+      show:
+        fields:
+          - name
+          - color
+          - location
+          - position
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
+      form:
+        fields:
+          - name
+          - color
+          - location
+          - position
+          - { property: 'pdfFile', type: 'vich_file' }
     Volontary:
       class: AppBundle\Entity\Volontary
 assetic:
@@ -95,3 +179,20 @@ assetic:
     filters:
         scssphp:
             formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        images_article:
+            uri_prefix:         %app.path.images_article%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/article
+        images_event:
+            uri_prefix:         %app.path.images_event%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/event
+        images_service:
+            uri_prefix:         %app.path.images_service%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/service
+        pdf_files:
+            uri_prefix: %app.path.pdf_files%
+            upload_destination: %kernel.root_dir%/../web/uploads/files/pdf
+
