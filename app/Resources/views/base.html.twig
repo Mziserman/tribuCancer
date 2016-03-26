@@ -17,7 +17,7 @@
         {% block headerBanner %}{% include 'partials/header.html.twig' %}{% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}{% include 'partials/footer.html.twig' %}{% endblock %}
-        {% javascripts '@AppBundle/Resources/js/*' %}
+        {% javascripts '@AppBundle/Resources/js/*.js' %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}
     </body>

@@ -1,0 +1,54 @@
+.main-partenaires {
+
+}
+
+.partenaire {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	margin-bottom: 30px;
+
+	.partenaire-logo {
+		width: 210px;
+		padding: 20px;
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			max-height: 200px;
+		}
+	}
+	.partenaire-infos {
+
+		.partenaire-name {
+			font-weight: $lato-black;
+		}
+		flex: 1;
+		padding: 0 15px;
+	}
+}
+
+.partenaires-list	{
+	display: block;
+	width: 100%;
+	margin-top: 30px;
+	ul {
+		margin: 0 !important;
+	}
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		width: calc(100%/4 - 10px);
+		text-align: center;
+		a {
+			display: block;
+		}
+		img {
+			height: 100%;
+			width: auto;
+			max-width: 210px;
+			max-height: 80px;
+		}
+	}
+}

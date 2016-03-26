@@ -2,24 +2,30 @@
 
 footer {
   width: 100%;
+  background-color: $black-3;
 
   section {
     display: block;
     padding: 0 30px;
 
     &:first-child {
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: space-between;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      max-width: 1280px;
       height: 300px;
+      margin: 0 auto;
       padding-top: 60px;
-      background-color: $black-3;
 
       div.footer-item {
         max-height: 170px;
         margin-right: 80px;
         &:first-child,
         &:last-child {
-          flex: 1;
+          // flex: 1;
         }
         &:first-child {
           max-width: 300px;
@@ -96,10 +102,12 @@ footer {
     section {
       &:first-child {
 
-        .footer-item {
+        div.footer-item {
           margin-right: 3%;
           &:last-child {
-            flex: none;
+            -webkit-flex: none;
+                -ms-flex: none;
+                    flex: none;
           }
         }
       }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block headerBanner %}{% endblock %}
+
+{% block body %}
+	<main class="main-content main-contact">
+	  <div class="medium-wrap service">
+	  	<h2>Contact</h2>
+	  	<div class="services-container">
+	  		<div class="service-content">
+	  			<div class="inscription-form">
+              <h6>Si vous souhaitez nous contacter, merci de remplir le formulaire suivant :</h6>
+              <form action="">
+                  <fieldset>
+                      <label for="last-name">Nom<span>*</span>:</label>
+                      <input type="text" name="last-name" id="last-name">
+                  </fieldset>
+
+                  <fieldset>
+                      <label for="first-name">Prénom<span>*</span>:</label>
+                      <input type="text" name="first-name" id="first-name">
+                  </fieldset>
+
+                  <fieldset class="full-size">
+                      <label for="email">Email<span>*</span>:</label>
+                      <input type="email" name="email" id="email">
+                  </fieldset>
+
+                  <fieldset class="full-size">
+                      <label for="message">Message<span>*</span>:</label>
+                      <textarea name="message" id="message"></textarea>
+                  </fieldset>
+
+                  <input type="submit" id="submit-form" class="hidden" />
+              </form>
+
+              <label class="submit-button" for="submit-form">Valider mes informations et envoyer le formulaire<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
+          </div>
+	  		</div>
+	  	</div>
+	  </div>
+	</main>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

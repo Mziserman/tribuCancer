@@ -1,0 +1,51 @@
+.left-inside-wrap {
+
+	.service-content {
+
+		h2 {
+			margin-top: 40px;
+			margin-bottom: 10px;
+		}
+	}
+
+	h3:nth-child(n+2) {
+		margin-top: 25px;
+	}
+
+	.access-link {
+		display: block;
+		margin: 15px 0;
+	}
+}
+
+.module {
+
+	margin-top: 15px;
+	margin-bottom: 50px;
+	padding: 20px 15px 20px;
+	background-color: $white;
+	box-shadow: 0px 0px 1px 0px rgba($black , .3);
+
+	p {
+		font-size: 12px;
+		line-height: 17px;
+		letter-spacing: 1.02px;
+	}
+
+	&.documents {
+
+		p { margin-bottom: 25px; }
+
+		li {
+			width: 90%;
+			margin-bottom: 10px;
+		}
+		a.button {
+			display: block;
+		}
+	}
+
+	&.social-networks {
+		p { margin-bottom: 15px; }
+	}
+}

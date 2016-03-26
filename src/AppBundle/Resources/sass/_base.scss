@@ -16,6 +16,11 @@ body {
   background-color: $grey-bg;
 }
 
+div, span, a, p {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 p,a {
   font-family: $font;
   font-size: 14px;
@@ -72,6 +77,34 @@ h5 {
   letter-spacing: 1.22px;
 }
 
+h6 {
+  font-family: $font;
+  font-weight: $lato-bold;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+span.strong {
+  font-weight: $lato-black;
+}
+
+.access-link {
+  margin-top: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: $lato-black;
+  color: rgba($black, .8);
+  letter-spacing: 1.01px;
+  &:hover {
+    img { margin-left: 15px; }
+  }
+  img {
+    margin-left: 10px;
+    width: 25px;
+    transition: all .3s ease;
+  }
+}
+
 .button {
   display: inline-block;
   height: 40px;
@@ -84,28 +117,34 @@ h5 {
   letter-spacing: 0.84px;
   font-weight: $lato-regular;
   color: $white;
+  transition: all .3s ease;
 
   &.button-red {
     background-color: $red;
     font-weight: $lato-black;
-    span {color: $red}
+    span:first-child {color: $red}
+    &:hover { background-color: rgba($red, .8); }
   }
   &.button-orange {
     background-color: $orange;
+    &:hover { background-color: rgba($orange, .8); }
   }
   &.button-blue {
     background-color: $blue;
     font-weight: $lato-black;
-    span {color: $blue}
+    span:first-child {color: $blue}
+    &:hover { background-color: rgba($blue, .8); }
   }
   &.button-grey {
     background-color: $dark-grey;
     font-weight: $lato-black;
-    span {color: $dark-grey}
+    span:first-child {color: $dark-grey}
+    &:hover { background-color: rgba($dark-grey, .8); }
   }
   &.button-white {
     background-color: $white;
     color: $orange;
+    &:hover { background-color: rgba($white, .8); }
   }
   &.button-small {
     height: 35px;
@@ -119,20 +158,25 @@ h5 {
   }
 
   span {
-    display: inline-block;
-    width: 26px;
-    height: 16px;
-    margin: 0 8px 0 14px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    line-height: 16px;
-    text-align: center;
-    background-color: $white;
-    color: currentColor;
-    font-size: 8px;
-    font-weight: $lato-black;
-    text-transform: uppercase;
+    &:first-child {
+      display: inline-block;
+      width: 26px;
+      height: 16px;
+      margin: 0 8px 0 14px;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      line-height: 16px;
+      text-align: center;
+      background-color: $white;
+      color: currentColor;
+      font-size: 8px;
+      font-weight: $lato-black;
+      text-transform: uppercase;
+    }
+    .document-name {
+      padding-right: 15px;
+    }
   }
 
 }

@@ -19,4 +19,68 @@ class DefaultController extends Controller
             'myTitle'=>  'Mail de nuit'
         ));
     }
+
+    /**
+     * @Route("/lassociation", name="lassociation")
+     */
+    public function associationAction(Request $request)
+    {
+        return $this->render('association.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+    /**
+     * @Route("/nous-soutenir", name="nous-soutenir")
+     */
+    public function soutenirAction(Request $request)
+    {
+        return $this->render('soutenir.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+    /**
+     * @Route("/rompre-lisolement", name="rompre-lisolement")
+     */
+    public function rompreAction(Request $request)
+    {
+        return $this->render('rompre.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+    /**
+     * @Route("/sevader", name="sevader")
+     */
+    public function sevaderAction(Request $request)
+    {
+        return $this->render('sevader.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+     /**
+     * @Route("/partenaires", name="partenaires")
+     */
+    public function partenairesAction(Request $request)
+    {
+        return $this->render('partenaires.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        return $this->render('contact.html.twig', array(
+           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..')
+        ));
+    }
+
+
+
+    
 }
