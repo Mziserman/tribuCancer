@@ -153,7 +153,7 @@ easy_admin:
       list:
         fields:
           - name
-          - color
+          - { property: 'color', label: 'Couleur' }
           - location
           - position
           - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
@@ -167,12 +167,10 @@ easy_admin:
       form:
         fields:
           - name
-          - color
+          - { property: 'color', type: 'color_choice', label: 'Couleur' }
           - location
           - position
           - { property: 'pdfFile', type: 'vich_file' }
-    Volontary:
-      class: AppBundle\Entity\Volontary
 assetic:
     debug:       "%kernel.debug%"
     bundles:    [AppBundle]
@@ -195,4 +193,3 @@ vich_uploader:
         pdf_files:
             uri_prefix: %app.path.pdf_files%
             upload_destination: %kernel.root_dir%/../web/uploads/files/pdf
-
