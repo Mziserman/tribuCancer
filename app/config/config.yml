@@ -72,12 +72,14 @@ easy_admin:
           - username
           - email
           - enabled
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
       list:
         fields:
           - id
           - username
           - email
           - roles
+          - pdf
       new:
         fields:
           - roles
@@ -85,6 +87,7 @@ easy_admin:
           - username
           - email
           - enabled
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
     Article:
       class: AppBundle\Entity\Article
       list:
@@ -93,18 +96,22 @@ easy_admin:
           - content
           - position
           - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+          - pdf
       show:
         fields:
           - title
           - content
           - position
           - { property: 'image', type: 'image', base_path: %app.path.images_article% }
+          - pdf
       form:
         fields:
           - title
           - content
           - position
           - { property: 'imageFile', type: 'vich_image' }
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
+
     Event:
       class: AppBundle\Entity\Event
       list:
@@ -120,6 +127,7 @@ easy_admin:
           - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
           - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
           - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+          - pdf
       show:
         fields:
           - name
@@ -133,6 +141,7 @@ easy_admin:
           - { property: 'image1', type: 'image', base_path: %app.path.images_event% }
           - { property: 'image2', type: 'image', base_path: %app.path.images_event% }
           - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
+          - pdf
       form:
         fields:
           - name
@@ -146,6 +155,7 @@ easy_admin:
           - { property: 'imageFile1', type: 'vich_image' }
           - { property: 'imageFile2', type: 'vich_image' }
           - { property: 'imageFile3', type: 'vich_image' }
+          - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
     Service:
       class: AppBundle\Entity\Service
     Pdf:

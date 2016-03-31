@@ -60,6 +60,19 @@ class Article
      */
     private $position;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Pdf")
+     * @ORM\JoinTable(name="article_pdf",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pdf;
+
+    public function __construct() {
+        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     public function setImageFile(File $image = null)
     {
@@ -166,5 +179,61 @@ class Article
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set body
+     *
+     * @param string $body
+     * @return Article
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return string 
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Add pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     * @return Article
+     */
+    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf[] = $pdf;
+
+        return $this;
+    }
+
+    /**
+     * Remove pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     */
+    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf->removeElement($pdf);
+    }
+
+    /**
+     * Get pdf
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPdf()
+    {
+        return $this->pdf;
     }
 }

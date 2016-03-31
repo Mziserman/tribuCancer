@@ -17,6 +17,15 @@ class Pdf
 {
 
     /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @var string
      */
