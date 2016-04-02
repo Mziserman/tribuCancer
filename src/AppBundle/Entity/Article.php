@@ -17,7 +17,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Article
 {
 
-
     /**
      * @ORM\Column(type="string", length=255)
      * @var string

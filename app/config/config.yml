@@ -109,7 +109,7 @@ easy_admin:
       class: AppBundle\Entity\Event
       list:
         fields:
-          - name
+          - { property: 'name', label: 'Nom' }
           - shortDesc
           - body
           - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
@@ -122,7 +122,7 @@ easy_admin:
           - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
       show:
         fields:
-          - name
+          - { property: 'name', label: 'Nom' }
           - shortDesc
           - body
           - { property: 'thumbnail', type: 'image', base_path: %app.path.images_event% }
@@ -135,7 +135,7 @@ easy_admin:
           - { property: 'image3', type: 'image', base_path: %app.path.images_event% }
       form:
         fields:
-          - name
+          - { property: 'name', label: 'Nom' }
           - shortDesc
           - body
           - { property: 'thumbnailFile', type: 'vich_image' }
@@ -152,21 +152,21 @@ easy_admin:
       class: AppBundle\Entity\Pdf
       list:
         fields:
-          - name
+          - { property: 'name', label: 'Titre' }
           - { property: 'color', label: 'Couleur' }
           - location
           - position
           - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
       show:
         fields:
-          - name
+          - { property: 'name', label: 'Titre' }
           - color
           - location
           - position
           - { property: 'pdf', template: 'pdf_back', base_path: %app.path.pdf_files% }
       form:
         fields:
-          - name
+          - { property: 'name', label: 'Titre' }
           - { property: 'color', type: 'color_choice', label: 'Couleur' }
           - location
           - position

@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+    public function setPositioncustom($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getPositioncustom()
+    {
+        return 2;
+    }
 }

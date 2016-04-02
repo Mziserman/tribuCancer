@@ -10,11 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
 use AppBundle\Entity\Pdf;
+use AppBundle\Entity\Article;
 
 class AdminController extends EasyAdminController
 {
     /**
-     * @Route("/admin/", name="admin")
+     * @Route("/admin", name="admin")
      */
     public function indexAction(Request $request)
     {
@@ -42,6 +43,12 @@ class AdminController extends EasyAdminController
         }
 
         return $editForm;
+    }
+
+    // update the `slug` when editing a blog post
+    public function preUpdateArticleEntity($entity)
+    {
+        $entity->setPosition(2);
     }
 
 }
