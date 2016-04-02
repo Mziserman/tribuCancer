@@ -124,6 +124,19 @@ class Event
      */
     private $youtube;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Pdf")
+     * @ORM\JoinTable(name="event_pdf",
+     *      joinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pdf;
+
+    public function __construct() {
+        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -407,5 +420,38 @@ class Event
     public function getYoutube()
     {
         return $this->youtube;
+    }
+
+    /**
+     * Add pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     * @return Event
+     */
+    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf[] = $pdf;
+
+        return $this;
+    }
+
+    /**
+     * Remove pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     */
+    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf->removeElement($pdf);
+    }
+
+    /**
+     * Get pdf
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPdf()
+    {
+        return $this->pdf;
     }
 }

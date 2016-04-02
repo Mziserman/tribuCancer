@@ -63,7 +63,19 @@ class Service
      */
     private $icon;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Pdf")
+     * @ORM\JoinTable(name="service_pdf",
+     *      joinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pdf;
 
+    public function __construct() {
+        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -210,5 +222,38 @@ class Service
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * Add pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     * @return Service
+     */
+    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf[] = $pdf;
+
+        return $this;
+    }
+
+    /**
+     * Remove pdf
+     *
+     * @param \AppBundle\Entity\Pdf $pdf
+     */
+    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    {
+        $this->pdf->removeElement($pdf);
+    }
+
+    /**
+     * Get pdf
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPdf()
+    {
+        return $this->pdf;
     }
 }
