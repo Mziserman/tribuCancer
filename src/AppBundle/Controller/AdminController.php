@@ -15,7 +15,8 @@ use AppBundle\Entity\Article;
 class AdminController extends EasyAdminController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/", name="easyadmin")
+     * @Route("/", name="admin")
      */
     public function indexAction(Request $request)
     {
@@ -45,10 +46,35 @@ class AdminController extends EasyAdminController
         return $editForm;
     }
 
-    // update the `slug` when editing a blog post
-    public function preUpdateArticleEntity($entity)
+    public function positionUpdateAuto($entity, $position, $repository)
     {
-        $entity->setPosition(2);
+        $nextEntity = $this->getDoctrine()
+        ->getRepository($repository)
+        ->findByPosition($position);
+
+        if ( !empty($nextEntity) ){
+            $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository);
+        }
+
+        if ( gettype($entity) != "array" ){
+            $entity->setPosition($position);
+        } else {
+            $entity[0]->setPosition($position);
+        }
+        
     }
 
+    public function prePersistArticleEntity($entity)
+    {
+        $repository = 'AppBundle:Article';
+        $position = $entity->getPosition();
+        $this->positionUpdateAuto($entity, $position, $repository);
+    }
+
+    public function preUpdateArticleEntity($entity)
+    {
+        $repository = 'AppBundle:Article';
+        $position = $entity->getPosition();
+        $this->positionUpdateAuto($entity, $position, $repository);
+    }
 }
