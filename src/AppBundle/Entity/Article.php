@@ -6,6 +6,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use AppBundle\Entity\Pdf;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
@@ -60,16 +62,12 @@ class Article
     private $position;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Pdf")
-     * @ORM\JoinTable(name="article_pdf",
-     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="Pdf", mappedBy="article", cascade={"persist", "remove"})
      */
     private $pdf;
 
     public function __construct() {
-        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pdf = new ArrayCollection();
     }
 
 
@@ -206,12 +204,14 @@ class Article
     /**
      * Add pdf
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @param Pdf $pdf
      * @return Article
      */
-    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    public function addPdf(Pdf $pdf)
     {
-        $this->pdf[] = $pdf;
+        $pdf->addArticle($this);
+
+        $this->pdf->add($pdf);
 
         return $this;
     }
@@ -219,9 +219,9 @@ class Article
     /**
      * Remove pdf
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @param Pdf $pdf
      */
-    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    public function removePdf(Pdf $pdf)
     {
         $this->pdf->removeElement($pdf);
     }
@@ -234,5 +234,10 @@ class Article
     public function getPdf()
     {
         return $this->pdf;
+    }
+
+    public function getClass()
+    {
+        return 'article';
     }
 }

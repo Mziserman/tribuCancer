@@ -1,80 +1,132 @@
 <?php
 
-// src/AppBundle/Controller/AdminController.php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Currently;
-use AppBundle\Entity\Escape;
-use AppBundle\Entity\Isolation;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Pdf;
+use AppBundle\Form\PdfType;
 use AppBundle\Entity\Article;
+use AppBundle\Form\ArticleType;
 
-class AdminController extends EasyAdminController
+
+
+/**
+* @Route("/admin")
+*/
+class AdminController extends Controller
 {
+
     /**
-     * @Route("/", name="easyadmin")
-     * @Route("/", name="admin")
+     * @Route("/404", name="admin_404")
+     */
+    public function admin404(Request $request)
+    {
+      return $this->render('AppBundle:Admin:404.html.twig', array(
+        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        'myTitle'=>  'Page introuvable',
+      ));
+    }
+
+    /**
+     * @Route("/", name="admin_accueil")
      */
     public function indexAction(Request $request)
     {
-        return parent::indexAction($request);
+      return $this->render('AppBundle:Admin:index.html.twig', array(
+        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        'myTitle'=>  'Administration'
+      ));
     }
 
     /**
-     * @param object $entity
-     * @param array $entityProperties
-     * @return \Symfony\Component\Form\Form
+     * @Route("/{slug}", name="admin_list")
      */
-    public function createEditForm($entity, array $entityProperties)
+    public function listAction(Request $request, $slug)
     {
-        $editForm = parent::createEditForm($entity, $entityProperties);
-
-        if ($entity instanceof Pdf) {
-            // the trick is to remove the default field and then
-            // add the customized field
-            $editForm->remove('color');
-            $editForm->add('color', 'choice', array('choices' => array(
-                'Rouge',
-                'Bleu',
-                'Gris'
-            )));
-        }
-
-        return $editForm;
+      return $this->render('AppBundle:Admin:list.html.twig', array(
+        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        'myTitle'=>  'Liste de données'
+      ));
     }
 
-    public function positionUpdateAuto($entity, $position, $repository)
-    {
-        $nextEntity = $this->getDoctrine()
-        ->getRepository($repository)
-        ->findByPosition($position);
+    /**
+     * @Route("/{slug}/create", name="admin_create")
+     */
+    public function createAction(Request $request, $slug) 
+	{
+		// SECTION WHERE WE DETECT ENTITY
 
-        if ( !empty($nextEntity) ){
-            $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository);
-        }
+		switch ($slug) {
+		    case 'associtation':
+		    	$entity = new Pdf();
+		        $form = $this->createForm(PdfType::class, $entity);
+		        break;
+		    case 'service':
+		    	$entity = new Pdf();
+		        $form = $this->createForm(PdfType::class, $entity);
+		        break;
+		    case 'event':
+		    	$entity = new Pdf();
+		        $form = $this->createForm(PdfType::class, $entity);
+		        break;
+		    case 'partner':
+		    	$entity = new Pdf();
+		        $form = $this->createForm(PdfType::class, $entity);
+		        break;
+		    case 'article':
+		    	$entity = new Article();
+		        $form = $this->createForm(ArticleType::class, $entity);
+		        break;
+		    case 'archive':
+		    	$entity = new Pdf();
+		        $form = $this->createForm(PdfType::class, $entity);
+		        break;
+		    default:
+		    	return $this->redirect($this->generateUrl('admin_404'));
+		}
 
-        if ( gettype($entity) != "array" ){
-            $entity->setPosition($position);
-        } else {
-            $entity[0]->setPosition($position);
-        }
-        
+		$form->add('submit', SubmitType::class, array(
+		            'label' => 'Create',
+		            'attr'  => array('class' => 'btn btn-default pull-right')
+		        ));
+
+        //SECTION WHERE WE RECEIVE THE DATA FORM
+
+        $form->handleRequest($request);
+
+	    if ($form->isSubmitted() && $form->isValid()) {
+
+	        $em = $this->getDoctrine()->getManager();
+	        $em->persist($entity);
+	        $em->flush();
+
+	        // REDIRECTION TO THE LIST OF DATA
+	        return $this->redirect($this->generateUrl(
+	            'admin_list',
+	            array('slug' => $entity->getClass() )
+	        ));
+	    }
+
+	    // SECTION WHERE WE RENDER THE TEMPLATE CREATE
+
+		return $this->render('AppBundle:Admin:create.html.twig', array(
+			'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+			'myTitle'=>  'Création de données',
+			'form' => $form->createView()
+		));
     }
 
-    public function prePersistArticleEntity($entity)
+    /**
+     * @Route("/{slug}/edit", name="admin_edit")
+     */
+    public function editAction(Request $request, $slug)
     {
-        $repository = 'AppBundle:Article';
-        $position = $entity->getPosition();
-        $this->positionUpdateAuto($entity, $position, $repository);
-    }
-
-    public function preUpdateArticleEntity($entity)
-    {
-        $repository = 'AppBundle:Article';
-        $position = $entity->getPosition();
-        $this->positionUpdateAuto($entity, $position, $repository);
+      return $this->render('AppBundle:Admin:edit.html.twig', array(
+        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        'myTitle'=>  'Modification de données',
+      ));
     }
 }

@@ -1,0 +1,23 @@
+{% extends 'AppBundle:Admin:base.html.twig' %}
+{% import 'AppBundle:Admin/partials/header.html.twig' as title %}
+
+{% block body %}
+	<main class="main-create">
+
+	    {{ form_start(form) }}
+
+			{{ form_row(form.title) }}
+			{{ form_row(form.body) }}
+			{{ form_row(form.position) }}
+			{{ form_row(form.imageFile) }}
+
+		    <h3>Tags</h3>
+		    <ul class="tags" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
+			  {{ form_row(form.pdf) }}
+			</ul>
+
+		{{ form_end(form) }}
+  	</main>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

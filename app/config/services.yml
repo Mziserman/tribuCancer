@@ -3,7 +3,7 @@
 parameters:
 
 services:
-    app.form.type.contract:
+    app.form.type.color:
         class: AppBundle\Form\Type\ColorChoiceType
         tags:
            - { name: form.type, alias: color_choice }

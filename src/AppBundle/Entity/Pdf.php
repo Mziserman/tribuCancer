@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use AppBundle\Entity\Article;
 
 /**
  * Pdf
@@ -15,6 +16,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Pdf
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="article_id", referencedColumnName="id")
+     */
+    private $article;
 
     /**
      * toString
@@ -29,10 +36,10 @@ class Pdf
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $pdf;
+    private $file;
 
     /**
-     * @Vich\UploadableField(mapping="pdf_files", fileNameProperty="pdf")
+     * @Vich\UploadableField(mapping="pdf_files", fileNameProperty="file")
      * @var File
      */
     private $pdfFile;
@@ -63,14 +70,7 @@ class Pdf
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
-     */
-    private $location;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     * @ORM\Column(name="position", type="string", length=255)
      */
     private $position;
 
@@ -93,14 +93,14 @@ class Pdf
         return $this->pdfFile;
     }
 
-    public function setPdf($file)
+    public function setFile($file)
     {
-        $this->pdf = $file;
+        $this->file = $file;
     }
 
-    public function getPdf()
+    public function getFile()
     {
-        return $this->pdf;
+        return $this->file;
     }
 
     /**
@@ -117,7 +117,7 @@ class Pdf
      * Set name
      *
      * @param string $name
-     * @return Pdf
+     * @return file
      */
     public function setName($name)
     {
@@ -140,7 +140,7 @@ class Pdf
      * Set color
      *
      * @param string $color
-     * @return Pdf
+     * @return file
      */
     public function setColor($color)
     {
@@ -160,33 +160,10 @@ class Pdf
     }
 
     /**
-     * Set location
-     *
-     * @param string $location
-     * @return Pdf
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string 
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
      * Set position
      *
      * @param string $position
-     * @return Pdf
+     * @return File
      */
     public function setPosition($position)
     {
@@ -203,5 +180,17 @@ class Pdf
     public function getPosition()
     {
         return $this->position;
+    }
+
+    public function addArticle(Article $article)
+    {
+        if (!$this->article->contains($article)) {
+            $this->article->add($article);
+        }
+    }
+
+    public function getClass()
+    {
+        return 'pdfFile';
     }
 }
