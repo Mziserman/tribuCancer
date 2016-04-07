@@ -7,17 +7,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use AppBundle\Form\PdfType;
 
 
-class ArticleType extends AbstractType
+class PartnerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title','text', array('label' => 'Titre'))
             ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
+            ->add('link','text', array('label' => 'Lien'))
             ->add('position', IntegerType::class, array('label' => 'Position'))
             ->add('imageFile', 'vich_file', array(
                     'required'      => true,
@@ -25,19 +24,12 @@ class ArticleType extends AbstractType
                     'download_link' => true, // not mandatory, default is true
                 ))
         ;
-
-        $builder->add('pdf', CollectionType::class, array(
-            'entry_type' => PdfType::class,
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false
-        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Article'
+            'data_class' => 'AppBundle\Entity\Partner'
         ));
     }
 }

@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Archive;
+use AppBundle\Entity\Event;
+use AppBundle\Entity\Service;
+use AppBundle\Entity\Association;
 
 /**
  * Pdf
@@ -22,6 +26,30 @@ class Pdf
      * @ORM\JoinColumn ( name="article_id", referencedColumnName="id")
      */
     private $article;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Archive", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="archive_id", referencedColumnName="id")
+     */
+    private $archive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="service_id", referencedColumnName="id")
+     */
+    private $service;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="event_id", referencedColumnName="id")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Association", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="association_id", referencedColumnName="id")
+     */
+    private $association;
 
     /**
      * toString
@@ -69,6 +97,7 @@ class Pdf
 
     /**
      * @var string
+     *
      *
      * @ORM\Column(name="position", type="string", length=255)
      */
@@ -182,11 +211,69 @@ class Pdf
         return $this->position;
     }
 
-    public function addArticle(Article $article)
+    public function setArticle(Article $article)
     {
-        if (!$this->article->contains($article)) {
-            $this->article->add($article);
-        }
+        
+        $this->article = $article;
+
+        return $this;
+    }
+
+    public function getArticle(Article $article)
+    {
+        return $this->article;
+    }
+
+    public function setArchive(Archive $archive)
+    {
+        
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getArchive(Archive $archive)
+    {
+        return $this->archive;
+    }
+
+    public function setService(Service $service)
+    {
+        
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getService(Service $service)
+    {
+        return $this->service;
+    }
+
+    public function setEvent(Event $event)
+    {
+        
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getEvent(Event $event)
+    {
+        return $this->event;
+    }
+
+    public function setAssociation(Association $association)
+    {
+        
+        $this->association = $association;
+
+        return $this;
+    }
+
+    public function getAssociation(Association $association)
+    {
+        return $this->association;
     }
 
     public function getClass()

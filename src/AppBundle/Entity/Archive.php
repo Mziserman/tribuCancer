@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -10,15 +9,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Pdf;
 
 /**
- * Article
+ * Archive
  *
- * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
+ * @ORM\Table(name="archive")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ArchiveRepository")
  * @Vich\Uploadable
  */
-class Article
+class Archive
 {
-
     /**
      * @ORM\Column(type="string", length=255)
      * @var string
@@ -62,7 +60,7 @@ class Article
     private $position;
 
     /**
-     * @ORM\OneToMany(targetEntity="Pdf", mappedBy="article", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Pdf", mappedBy="archive", cascade={"persist", "remove"})
      */
     private $pdf;
 
@@ -114,7 +112,7 @@ class Article
      * Set title
      *
      * @param string $title
-     * @return Article
+     * @return Archive
      */
     public function setTitle($title)
     {
@@ -137,7 +135,7 @@ class Article
      * Set body
      *
      * @param string $body
-     * @return Article
+     * @return Archive
      */
     public function setContent($body)
     {
@@ -160,7 +158,7 @@ class Article
      * Set position
      *
      * @param integer $position
-     * @return Article
+     * @return Archive
      */
     public function setPosition($position)
     {
@@ -183,7 +181,7 @@ class Article
      * Set body
      *
      * @param string $body
-     * @return Article
+     * @return Archive
      */
     public function setBody($body)
     {
@@ -211,7 +209,7 @@ class Article
     public function addPdf(Pdf $pdf)
     {
         $this->pdf->add($pdf);
-        $pdf->setArticle($this);
+        $pdf->setArchive($this);
         return $this;
     }
 
@@ -219,10 +217,10 @@ class Article
     {
         $this->pdf->removeElement($pdf);
         return $this;
-    }
+    } 
 
     public function getClass()
     {
-        return 'article';
+        return 'archive';
     }
 }

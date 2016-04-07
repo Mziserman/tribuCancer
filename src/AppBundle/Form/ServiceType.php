@@ -11,14 +11,21 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AppBundle\Form\PdfType;
 
 
-class ArticleType extends AbstractType
+class ServiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', array('label' => 'Titre'))
+            ->add('name','text', array('label' => 'Nom'))
+            ->add('shortDesc', TextareaType::class, array( 'label' => 'Petite Déscription'))
             ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
+            ->add('link','text', array('label' => 'Lien'))
             ->add('position', IntegerType::class, array('label' => 'Position'))
+            ->add('iconFile', 'vich_file', array(
+                    'required'      => true,
+                    'allow_delete'  => true, // not mandatory, default is true
+                    'download_link' => true, // not mandatory, default is true
+                ))
             ->add('imageFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
@@ -37,7 +44,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Article'
+            'data_class' => 'AppBundle\Entity\Service'
         ));
     }
 }

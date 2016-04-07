@@ -8,6 +8,10 @@ jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
     $collectionHolder = $('ul.tags');
 
+    $collectionHolder.find('li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
+
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
 
@@ -42,4 +46,19 @@ function addTagForm($collectionHolder, $newLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<li></li>').append(newForm);
     $newLinkLi.before($newFormLi);
+
+    addTagFormDeleteLink($newFormLi);
+}
+
+function addTagFormDeleteLink($tagFormLi) {
+    var $removeFormA = $('<a href="#">delete this tag</a>');
+    $tagFormLi.append($removeFormA);
+
+    $removeFormA.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
 }

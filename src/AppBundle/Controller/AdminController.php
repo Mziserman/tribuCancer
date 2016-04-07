@@ -10,6 +10,16 @@ use AppBundle\Entity\Pdf;
 use AppBundle\Form\PdfType;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
+use AppBundle\Entity\Archive;
+use AppBundle\Form\ArchiveType;
+use AppBundle\Entity\Partner;
+use AppBundle\Form\PartnerType;
+use AppBundle\Entity\Event;
+use AppBundle\Form\EventType;
+use AppBundle\Entity\Service;
+use AppBundle\Form\ServiceType;
+use AppBundle\Entity\Association;
+use AppBundle\Form\AssociationType;
 
 
 
@@ -60,29 +70,41 @@ class AdminController extends Controller
 		// SECTION WHERE WE DETECT ENTITY
 
 		switch ($slug) {
-		    case 'associtation':
-		    	$entity = new Pdf();
-		        $form = $this->createForm(PdfType::class, $entity);
+		    case 'association':
+		    	$entity = new Association();
+		    	$title = 'Nouveau Pdf sur l\'association';
+		    	$repository = 'AppBundle:Association';
+		        $form = $this->createForm(AssociationType::class, $entity);
 		        break;
 		    case 'service':
-		    	$entity = new Pdf();
-		        $form = $this->createForm(PdfType::class, $entity);
+		    	$entity = new Service();
+		    	$title = 'Nouveau service pour rompre l\'isolement';
+		    	$repository = 'AppBundle:Service';
+		        $form = $this->createForm(ServiceType::class, $entity);
 		        break;
 		    case 'event':
-		    	$entity = new Pdf();
-		        $form = $this->createForm(PdfType::class, $entity);
+		    	$entity = new Event();
+		    	$title = 'Nouvelle activité pour rompre l\'isolement';
+		    	$repository = 'AppBundle:Event';
+		        $form = $this->createForm(EventType::class, $entity);
 		        break;
 		    case 'partner':
-		    	$entity = new Pdf();
-		        $form = $this->createForm(PdfType::class, $entity);
+		    	$entity = new Partner();
+		    	$title = 'Nouveau partenaire';
+		    	$repository = 'AppBundle:Partner';
+		        $form = $this->createForm(PartnerType::class, $entity);
 		        break;
 		    case 'article':
 		    	$entity = new Article();
+		    	$title = 'Nouvel article';
+		    	$repository = 'AppBundle:Article';
 		        $form = $this->createForm(ArticleType::class, $entity);
 		        break;
 		    case 'archive':
-		    	$entity = new Pdf();
-		        $form = $this->createForm(PdfType::class, $entity);
+		    	$entity = new Archive();
+		    	$title = 'Nouvel archive';
+		    	$repository = 'AppBundle:Archive';
+		        $form = $this->createForm(ArchiveType::class, $entity);
 		        break;
 		    default:
 		    	return $this->redirect($this->generateUrl('admin_404'));
@@ -100,6 +122,9 @@ class AdminController extends Controller
 	    if ($form->isSubmitted() && $form->isValid()) {
 
 	        $em = $this->getDoctrine()->getManager();
+
+	        $this->prePersist($entity, $repository);
+
 	        $em->persist($entity);
 	        $em->flush();
 
@@ -114,7 +139,8 @@ class AdminController extends Controller
 
 		return $this->render('AppBundle:Admin:create.html.twig', array(
 			'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-			'myTitle'=>  'Création de données',
+			'myTitle'=>  $title,
+			'slug' => $slug,
 			'form' => $form->createView()
 		));
     }
@@ -128,5 +154,49 @@ class AdminController extends Controller
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         'myTitle'=>  'Modification de données',
       ));
+    }
+
+
+    //FIN DES ROUTES
+
+    //FONCTIONS DIVERSES
+
+    public function prePersist($entity, $repository)
+    {
+    	if ( isset($entity->pdf) ){
+    		$position = $entity->getPosition();
+        	$this->positionUpdateAuto($entity, $position, $repository);
+    	}   
+    }
+
+
+    public function positionUpdateAuto($entity, $position, $repository)
+    {
+        $nextEntity = $this->getDoctrine()
+        ->getRepository($repository)
+        ->findByPosition($position);
+        if ( !empty($nextEntity) ){
+            $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository);
+        }
+        if ( gettype($entity) != "array" ){
+            $entity->setPosition($position);
+        } else {
+            $entity[0]->setPosition($position);
+        } 
+    }
+
+
+    /**
+     * @Route("/test/test/test", name="admin_test")
+     */
+    public function testAction(Request $request)
+    {
+    	$test = $this->getDoctrine()
+        ->getRepository('AppBundle:Article')
+        ->findAll();
+
+        $superTest = $test[2]->getPdf();
+        dump($superTest);
+  		die;
     }
 }

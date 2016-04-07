@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AppBundle\Form\PdfType;
 
 
-class ArticleType extends AbstractType
+class ArchiveType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -37,7 +37,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Article'
+            'data_class' => 'AppBundle\Entity\Archive'
         ));
     }
 }

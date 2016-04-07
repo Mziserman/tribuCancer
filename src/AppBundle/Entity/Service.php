@@ -3,12 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Pdf;
 
 /**
  * Service
  *
  * @ORM\Table(name="service")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ServiceRepository")
+ * @Vich\Uploadable
  */
 class Service
 {
@@ -50,11 +55,16 @@ class Service
     private $body;
 
     /**
+     * @ORM\Column(type="string", length=255)
      * @var string
-     *
-     * @ORM\Column(name="thumbnail", type="string", length=255)
      */
-    private $thumbnail;
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="images_service", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @var string
@@ -64,16 +74,25 @@ class Service
     private $icon;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Pdf")
-     * @ORM\JoinTable(name="service_pdf",
-     *      joinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
-     *      )
+     * @Vich\UploadableField(mapping="images_icon", fileNameProperty="icon")
+     * @var File
+     */
+    private $iconFile;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Pdf", mappedBy="service", cascade={"persist", "remove"})
      */
     private $pdf;
 
     public function __construct() {
-        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pdf = new ArrayCollection();
     }
     
     /**
@@ -178,27 +197,50 @@ class Service
         return $this->body;
     }
 
-    /**
-     * Set thumbnail
-     *
-     * @param string $thumbnail
-     * @return Service
-     */
-    public function setThumbnail($thumbnail)
+    public function setImageFile(File $image = null)
     {
-        $this->thumbnail = $thumbnail;
+        $this->imageFile = $image;
 
-        return $this;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    /**
-     * Get thumbnail
-     *
-     * @return string 
-     */
-    public function getThumbnail()
+    public function getImageFile()
     {
-        return $this->thumbnail;
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+     public function setIconFile(File $icon = null)
+    {
+        $this->iconFile = $icon;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($icon) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getIconFile()
+    {
+        return $this->iconFile;
     }
 
     /**
@@ -225,35 +267,48 @@ class Service
     }
 
     /**
-     * Add pdf
+     * Set position
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @param integer $position
      * @return Service
      */
-    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    public function setPosition($position)
     {
-        $this->pdf[] = $pdf;
+        $this->position = $position;
 
         return $this;
     }
 
     /**
-     * Remove pdf
+     * Get position
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @return integer 
      */
-    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    public function getPosition()
     {
-        $this->pdf->removeElement($pdf);
+        return $this->position;
     }
 
-    /**
-     * Get pdf
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
     public function getPdf()
     {
-        return $this->pdf;
+        return $this->pdf->toArray();
+    }
+
+    public function addPdf(Pdf $pdf)
+    {
+        $this->pdf->add($pdf);
+        $pdf->setService($this);
+        return $this;
+    }
+
+    public function removePdf(Pdf $pdf)
+    {
+        $this->pdf->removeElement($pdf);
+        return $this;
+    } 
+
+    public function getClass()
+    {
+        return 'service';
     }
 }

@@ -6,15 +6,40 @@
 
 	    {{ form_start(form) }}
 
-			{{ form_row(form.title) }}
-			{{ form_row(form.body) }}
-			{{ form_row(form.position) }}
-			{{ form_row(form.imageFile) }}
+	        {% if slug == "article" or slug == 'archive' %}
+	            {{ form_row(form.title) }}
+				{{ form_row(form.body) }}
+				{{ form_row(form.position) }}
+				{{ form_row(form.imageFile) }}
+	        {% elseif slug == 'event' %}
+	        	{{ form_row(form.name) }}
+				{{ form_row(form.shortDesc) }}
+				{{ form_row(form.body) }}
+				{{ form_row(form.inscription) }}
+				{{ form_row(form.date) }}
+				{{ form_row(form.position) }}
+				{{ form_row(form.thumbnailFile) }}
+				{{ form_row(form.imageFile1) }}
+				{{ form_row(form.imageFile2) }}
+				{{ form_row(form.imageFile3) }}
+				{{ form_row(form.flickr) }}
+				{{ form_row(form.youtube) }}
+	        {% elseif slug == 'service' %}
+	        	{{ form_row(form.name) }}
+				{{ form_row(form.shortDesc) }}
+				{{ form_row(form.body) }}
+				{{ form_row(form.link) }}
+				{{ form_row(form.position) }}
+				{{ form_row(form.imageFile) }}
+				{{ form_row(form.iconFile) }}
+	        {% endif %}
 
-		    <h3>Tags</h3>
-		    <ul class="tags" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
-			  {{ form_row(form.pdf) }}
-			</ul>
+	        {% if form.pdf %}
+	            <h3>Pdf</h3>
+			    <ul class="tags" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
+				  {{ form_row(form.pdf) }}
+				</ul>
+	        {% endif %}
 
 		{{ form_end(form) }}
   	</main>

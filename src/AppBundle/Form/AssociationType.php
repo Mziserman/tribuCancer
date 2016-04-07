@@ -11,20 +11,10 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AppBundle\Form\PdfType;
 
 
-class ArticleType extends AbstractType
+class AssociationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('title','text', array('label' => 'Titre'))
-            ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
-            ->add('position', IntegerType::class, array('label' => 'Position'))
-            ->add('imageFile', 'vich_file', array(
-                    'required'      => true,
-                    'allow_delete'  => true, // not mandatory, default is true
-                    'download_link' => true, // not mandatory, default is true
-                ))
-        ;
 
         $builder->add('pdf', CollectionType::class, array(
             'entry_type' => PdfType::class,
@@ -37,7 +27,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Article'
+            'data_class' => 'AppBundle\Entity\Association'
         ));
     }
 }

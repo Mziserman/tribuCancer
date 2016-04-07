@@ -52,8 +52,10 @@ imports:
 parameters: 
   locale: fr
   app.path.images_article: /assets/imgs/article
+  app.path.images_icon: /assets/imgs/icons
   app.path.images_event: /assets/imgs/event
   app.path.images_service: /assets/imgs/service
+  app.path.images_partner: /assets/imgs/partner
   app.path.pdf_files: /assets/pdf
 
 swiftmailer: 
@@ -84,6 +86,10 @@ vich_uploader:
             uri_prefix:         %app.path.images_article%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/article
             namer: vich_uploader.namer_uniqid
+        images_icon:
+            uri_prefix:         %app.path.images_icon%
+            upload_destination: %kernel.root_dir%/../web/assets/icons
+            namer: vich_uploader.namer_uniqid
         images_event:
             uri_prefix:         %app.path.images_event%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/event
@@ -91,6 +97,10 @@ vich_uploader:
         images_service:
             uri_prefix:         %app.path.images_service%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/service
+            namer: vich_uploader.namer_uniqid
+        images_partner:
+            uri_prefix:         %app.path.images_partner%
+            upload_destination: %kernel.root_dir%/../web/assets/imgs/partner
             namer: vich_uploader.namer_uniqid
         pdf_files:
             uri_prefix: %app.path.pdf_files%
