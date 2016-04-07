@@ -18,11 +18,16 @@ class ArchiveType extends AbstractType
         $builder
             ->add('title','text', array('label' => 'Titre'))
             ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
-            ->add('position', IntegerType::class, array('label' => 'Position'))
+            ->add('position', IntegerType::class, array(
+                    'scale' => 0,
+                    'data' => '1',
+                    'label' => 'Position'
+                ))
             ->add('imageFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
+                    'label' => 'Image'
                 ))
         ;
 

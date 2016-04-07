@@ -124,10 +124,9 @@ class AdminController extends Controller
 	        $em = $this->getDoctrine()->getManager();
 
 	        $this->prePersist($entity, $repository);
-
+          
 	        $em->persist($entity);
 	        $em->flush();
-
 	        // REDIRECTION TO THE LIST OF DATA
 	        return $this->redirect($this->generateUrl(
 	            'admin_list',
@@ -163,13 +162,17 @@ class AdminController extends Controller
 
     public function prePersist($entity, $repository)
     {
-    	if ( isset($entity->pdf) ){
+    	if ( $entity->getPosition() !== null ){
     		$position = $entity->getPosition();
-        	$this->positionUpdateAuto($entity, $position, $repository);
-    	}   
+      	$this->positionUpdateAuto($entity, $position, $repository);
+    	}
+      if ( ($entity->getPdf() !== null) && !empty($entity->getPdf()) ){
+        $this->positionUpdateAuto_Pdf($entity);
+      }
     }
 
-
+    // Check if there any other entity of the same class at position given,
+    // and if yes set the others to lower position one by one
     public function positionUpdateAuto($entity, $position, $repository)
     {
         $nextEntity = $this->getDoctrine()
@@ -183,6 +186,38 @@ class AdminController extends Controller
         } else {
             $entity[0]->setPosition($position);
         } 
+    }
+
+
+    // Regulate the pdf positions
+    // for example if there 1 3 4, will convert TO 1 2 3 or even 4 2 2 TO 3 1 2
+    public function positionUpdateAuto_Pdf($entity)
+    {
+      $pdfs = $entity->getPdf();
+      $tri = [];
+      $index = 0;
+      foreach ($pdfs as $value) {
+        $tri[$index] = [];
+        $tri[$index]['pos'] = $value->getPosition();
+        $tri[$index]['id'] = $index;
+        $index = $index + 1;
+      }
+
+      for ( $i = 0; $i < count($tri); $i ++ ){
+        for ( $y = ($i + 1); $y < count($tri); $y ++ ){
+          if ( $tri[$i]['pos'] > $tri[$y]['pos'] ){
+            $tempo = $tri[$i];
+            $tri[$i] = $tri[$y];
+            $tri[$y] = $tempo;
+          }
+        }
+      }
+      
+      $index = 0;
+      for ( $i = 0; $i < count($tri); $i ++ ){
+        $entity->getPdf()[$tri[$index]['id']]->setPosition($index + 1);
+        $index = $index + 1;
+      }
     }
 
 

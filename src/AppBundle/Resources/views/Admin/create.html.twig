@@ -10,7 +10,7 @@
 	            {{ form_row(form.title) }}
 				{{ form_row(form.body) }}
 				{{ form_row(form.position) }}
-				{{ form_row(form.imageFile) }}
+				{{ form_widget(form.imageFile) }}
 	        {% elseif slug == 'event' %}
 	        	{{ form_row(form.name) }}
 				{{ form_row(form.shortDesc) }}
@@ -18,10 +18,10 @@
 				{{ form_row(form.inscription) }}
 				{{ form_row(form.date) }}
 				{{ form_row(form.position) }}
-				{{ form_row(form.thumbnailFile) }}
-				{{ form_row(form.imageFile1) }}
-				{{ form_row(form.imageFile2) }}
-				{{ form_row(form.imageFile3) }}
+				{{ form_widget(form.thumbnailFile) }}
+				{{ form_widget(form.imageFile1) }}
+				{{ form_widget(form.imageFile2) }}
+				{{ form_widget(form.imageFile3) }}
 				{{ form_row(form.flickr) }}
 				{{ form_row(form.youtube) }}
 	        {% elseif slug == 'service' %}
@@ -30,14 +30,14 @@
 				{{ form_row(form.body) }}
 				{{ form_row(form.link) }}
 				{{ form_row(form.position) }}
-				{{ form_row(form.imageFile) }}
-				{{ form_row(form.iconFile) }}
+				{{ form_widget(form.imageFile) }}
+				{{ form_widget(form.iconFile) }}
 	        {% endif %}
 
 	        {% if form.pdf %}
 	            <h3>Pdf</h3>
-			    <ul class="tags" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
-				  {{ form_row(form.pdf) }}
+			    <ul class="pdf-list" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
+				  {{ form_widget(form.pdf) }}
 				</ul>
 	        {% endif %}
 

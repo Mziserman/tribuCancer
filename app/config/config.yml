@@ -55,7 +55,7 @@ parameters:
   app.path.images_icon: /assets/imgs/icons
   app.path.images_event: /assets/imgs/event
   app.path.images_service: /assets/imgs/service
-  app.path.images_partner: /assets/imgs/partner
+  app.path.images_partner: /assets/partenaires
   app.path.pdf_files: /assets/pdf
 
 swiftmailer: 
@@ -100,7 +100,7 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
         images_partner:
             uri_prefix:         %app.path.images_partner%
-            upload_destination: %kernel.root_dir%/../web/assets/imgs/partner
+            upload_destination: %kernel.root_dir%/../web/assets/partenaires
             namer: vich_uploader.namer_uniqid
         pdf_files:
             uri_prefix: %app.path.pdf_files%

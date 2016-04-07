@@ -20,16 +20,22 @@ class ServiceType extends AbstractType
             ->add('shortDesc', TextareaType::class, array( 'label' => 'Petite Déscription'))
             ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
             ->add('link','text', array('label' => 'Lien'))
-            ->add('position', IntegerType::class, array('label' => 'Position'))
+            ->add('position', IntegerType::class, array(
+                    'scale' => 0,
+                    'data' => '1',
+                    'label' => 'Position'
+                ))
             ->add('iconFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
+                    'label' => 'Icône'
                 ))
             ->add('imageFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
+                    'label' => 'Image'
                 ))
         ;
 

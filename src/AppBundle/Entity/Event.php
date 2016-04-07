@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Pdf;
 /**
  * Event
@@ -61,6 +62,10 @@ class Event
 
     /**
      * @var int
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Vous ne pouvez pas placer en place 0 ou moins",
+     * )
      *
      * @ORM\Column(name="position", type="integer")
      */

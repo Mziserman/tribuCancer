@@ -25,7 +25,11 @@ class EventType extends AbstractType
                     'required' => false,
                 ))
             ->add('date','text', array('label' => 'La date, ( une phrase ) '))
-            ->add('position', IntegerType::class, array('label' => 'Position'))
+            ->add('position', IntegerType::class, array(
+                    'scale' => 0,
+                    'data' => '1',
+                    'label' => 'Position'
+                ))
             ->add('thumbnailFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true

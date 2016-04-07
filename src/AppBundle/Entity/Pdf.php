@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\Archive;
 use AppBundle\Entity\Event;
@@ -97,6 +98,10 @@ class Pdf
 
     /**
      * @var string
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Vous ne pouvez pas placer en place 0 ou moins",
+     * )
      *
      *
      * @ORM\Column(name="position", type="string", length=255)
