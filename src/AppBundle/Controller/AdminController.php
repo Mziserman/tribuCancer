@@ -200,11 +200,11 @@ class AdminController extends Controller
 
     public function prePersist($entity, $repository)
     {
-    	if ( $entity->getPosition() !== null ){
+    	if ( is_callable(array($entity, 'getPosition')) ){
     		$position = $entity->getPosition();
       	$this->positionUpdateAuto($entity, $position, $repository);
     	}
-      if ( ($entity->getPdf() !== null) && !empty($entity->getPdf()) ){
+      if ( (is_callable(array($entity, 'getPdf'))) && !empty($entity->getPdf()) ){
         $this->positionUpdateAuto_Pdf($entity);
       }
     }
