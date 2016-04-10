@@ -1,0 +1,46 @@
+.main-list {
+  .button-create{
+    float: right;
+    margin: 0 10px 0 0;
+  }
+  .content{
+
+    width: 100%;
+
+    font-family: $font;
+
+    .row{
+
+
+
+      td{
+        vertical-align: middle;
+        padding: 5px;
+
+        &.actions{
+
+
+          a{
+            width: 150px; 
+            margin: 5px;
+            display: block;
+          }
+        }
+      }
+
+      &.row-head{
+        font-weight: $lato-black;
+
+      }
+
+      &.row-data{
+        font-weight: $lato-regular;
+      
+        
+        .image-data{
+          width: 200px;
+        }
+      } 
+    }
+  }
+}

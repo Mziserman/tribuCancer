@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use AppBundle\Entity\Pdf;
-use AppBundle\Form\PdfType;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
 use AppBundle\Entity\Archive;
@@ -56,68 +54,108 @@ class AdminController extends Controller
      */
     public function listAction(Request $request, $slug)
     {
-      return $this->render('AppBundle:Admin:list.html.twig', array(
-        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Liste de données'
-      ));
+
+        // SECTION WHERE WE DETECT ENTITY
+
+        switch ($slug) {
+            case 'association':
+                $title = 'Liste des pdf de l\'association';
+                $repository = 'AppBundle:Association';
+                break;
+            case 'service':
+                $title = 'Liste des services pour rompre l\'isolement';
+                $repository = 'AppBundle:Service';
+                break;
+            case 'event':
+                $title = 'Liste des activités pour s\'évader ';
+                $repository = 'AppBundle:Event';
+                break;
+            case 'partner':
+                $title = 'Liste des partenaires';
+                $repository = 'AppBundle:Partner';
+                break;
+            case 'article':
+                $title = 'Liste des articles';
+                $repository = 'AppBundle:Article';
+                break;
+            case 'archive':
+                $title = 'Liste des archives';
+                $repository = 'AppBundle:Archive';
+                break;
+            default:
+                return $this->redirect($this->generateUrl('admin_404'));
+        }
+
+        $entities = $this->getDoctrine()
+          ->getRepository($repository)
+          ->findAll();
+
+        // SECTION WHERE WE RENDER THE TEMPLATE CREATE
+
+        return $this->render('AppBundle:Admin:list.html.twig', array(
+          'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+          'myTitle'=>  $title,
+          'slug' => $slug,
+          'data' => $entities 
+        ));
     }
 
     /**
      * @Route("/{slug}/create", name="admin_create")
      */
     public function createAction(Request $request, $slug) 
-	{
-		// SECTION WHERE WE DETECT ENTITY
+  	{
+  		// SECTION WHERE WE DETECT ENTITY
 
-		switch ($slug) {
-		    case 'association':
-		    	$entity = new Association();
-		    	$title = 'Nouveau Pdf sur l\'association';
-		    	$repository = 'AppBundle:Association';
-		        $form = $this->createForm(AssociationType::class, $entity);
-		        break;
-		    case 'service':
-		    	$entity = new Service();
-		    	$title = 'Nouveau service pour rompre l\'isolement';
-		    	$repository = 'AppBundle:Service';
-		        $form = $this->createForm(ServiceType::class, $entity);
-		        break;
-		    case 'event':
-		    	$entity = new Event();
-		    	$title = 'Nouvelle activité pour rompre l\'isolement';
-		    	$repository = 'AppBundle:Event';
-		        $form = $this->createForm(EventType::class, $entity);
-		        break;
-		    case 'partner':
-		    	$entity = new Partner();
-		    	$title = 'Nouveau partenaire';
-		    	$repository = 'AppBundle:Partner';
-		        $form = $this->createForm(PartnerType::class, $entity);
-		        break;
-		    case 'article':
-		    	$entity = new Article();
-		    	$title = 'Nouvel article';
-		    	$repository = 'AppBundle:Article';
-		        $form = $this->createForm(ArticleType::class, $entity);
-		        break;
-		    case 'archive':
-		    	$entity = new Archive();
-		    	$title = 'Nouvel archive';
-		    	$repository = 'AppBundle:Archive';
-		        $form = $this->createForm(ArchiveType::class, $entity);
-		        break;
-		    default:
-		    	return $this->redirect($this->generateUrl('admin_404'));
-		}
+  		switch ($slug) {
+  		    case 'association':
+  		    	$entity = new Association();
+  		    	$title = 'Nouveau Pdf sur l\'association';
+  		    	$repository = 'AppBundle:Association';
+  		        $form = $this->createForm(AssociationType::class, $entity);
+  		        break;
+  		    case 'service':
+  		    	$entity = new Service();
+  		    	$title = 'Nouveau service pour rompre l\'isolement';
+  		    	$repository = 'AppBundle:Service';
+  		        $form = $this->createForm(ServiceType::class, $entity);
+  		        break;
+  		    case 'event':
+  		    	$entity = new Event();
+  		    	$title = 'Nouvelle activité pour s\'évader ';
+  		    	$repository = 'AppBundle:Event';
+  		        $form = $this->createForm(EventType::class, $entity);
+  		        break;
+  		    case 'partner':
+  		    	$entity = new Partner();
+  		    	$title = 'Nouveau partenaire';
+  		    	$repository = 'AppBundle:Partner';
+  		        $form = $this->createForm(PartnerType::class, $entity);
+  		        break;
+  		    case 'article':
+  		    	$entity = new Article();
+  		    	$title = 'Nouvel article';
+  		    	$repository = 'AppBundle:Article';
+  		        $form = $this->createForm(ArticleType::class, $entity);
+  		        break;
+  		    case 'archive':
+  		    	$entity = new Archive();
+  		    	$title = 'Nouvel archive';
+  		    	$repository = 'AppBundle:Archive';
+  		        $form = $this->createForm(ArchiveType::class, $entity);
+  		        break;
+  		    default:
+  		    	return $this->redirect($this->generateUrl('admin_404'));
+  		}
 
-		$form->add('submit', SubmitType::class, array(
-		            'label' => 'Create',
-		            'attr'  => array('class' => 'btn btn-default pull-right')
-		        ));
+		  $form->add('submit', SubmitType::class, array(
+            'label' => 'Create',
+            'attr'  => array('class' => 'btn btn-default pull-right')
+        ));
 
-        //SECTION WHERE WE RECEIVE THE DATA FORM
+      //SECTION WHERE WE RECEIVE THE DATA FORM
 
-        $form->handleRequest($request);
+      $form->handleRequest($request);
 
 	    if ($form->isSubmitted() && $form->isValid()) {
 
@@ -145,9 +183,9 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/{slug}/edit", name="admin_edit")
+     * @Route("/{slug}/edit/{id}", name="admin_edit")
      */
-    public function editAction(Request $request, $slug)
+    public function editAction(Request $request, $slug, $id)
     {
       return $this->render('AppBundle:Admin:edit.html.twig', array(
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
@@ -176,8 +214,9 @@ class AdminController extends Controller
     public function positionUpdateAuto($entity, $position, $repository)
     {
         $nextEntity = $this->getDoctrine()
-        ->getRepository($repository)
-        ->findByPosition($position);
+          ->getRepository($repository)
+          ->findByPosition($position);
+        
         if ( !empty($nextEntity) ){
             $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository);
         }

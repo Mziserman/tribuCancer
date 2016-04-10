@@ -36,6 +36,16 @@ framework:
     packages:
             img:
                 base_path: /assets/imgs/
+            img_article:
+                base_path: %app.path.images_article%
+            img_icon:
+                base_path: %app.path.images_icon%
+            img_event:
+                base_path: %app.path.images_event%
+            img_service:
+                base_path: %app.path.images_service%
+            img_partner:
+                base_path: %app.path.images_article%
 
 twig:
     form_themes:

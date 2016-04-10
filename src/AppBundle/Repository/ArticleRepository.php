@@ -12,15 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-    public function setPositioncustom($position)
+	public function findAll()
     {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    public function getPositioncustom()
-    {
-        return 2;
+        return $this->findBy(array(), array('position' => 'ASC'));
     }
 }

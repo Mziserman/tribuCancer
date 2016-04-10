@@ -114,6 +114,7 @@ span.strong {
   border-radius: 2px;
   font-size:10px;
   text-transform: uppercase;
+  text-align: center;
   letter-spacing: 0.84px;
   font-weight: $lato-regular;
   color: $white;
@@ -148,7 +149,7 @@ span.strong {
   }
   &.button-small {
     height: 35px;
-    min-width: 120px;
+    min-width: 100px;
     line-height: 35px;
     padding: 0 10px;
     text-transform: none;
