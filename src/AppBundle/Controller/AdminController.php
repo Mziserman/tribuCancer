@@ -339,19 +339,4 @@ class AdminController extends Controller
         $index = $index + 1;
       }
     }
-
-
-    /**
-     * @Route("/test/test/test", name="admin_test")
-     */
-    public function testAction(Request $request)
-    {
-    	$test = $this->getDoctrine()
-        ->getRepository('AppBundle:Article')
-        ->findAll();
-
-        $superTest = $test[2]->getPdf();
-        dump($superTest);
-  		die;
-    }
 }

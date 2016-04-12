@@ -44,6 +44,12 @@
         .td-body{
           text-align: left;
         }
+        .td-pdf{
+          a{
+            display: inline-block;
+            margin: 5px;
+          }
+        }
       }
 
       &:nth-child(even){

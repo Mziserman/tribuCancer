@@ -36,6 +36,8 @@ framework:
     packages:
             img:
                 base_path: /assets/imgs/
+            pdf:
+                base_path: %app.path.pdf_files%
             img_article:
                 base_path: %app.path.images_article%
             img_icon:

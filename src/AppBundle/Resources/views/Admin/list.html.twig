@@ -12,6 +12,7 @@
 			        	<th><span>Titre</span></th>
 			        	<th><span>Contenue</span></th>
 			        	<th><span>Image</span></th>
+			        	<th><span>Pdf</span></th>
 			        	<th><span>Actions</span></th>
 		    		</tr>
 	        	</thead>
@@ -26,6 +27,16 @@
 							{% endif %}
 						</td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_article') }}" alt="image d'article"></td>
+			        	<td class="td-pdf">
+			        		{% for _pdf in _data.pdf %}
+			        			<a class="button button-pdf button-{{_pdf.color}}" href="{{ asset( _pdf.file , 'pdf') }}" target="_blank">
+						            <span>pdf</span>
+						            {{_pdf.name}}
+						        </a>
+						    {% else %}
+						    	Aucun Pdf.   
+			        		{% endfor %}
+			        	</td>
 			        	<td class="td-actions">
 				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
 				        	<a href="#" class="button button-red button-small button-delete">Supprimer</a>
