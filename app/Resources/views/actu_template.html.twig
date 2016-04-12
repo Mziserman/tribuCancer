@@ -7,13 +7,13 @@
 	  	<h2>Actualités</h2>
 	  	<div class="services-container">
 	    	<div class="service-content actualite">
-	    		<p class="actu-title">LES FOULÉES DU LARGE : SUCCÈS DE LA 3ÈME ÉDITION AVEC PRÈS DE 800 PARTICIPANTS !</p>
+	    		<p class="actu-title">{{ article.title }}</p>
 					<div class="header">
 					    <img src="assets/imgs/actu-cover.png" alt="foulées du large success">
 					</div>
 
 					<div class="actualite-content">
-						<p>La 3ème édition des Foulées du Large s'est déroulée le 25 juillet 2015. Elle se composait cette année d'une marche "A Travers la Presqu’ile" suivie d'une course de 5 Km et d'une course de 10 km à Quiberon.<br/>170 participants en 2013, 350 participants en 2014 et près de 800 pour cette 3ème édition !</p>
+						<p>{{ article.body }}</p>
 						<p>Organisateur et contact : Stéphane Boutet - fouleesdularge@gmail.com</p>
 
 		    		<a href="#" class="access-link">LA PAGE FACEBOOK DES FOULÉES DU LARGEe<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
@@ -52,30 +52,18 @@
 	    <div class="others-actualites">
 	      <a href="#" class="news-section-title active"><h2>Autres Actualités</h2></a>
 
-	      <a href="" class="item-news">
-	        <div class="items-news-image">
-	          <img src="assets/imgs/news-1.png" alt="les foulées du large">
-	        </div>
-	        <div class="items-news-title">
-	          <p>Les inscriptions pour l'édition 2016 des foulées du large sont ouvertes</p>
-	        </div>
-	      </a>
-	      <a href="" class="item-news">
-	        <div class="items-news-image">
-	          <img src="assets/imgs/news-2.png" alt="les foulées du large">
-	        </div>
-	        <div class="items-news-title">
-	          <p>TRIBU CANCER SOUTIEN LES PARENTS MALADES AVEC ACTION RME</p>
-	        </div>
-	      </a>
-	      <a href="" class="item-news">
-	        <div class="items-news-image">
-	          <img src="assets/imgs/news-3.png" alt="les foulées du large">
-	        </div>
-	        <div class="items-news-title">
-	          <p>EFFECTUEZ VOTRE BAPTÈME DE L’AIR À L’AÉROPORT DE PÉRIGUEUX</p>
-	        </div>
-	      </a>
+		  {% for article in autreArticles %}
+
+			<a href="{{ path('actualite', {'id': article.id}) }}" class="item-news">
+				  <div class="items-news-image">
+					  <img src="assets/imgs/{{ article.image }}" alt="les foulées du large">
+				  </div>
+				  <div class="items-news-title">
+					  <p>{{ article.title }}</p>
+				  </div>
+			  </a>
+		  {% endfor %}
+
 	    </div>
 	  </div>
 	</main>

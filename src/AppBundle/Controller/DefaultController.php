@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -86,13 +87,32 @@ class DefaultController extends Controller
     }
 
     /**
-    * @Route("/actualite", name="actualite")
+    * @Route("/actualite/{id}", name="actualite")
     */
-    public function actualiteAction(Request $request)
+    public function actualiteAction(Request $request, $id)
     {
-      return $this->render('actu_template.html.twig', array(
-        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Actualite'
-      ));
+        $article = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->find($id);
+
+        $autreArticles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findAll(
+                array("position" => "DESC")
+            );
+        /*for($i = 0; $i < 4; $i++) {
+            if ($autreArticles[$i]->getId() == $id) {
+                $temp = array_splice($autreArticles, $i);
+                dump($temp);
+                dump($autreArticles);
+            }
+        }*/
+        array_splice($autreArticles, 3);
+        return $this->render('actu_template.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle' =>  'Actualite',
+            'article' =>  $article,
+            'autreArticles' => $autreArticles,
+        ));
     }
 }
