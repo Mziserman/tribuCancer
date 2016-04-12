@@ -24,19 +24,19 @@ class ServiceType extends AbstractType
                     'scale' => 0,
                     'data' => '1',
                     'label' => 'Position'
-                ))
+            ))
             ->add('iconFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Icône'
-                ))
+            ))
             ->add('imageFile', 'vich_file', array(
                     'required'      => true,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Image'
-                ))
+            ))
         ;
 
         $builder->add('pdf', CollectionType::class, array(

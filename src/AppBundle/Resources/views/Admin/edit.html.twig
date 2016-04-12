@@ -2,10 +2,47 @@
 {% import 'AppBundle:Admin/partials/header.html.twig' as title %}
 
 {% block body %}
-	<main class="main-edit">
-	    
-  	</main>
+	<main class="main-create">
+
+		{{ form_start(form) }}
+
+		{% if slug == "article" or slug == 'archive' %}
+			{{ form_row(form.title) }}
+			{{ form_row(form.body) }}
+			{{ form_row(form.position) }}
+			{{ form_widget(form.imageFile) }}
+		{% elseif slug == 'event' %}
+			{{ form_row(form.name) }}
+			{{ form_row(form.shortDesc) }}
+			{{ form_row(form.body) }}
+			{{ form_row(form.inscription) }}
+			{{ form_row(form.date) }}
+			{{ form_row(form.position) }}
+			{{ form_widget(form.thumbnailFile) }}
+			{{ form_widget(form.imageFile1) }}
+			{{ form_widget(form.imageFile2) }}
+			{{ form_widget(form.imageFile3) }}
+			{{ form_row(form.flickr) }}
+			{{ form_row(form.youtube) }}
+		{% elseif slug == 'service' %}
+			{{ form_row(form.name) }}
+			{{ form_row(form.shortDesc) }}
+			{{ form_row(form.body) }}
+			{{ form_row(form.link) }}
+			{{ form_row(form.position) }}
+			{{ form_widget(form.imageFile) }}
+			{{ form_widget(form.iconFile) }}
+		{% endif %}
+
+		{% if form.pdf %}
+			<h3>Pdf</h3>
+			<ul class="pdf-list" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
+				{{ form_widget(form.pdf) }}
+			</ul>
+		{% endif %}
+
+		{{ form_end(form) }}
+	</main>
 
 {% endblock %}
-
 {% block javascripts %}{% endblock %}

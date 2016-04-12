@@ -187,9 +187,89 @@ class AdminController extends Controller
      */
     public function editAction(Request $request, $slug, $id)
     {
+
+        switch ($slug) {
+            case 'association':
+                $title = 'Edit Pdf sur l\'association';
+                $repository = 'AppBundle:Association';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(AssociationType::class, $entity);
+                break;
+            case 'service':
+                $title = 'Nouveau service pour rompre l\'isolement';
+                $repository = 'AppBundle:Service';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(ServiceType::class, $entity);
+                break;
+            case 'event':
+                $title = 'Nouvelle activité pour s\'évader ';
+                $repository = 'AppBundle:Event';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(EventType::class, $entity);
+                break;
+            case 'partner':
+                $title = 'Nouveau partenaire';
+                $repository = 'AppBundle:Partner';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(PartnerType::class, $entity);
+                break;
+            case 'article':
+                $title = 'Nouvel article';
+                $repository = 'AppBundle:Article';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(ArticleType::class, $entity);
+                break;
+            case 'archive':
+                $title = 'Nouvel archive';
+                $repository = 'AppBundle:Archive';
+                $entity = $this->getDoctrine()
+                    ->getRepository($repository)
+                    ->find($id);
+                $form = $this->createForm(ArchiveType::class, $entity);
+                break;
+            default:
+                return $this->redirect($this->generateUrl('admin_404'));
+        }
+
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Create',
+            'attr'  => array('class' => 'btn btn-default pull-right')
+        ));
+
+        //SECTION WHERE WE RECEIVE THE DATA FORM
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $this->prePersist($entity, $repository);
+
+            $em->persist($entity);
+            $em->flush();
+            // REDIRECTION TO THE LIST OF DATA
+            return $this->redirect($this->generateUrl(
+                'admin_list',
+                array('slug' => $entity->getClass() )
+            ));
+        }
+
       return $this->render('AppBundle:Admin:edit.html.twig', array(
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Modification de données',
+          'myTitle'=>  $title,
+          'slug' => $slug,
+          'form' => $form->createView()
       ));
     }
 
@@ -202,7 +282,7 @@ class AdminController extends Controller
     {
     	if ( $entity->getPosition() !== null ){
     		$position = $entity->getPosition();
-      	$this->positionUpdateAuto($entity, $position, $repository);
+      	    $this->positionUpdateAuto($entity, $position, $repository);
     	}
       if ( ($entity->getPdf() !== null) && !empty($entity->getPdf()) ){
         $this->positionUpdateAuto_Pdf($entity);
