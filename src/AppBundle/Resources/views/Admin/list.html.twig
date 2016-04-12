@@ -8,11 +8,11 @@
 			{% if slug == "article" or slug == 'archive' %}
 				<thead class="row row-head row-5">
 					<tr>
-		    			<td><span>Position</span></td>
-			        	<td><span>Titre</span></td>
-			        	<td><span>Contenue</span></td>
-			        	<td><span>Image</span></td>
-			        	<td><span>Actions</span></td>
+		    			<th><span>Position</span></th>
+			        	<th><span>Titre</span></th>
+			        	<th><span>Contenue</span></th>
+			        	<th><span>Image</span></th>
+			        	<th><span>Actions</span></th>
 		    		</tr>
 	        	</thead>
 	        	<tbody>
@@ -20,9 +20,13 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.title|e }}</td>
-			        	<td>{{ _data.body|e }}</td>
-			        	<td><img class="image-data" src="{{ asset( _data.image , 'img_article') }}" alt="image d'article"></td>
-			        	<td class="actions">
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|e|nl2br  }}
+			        		{% if _data.body|length > 100 %}
+								...
+							{% endif %}
+						</td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_article') }}" alt="image d'article"></td>
+			        	<td class="td-actions">
 				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
 				        	<a href="#" class="button button-red button-small button-delete">Supprimer</a>
 			        	</td>

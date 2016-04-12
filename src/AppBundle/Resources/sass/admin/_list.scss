@@ -15,17 +15,9 @@
 
       td{
         vertical-align: middle;
-        padding: 5px;
+        text-align: center;
+        padding: 10px;
 
-        &.actions{
-
-
-          a{
-            width: 150px; 
-            margin: 5px;
-            display: block;
-          }
-        }
       }
 
       &.row-head{
@@ -35,11 +27,27 @@
 
       &.row-data{
         font-weight: $lato-regular;
-      
-        
-        .image-data{
-          width: 200px;
+        .td-actions{
+
+          a{
+            width: 125px; 
+            margin: 5px auto 5px auto;
+            display: block;
+          }
         }
+        .td-image{
+
+          .image-data{
+            width: 150px;
+          }
+        }
+        .td-body{
+          text-align: left;
+        }
+      }
+
+      &:nth-child(even){
+        background-color: $grey-striped;
       } 
     }
   }
