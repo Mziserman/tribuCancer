@@ -26,13 +26,13 @@ class ServiceType extends AbstractType
                     'label' => 'Position'
             ))
             ->add('iconFile', 'vich_file', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Icône'
             ))
             ->add('imageFile', 'vich_file', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Image'

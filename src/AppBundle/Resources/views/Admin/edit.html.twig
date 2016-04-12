@@ -3,6 +3,8 @@
 
 {% block body %}
 	<main class="main-create">
+		haha
+		{{ form.vars.data.icon }}
 
 		{{ form_start(form) }}
 
@@ -10,6 +12,7 @@
 			{{ form_row(form.title) }}
 			{{ form_row(form.body) }}
 			{{ form_row(form.position) }}
+			<img src="{{ form.vars.data.image}}" alt="">
 			{{ form_widget(form.imageFile) }}
 		{% elseif slug == 'event' %}
 			{{ form_row(form.name) }}
@@ -30,7 +33,9 @@
 			{{ form_row(form.body) }}
 			{{ form_row(form.link) }}
 			{{ form_row(form.position) }}
+			<img src="{{ asset('assets/imgs/service/'~form.vars.data.image) }}" alt="">
 			{{ form_widget(form.imageFile) }}
+			<img src="{{ asset('assets/icons/'~form.vars.data.icon) }}" alt="">
 			{{ form_widget(form.iconFile) }}
 		{% endif %}
 

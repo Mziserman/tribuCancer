@@ -256,6 +256,7 @@ class AdminController extends Controller
 
             $this->prePersist($entity, $repository);
 
+            
             $em->persist($entity);
             $em->flush();
             // REDIRECTION TO THE LIST OF DATA
@@ -264,7 +265,7 @@ class AdminController extends Controller
                 array('slug' => $entity->getClass() )
             ));
         }
-
+        //dump($form->createView());die;
       return $this->render('AppBundle:Admin:edit.html.twig', array(
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
           'myTitle'=>  $title,

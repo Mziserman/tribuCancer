@@ -95,24 +95,36 @@ vich_uploader:
         images_article:
             uri_prefix:         %app.path.images_article%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/article
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
         images_icon:
             uri_prefix:         %app.path.images_icon%
             upload_destination: %kernel.root_dir%/../web/assets/icons
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
         images_event:
             uri_prefix:         %app.path.images_event%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/event
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
         images_service:
             uri_prefix:         %app.path.images_service%
             upload_destination: %kernel.root_dir%/../web/assets/imgs/service
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
         images_partner:
             uri_prefix:         %app.path.images_partner%
             upload_destination: %kernel.root_dir%/../web/assets/partenaires
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
         pdf_files:
             uri_prefix: %app.path.pdf_files%
             upload_destination: %kernel.root_dir%/../web/assets/pdf
+            delete_on_remove: true
+            delete_on_update: true
             namer: vich_uploader.namer_uniqid
