@@ -21,7 +21,8 @@
         "javiereguiluz/easyadmin-bundle": "^1.11",
         "symfony/assetic-bundle": "^2.7",
         "leafo/scssphp": "^0.4.0",
-        "vich/uploader-bundle": "^0.14.0"
+        "vich/uploader-bundle": "^0.14.0",
+        "gedmo/doctrine-extensions": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

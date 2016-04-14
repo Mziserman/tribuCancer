@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\create;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use AppBundle\Form\PdfType;
+use AppBundle\Form\create\PdfType;
 
 
 class AssociationType extends AbstractType

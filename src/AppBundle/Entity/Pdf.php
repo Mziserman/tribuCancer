@@ -108,7 +108,11 @@ class Pdf
      */
     private $position;
 
-
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+    
     public function setPdfFile(File $file = null)
     {
         $this->pdfFile = $file;
@@ -284,5 +288,28 @@ class Pdf
     public function getClass()
     {
         return 'pdfFile';
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Pdf
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

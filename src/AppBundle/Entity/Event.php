@@ -140,6 +140,11 @@ class Event
      */
     private $pdf;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct() {
         $this->pdf = new ArrayCollection();
     }
@@ -473,5 +478,28 @@ class Event
     public function getClass()
     {
         return 'event';
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Event
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

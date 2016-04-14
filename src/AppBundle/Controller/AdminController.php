@@ -7,17 +7,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Article;
-use AppBundle\Form\ArticleType;
+use AppBundle\Form\create\ArticleType as ArticleCreate;
+use AppBundle\Form\edit\ArticleType as ArticleEdit;
 use AppBundle\Entity\Archive;
-use AppBundle\Form\ArchiveType;
+use AppBundle\Form\create\ArchiveType as ArchiveCreate;
+use AppBundle\Form\edit\ArchiveType as ArchiveEdit;
 use AppBundle\Entity\Partner;
-use AppBundle\Form\PartnerType;
+use AppBundle\Form\create\PartnerType as PartnerCreate;
+use AppBundle\Form\edit\PartnerType as PartnerEdit;
 use AppBundle\Entity\Event;
-use AppBundle\Form\EventType;
+use AppBundle\Form\create\EventType as EventCreate;
+use AppBundle\Form\edit\EventType as EventEdit;
 use AppBundle\Entity\Service;
-use AppBundle\Form\ServiceType;
+use AppBundle\Form\create\ServiceType as ServiceCreate;
+use AppBundle\Form\edit\ServiceType as ServiceEdit;
 use AppBundle\Entity\Association;
-use AppBundle\Form\AssociationType;
+use AppBundle\Form\create\AssociationType as AssociationCreate;
+use AppBundle\Form\edit\AssociationType as AssociationEdit;
 
 
 
@@ -112,37 +118,37 @@ class AdminController extends Controller
   		    	$entity = new Association();
   		    	$title = 'Nouveau Pdf sur l\'association';
   		    	$repository = 'AppBundle:Association';
-  		        $form = $this->createForm(AssociationType::class, $entity);
+  		        $form = $this->createForm(AssociationCreate::class, $entity);
   		        break;
   		    case 'service':
   		    	$entity = new Service();
   		    	$title = 'Nouveau service pour rompre l\'isolement';
   		    	$repository = 'AppBundle:Service';
-  		        $form = $this->createForm(ServiceType::class, $entity);
+  		        $form = $this->createForm(ServiceCreate::class, $entity);
   		        break;
   		    case 'event':
   		    	$entity = new Event();
   		    	$title = 'Nouvelle activité pour s\'évader ';
   		    	$repository = 'AppBundle:Event';
-  		        $form = $this->createForm(EventType::class, $entity);
+  		        $form = $this->createForm(EventCreate::class, $entity);
   		        break;
   		    case 'partner':
   		    	$entity = new Partner();
   		    	$title = 'Nouveau partenaire';
   		    	$repository = 'AppBundle:Partner';
-  		        $form = $this->createForm(PartnerType::class, $entity);
+  		        $form = $this->createForm(PartnerCreate::class, $entity);
   		        break;
   		    case 'article':
   		    	$entity = new Article();
   		    	$title = 'Nouvel article';
   		    	$repository = 'AppBundle:Article';
-  		        $form = $this->createForm(ArticleType::class, $entity);
+  		        $form = $this->createForm(ArticleCreate::class, $entity);
   		        break;
   		    case 'archive':
   		    	$entity = new Archive();
   		    	$title = 'Nouvel archive';
   		    	$repository = 'AppBundle:Archive';
-  		        $form = $this->createForm(ArchiveType::class, $entity);
+  		        $form = $this->createForm(ArchiveCreate::class, $entity);
   		        break;
   		    default:
   		    	return $this->redirect($this->generateUrl('admin_404'));
@@ -195,47 +201,47 @@ class AdminController extends Controller
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(AssociationType::class, $entity);
+                $form = $this->createForm(AssociationEdit::class, $entity);
                 break;
             case 'service':
-                $title = 'Nouveau service pour rompre l\'isolement';
+                $title = 'Edit service pour rompre l\'isolement';
                 $repository = 'AppBundle:Service';
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(ServiceType::class, $entity);
+                $form = $this->createForm(ServiceEdit::class, $entity);
                 break;
             case 'event':
-                $title = 'Nouvelle activité pour s\'évader ';
+                $title = 'Edit activité pour s\'évader ';
                 $repository = 'AppBundle:Event';
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(EventType::class, $entity);
+                $form = $this->createForm(EventEdit::class, $entity);
                 break;
             case 'partner':
-                $title = 'Nouveau partenaire';
+                $title = 'Edit partenaire';
                 $repository = 'AppBundle:Partner';
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(PartnerType::class, $entity);
+                $form = $this->createForm(PartnerEdit::class, $entity);
                 break;
             case 'article':
-                $title = 'Nouvel article';
+                $title = 'Edit article';
                 $repository = 'AppBundle:Article';
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(ArticleType::class, $entity);
+                $form = $this->createForm(ArticleEdit::class, $entity);
                 break;
             case 'archive':
-                $title = 'Nouvel archive';
+                $title = 'Edit archive';
                 $repository = 'AppBundle:Archive';
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $form = $this->createForm(ArchiveType::class, $entity);
+                $form = $this->createForm(ArchiveEdit::class, $entity);
                 break;
             default:
                 return $this->redirect($this->generateUrl('admin_404'));

@@ -69,11 +69,14 @@ class Archive
      */
     private $pdf;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     public function __construct() {
         $this->pdf = new ArrayCollection();
     }
-
 
     public function setImageFile(File $image = null)
     {
@@ -227,5 +230,51 @@ class Archive
     public function getClass()
     {
         return 'archive';
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     * @return Archive
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Archive
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
