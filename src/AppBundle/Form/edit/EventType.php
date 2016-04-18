@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use AppBundle\Form\edit\PdfType;
+use AppBundle\Form\edit\PdfType as EditPdf;
 
 
 class EventType extends AbstractType
@@ -27,7 +27,6 @@ class EventType extends AbstractType
             ->add('date','text', array('label' => 'La date, ( une phrase ) '))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'data' => '1',
                     'label' => 'Position'
                 ))
             ->add('thumbnailFile', 'vich_file', array(
@@ -59,7 +58,7 @@ class EventType extends AbstractType
         ;
 
         $builder->add('pdf', CollectionType::class, array(
-            'entry_type' => PdfType::class,
+            'entry_type' => EditPdf::class,
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false

@@ -17,12 +17,11 @@ class PdfType extends AbstractType
             ->add('name','text', array('label' => 'Nom'))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'data' => '1',
                     'attr' => array('class' => 'pdf-position'),
                     'label' => 'Position'
                 ))
             ->add('pdfFile', 'vich_file', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Le fichier'

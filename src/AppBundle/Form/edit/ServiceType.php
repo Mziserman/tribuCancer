@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use AppBundle\Form\edit\PdfType;
+use AppBundle\Form\edit\PdfType as EditPdf;
 
 
 class ServiceType extends AbstractType
@@ -22,7 +22,6 @@ class ServiceType extends AbstractType
             ->add('link','text', array('label' => 'Lien'))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'data' => '1',
                     'label' => 'Position'
             ))
             ->add('iconFile', 'vich_file', array(
@@ -40,7 +39,7 @@ class ServiceType extends AbstractType
         ;
 
         $builder->add('pdf', CollectionType::class, array(
-            'entry_type' => PdfType::class,
+            'entry_type' => EditPdf::class,
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false

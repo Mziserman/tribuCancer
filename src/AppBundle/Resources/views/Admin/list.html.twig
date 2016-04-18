@@ -1,5 +1,5 @@
 {% extends 'AppBundle:Admin:base.html.twig' %}
-{% import 'AppBundle:Admin/partials/header.html.twig' as title %}
+{% import 'AppBundle:Admin:partials/header.html.twig' as title %}
 
 {% block body %}
 	<main class="main-list">
@@ -21,7 +21,7 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.title|e }}</td>
-			        	<td class="td-body" >{{ _data.body|slice(0, 100)|e|nl2br  }}
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
 			        		{% if _data.body|length > 100 %}
 								...
 							{% endif %}

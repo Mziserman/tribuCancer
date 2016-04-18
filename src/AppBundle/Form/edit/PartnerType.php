@@ -19,7 +19,6 @@ class PartnerType extends AbstractType
             ->add('link','text', array('label' => 'Lien'))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'data' => '1',
                     'label' => 'Position'
                 ))
             ->add('imageFile', 'vich_file', array(

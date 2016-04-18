@@ -262,7 +262,6 @@ class AdminController extends Controller
 
             $this->prePersist($entity, $repository);
 
-            
             $em->persist($entity);
             $em->flush();
             // REDIRECTION TO THE LIST OF DATA
