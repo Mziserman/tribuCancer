@@ -13,9 +13,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block nav %}{% include 'AppBundle:Admin/partials/nav.html.twig' %}{% endblock %}
+        {% block nav %}{% include 'AppBundle:Admin:partials/nav.html.twig' %}{% endblock %}
         <div class="main-content">
-            {% block header %}{% include 'AppBundle:Admin/partials/header.html.twig' %}{% endblock %}
+            {% block header %}{% include 'AppBundle:Admin:partials/header.html.twig' %}{% endblock %}
             {% block body %}{% endblock %}
             {# block footer %}{% include 'AppBundle:Admin/partials/footer.html.twig' %}{% endblock #}
         </div>
@@ -25,5 +25,6 @@
              %}
             <script src="{{ asset_url }}" type="text/javascript"></script>
         {% endjavascripts %}
+        {{ tinymce_init() }}
     </body>
 </html>
