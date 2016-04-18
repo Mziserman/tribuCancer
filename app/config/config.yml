@@ -130,3 +130,20 @@ vich_uploader:
             delete_on_remove: true
             delete_on_update: true
             namer: vich_uploader.namer_uniqid
+
+stfalcon_tinymce:
+        include_jquery: true
+        tinymce_jquery: true
+        selector: ".tinymce"
+        language: %locale%
+        theme:
+            simple:
+                theme: "modern"
+                menubar: false
+                height : 300
+                toolbar: "insertfile undo redo | bold italic | bullist numlist | link"
+                plugins:
+                  - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                  - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                  - "insertdatetime media nonbreaking save table contextmenu directionality"
+                  - "emoticons template paste textcolor"

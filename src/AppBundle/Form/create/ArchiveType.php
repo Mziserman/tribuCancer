@@ -17,7 +17,10 @@ class ArchiveType extends AbstractType
     {
         $builder
             ->add('title','text', array('label' => 'Titre'))
-            ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
+            ->add('body', TextareaType::class, array( 
+                'label' => 'Contenu',
+                'attr' => array('class' => 'tinymce')
+                ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
                     'data' => '1',

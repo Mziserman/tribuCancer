@@ -17,8 +17,14 @@ class ServiceType extends AbstractType
     {
         $builder
             ->add('name','text', array('label' => 'Nom'))
-            ->add('shortDesc', TextareaType::class, array( 'label' => 'Petite Déscription'))
-            ->add('body', TextareaType::class, array( 'label' => 'Contenue'))
+            ->add('shortDesc', TextareaType::class, array( 
+                'label' => 'Petite Déscription',
+                'attr' => array('class' => 'tinymce')
+                ))
+            ->add('body', TextareaType::class, array( 
+                'label' => 'Contenu',
+                'attr' => array('class' => 'tinymce')
+                ))
             ->add('link','text', array('label' => 'Lien'))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
