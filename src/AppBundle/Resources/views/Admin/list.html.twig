@@ -1,0 +1,75 @@
+{% extends 'AppBundle:Admin:base.html.twig' %}
+{% import 'AppBundle:Admin:partials/header.html.twig' as title %}
+
+{% block body %}
+	<main class="main-list">
+		<a href="{{ path('admin_create', {'slug': slug}) }}" class="button button-blue button-small button-create">Nouveau</a>
+	    <table class="content">
+			{% if slug == "article" or slug == 'archive' %}
+				<thead class="row row-head row-5">
+					<tr>
+		    			<th><span>Position</span></th>
+			        	<th><span>Titre</span></th>
+			        	<th><span>Contenue</span></th>
+			        	<th><span>Image</span></th>
+			        	<th><span>Pdf</span></th>
+			        	<th><span>Actions</span></th>
+		    		</tr>
+	        	</thead>
+	        	<tbody>
+					{% for _data in data %}
+					<tr class="row row-data row-5">
+			        	<td>{{ _data.position|e }}</td>
+			        	<td>{{ _data.title|e }}</td>
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
+			        		{% if _data.body|length > 100 %}
+								...
+							{% endif %}
+						</td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_article') }}" alt="image d'article"></td>
+			        	<td class="td-pdf">
+			        		{% for _pdf in _data.pdf %}
+			        			<a class="button button-pdf button-{{_pdf.color}}" href="{{ asset( _pdf.file , 'pdf') }}" target="_blank">
+						            <span>pdf</span>
+						            {{_pdf.name}}
+						        </a>
+						    {% else %}
+						    	Aucun Pdf.   
+			        		{% endfor %}
+			        	</td>
+			        	<td class="td-actions">
+				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
+				        	<a href="#" class="button button-red button-small button-delete">Supprimer</a>
+			        	</td>
+		        	</tr>
+					{% endfor %}
+				</tbody>
+	        {% elseif slug == 'event' %}
+	        	{{ data.name }}
+				{{ data.shortDesc }}
+				{{ data.body }}
+				{{ data.inscription }}
+				{{ data.date }}
+				{{ data.position }}
+				{{ data.thumbnailFile }}
+				{{ data.imageFile1 }}
+				{{ data.imageFile2 }}
+				{{ data.imageFile3 }}
+				{{ data.flickr }}
+				{{ data.youtube }}
+	        {% elseif slug == 'service' %}
+	        	{{ data.name }}
+				{{ data.shortDesc }}
+				{{ data.body }}
+				{{ data.link }}
+				{{ data.position }}
+				{{ data.imageFile }}
+				{{ data.iconFile }}
+			{% elseif slug == 'association' %}
+	        {% endif %}
+        </table>
+  	</main>
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

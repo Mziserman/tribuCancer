@@ -1,0 +1,60 @@
+.main-list {
+  .button-create{
+    float: right;
+    margin: 0 10px 0 0;
+  }
+  .content{
+
+    width: 100%;
+
+    font-family: $font;
+
+    .row{
+
+
+
+      td{
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px;
+
+      }
+
+      &.row-head{
+        font-weight: $lato-black;
+
+      }
+
+      &.row-data{
+        font-weight: $lato-regular;
+        .td-actions{
+
+          a{
+            width: 125px; 
+            margin: 5px auto 5px auto;
+            display: block;
+          }
+        }
+        .td-image{
+
+          .image-data{
+            width: 150px;
+          }
+        }
+        .td-body{
+          text-align: left;
+        }
+        .td-pdf{
+          a{
+            display: inline-block;
+            margin: 5px;
+          }
+        }
+      }
+
+      &:nth-child(even){
+        background-color: $grey-striped;
+      } 
+    }
+  }
+}

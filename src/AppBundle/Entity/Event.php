@@ -3,11 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
-//use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Pdf;
 /**
  * Event
  *
@@ -59,6 +59,17 @@ class Event
      * @var File
      */
     private $thumbnailFile;
+
+    /**
+     * @var int
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Vous ne pouvez pas placer en place 0 ou moins",
+     * )
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     /**
      * @var string
@@ -125,16 +136,17 @@ class Event
     private $youtube;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Pdf")
-     * @ORM\JoinTable(name="event_pdf",
-     *      joinColumns={@ORM\JoinColumn(name="event_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="Pdf", mappedBy="event", cascade={"persist", "remove"})
      */
     private $pdf;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct() {
-        $this->pdf = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pdf = new ArrayCollection();
     }
 
 
@@ -423,35 +435,71 @@ class Event
     }
 
     /**
-     * Add pdf
+     * Set position
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @param integer $position
      * @return Event
      */
-    public function addPdf(\AppBundle\Entity\Pdf $pdf)
+    public function setPosition($position)
     {
-        $this->pdf[] = $pdf;
+        $this->position = $position;
 
         return $this;
     }
 
     /**
-     * Remove pdf
+     * Get position
      *
-     * @param \AppBundle\Entity\Pdf $pdf
+     * @return integer 
      */
-    public function removePdf(\AppBundle\Entity\Pdf $pdf)
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function getPdf()
+    {
+        return $this->pdf->toArray();
+    }
+
+    public function addPdf(Pdf $pdf)
+    {
+        $this->pdf->add($pdf);
+        $pdf->setEvent($this);
+        return $this;
+    }
+
+    public function removePdf(Pdf $pdf)
     {
         $this->pdf->removeElement($pdf);
+        return $this;
+    } 
+
+    public function getClass()
+    {
+        return 'event';
     }
 
     /**
-     * Get pdf
+     * Set updatedAt
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @param \DateTime $updatedAt
+     * @return Event
      */
-    public function getPdf()
+    public function setUpdatedAt($updatedAt)
     {
-        return $this->pdf;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

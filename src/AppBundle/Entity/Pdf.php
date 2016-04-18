@@ -5,6 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\Article;
+use AppBundle\Entity\Archive;
+use AppBundle\Entity\Event;
+use AppBundle\Entity\Service;
+use AppBundle\Entity\Association;
 
 /**
  * Pdf
@@ -15,6 +21,36 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Pdf
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="article_id", referencedColumnName="id")
+     */
+    private $article;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Archive", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="archive_id", referencedColumnName="id")
+     */
+    private $archive;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="service_id", referencedColumnName="id")
+     */
+    private $service;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="event_id", referencedColumnName="id")
+     */
+    private $event;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Association", inversedBy="pdf", cascade={"persist"})
+     * @ORM\JoinColumn ( name="association_id", referencedColumnName="id")
+     */
+    private $association;
 
     /**
      * toString
@@ -29,10 +65,10 @@ class Pdf
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $pdf;
+    private $file;
 
     /**
-     * @Vich\UploadableField(mapping="pdf_files", fileNameProperty="pdf")
+     * @Vich\UploadableField(mapping="pdf_files", fileNameProperty="file")
      * @var File
      */
     private $pdfFile;
@@ -62,19 +98,21 @@ class Pdf
 
     /**
      * @var string
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Vous ne pouvez pas placer en place 0 ou moins",
+     * )
      *
-     * @ORM\Column(name="location", type="string", length=255)
-     */
-    private $location;
-
-    /**
-     * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     * @ORM\Column(name="position", type="string", length=255)
      */
     private $position;
 
-
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+    
     public function setPdfFile(File $file = null)
     {
         $this->pdfFile = $file;
@@ -93,14 +131,14 @@ class Pdf
         return $this->pdfFile;
     }
 
-    public function setPdf($file)
+    public function setFile($file)
     {
-        $this->pdf = $file;
+        $this->file = $file;
     }
 
-    public function getPdf()
+    public function getFile()
     {
-        return $this->pdf;
+        return $this->file;
     }
 
     /**
@@ -117,7 +155,7 @@ class Pdf
      * Set name
      *
      * @param string $name
-     * @return Pdf
+     * @return file
      */
     public function setName($name)
     {
@@ -140,7 +178,7 @@ class Pdf
      * Set color
      *
      * @param string $color
-     * @return Pdf
+     * @return file
      */
     public function setColor($color)
     {
@@ -160,33 +198,10 @@ class Pdf
     }
 
     /**
-     * Set location
-     *
-     * @param string $location
-     * @return Pdf
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string 
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
      * Set position
      *
      * @param string $position
-     * @return Pdf
+     * @return File
      */
     public function setPosition($position)
     {
@@ -203,5 +218,98 @@ class Pdf
     public function getPosition()
     {
         return $this->position;
+    }
+
+    public function setArticle(Article $article)
+    {
+        
+        $this->article = $article;
+
+        return $this;
+    }
+
+    public function getArticle(Article $article)
+    {
+        return $this->article;
+    }
+
+    public function setArchive(Archive $archive)
+    {
+        
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getArchive(Archive $archive)
+    {
+        return $this->archive;
+    }
+
+    public function setService(Service $service)
+    {
+        
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getService(Service $service)
+    {
+        return $this->service;
+    }
+
+    public function setEvent(Event $event)
+    {
+        
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getEvent(Event $event)
+    {
+        return $this->event;
+    }
+
+    public function setAssociation(Association $association)
+    {
+        
+        $this->association = $association;
+
+        return $this;
+    }
+
+    public function getAssociation(Association $association)
+    {
+        return $this->association;
+    }
+
+    public function getClass()
+    {
+        return 'pdfFile';
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Pdf
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
