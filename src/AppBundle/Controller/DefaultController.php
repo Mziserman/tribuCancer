@@ -38,7 +38,7 @@ class DefaultController extends Controller
     {
       return $this->render('soutenir.html.twig', array(
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Nous soutenir'
+        'myTitle'=> 'Nous soutenir'
       ));
     }
 
@@ -58,10 +58,15 @@ class DefaultController extends Controller
      */
     public function sevaderAction(Request $request)
     {
-      return $this->render('sevader.html.twig', array(
-       'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-       'myTitle'=>  'S\'évader'
-      ));
+        $repository = $this->getDoctrine()->getRepository("AppBundle:Event");
+
+        $events = $repository->findBy(array(), null, 5);
+        
+        return $this->render('sevader.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'S\'évader',
+            'events' => $events
+        ));
     }
 
     /**
