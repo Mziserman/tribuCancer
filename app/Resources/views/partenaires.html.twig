@@ -7,7 +7,7 @@
 	  	<h2>Partenaires</h2>
 	  	<div class="services-container">
 	  		<div class="service-content">
-	  			<div class="partenaire">
+	  			{# <div class="partenaire">
 	  				<a href="" class="partenaire-logo">
 	  					<img src="assets/partenaires/bloc-inca.png" alt="cancer info service">
 	  				</a>
@@ -15,7 +15,8 @@
 	  					<p class="partenaire-name">Tribu Cancer est partenaire de la plateforme CANCER INFO</p>
 	  					<p>« L’INCa met à disposition des patients et de leurs proches la plateforme d’information de référence sur les cancers, Cancer info, accessible via : une ligne téléphonique au 0 810 810 821 (prix d’un appel local), des guides d’information et une rubrique internet (www.e-cancer.fr/cancer-info). Ce service est proposé en partenariat avec la Ligue contre le cancer et un groupe d’associations. »</p>
 	  				</div>
-	  			</div><div class="partenaire">
+	  			</div>
+	  			<div class="partenaire">
 	  				<a href="" class="partenaire-logo">
 	  					<img src="assets/partenaires/inca.jpg" alt="Institut National du Cancer">
 	  				</a>
@@ -170,9 +171,7 @@
 	  				</a>
 	  				<div class="partenaire-infos">
 	  					<p class="partenaire-name">Fondation Brasseries Kronenbourg</p>
-	  					<p>- Mener le débat, organiser les confrontations, partager nos expériences : brasser les différences<br/>
-- Construire un réseau, animer la communauté des « amis » de la Fondation : créer du lien entre les structures soutenues, les parrains, nos partenaires<br/>
-- Soutenir et accompagner financièrement et humainement les projets sur l’ensemble du territoire national : changer la vie.</p>
+	  					<p>- Mener le débat, organiser les confrontations, partager nos expériences : brasser les différences<br/>- Construire un réseau, animer la communauté des « amis » de la Fondation : créer du lien entre les structures soutenues, les parrains, nos partenaires<br/>- Soutenir et accompagner financièrement et humainement les projets sur l’ensemble du territoire national : changer la vie.</p>
 	  				</div>
 	  			</div>
 	  			<div class="partenaire">
@@ -183,10 +182,21 @@
 	  					<p class="partenaire-name">FAIRE FACE ENSEMBLE</p>
 	  					<p>FAIRE FACE ENSEMBLE est une association qui a pour objectif d'apporter un soutien et un réconfort aux personnes touchées par le cancer et leurs proches.<br/>Elle a été créée le 3 février 1999 par deux personnes ayant vécu l'épreuve de vie qu'est le cancer : Michèle Millet médecin et Françoise Sellin.</p>
 	  				</div>
-	  			</div>
+	  			</div> #}
+	  			{% for partner in text %}
+	  				<div class="partenaire">
+	  					<a href="{{partner.link}}" class="partenaire-logo">
+	  						<img src="assets/partenaires/{{partner.image}}" alt="{{partner.title}}">
+	  					</a>
+	  					<div class="partenaire-infos">
+	  						<p class="partenaire-name">{{partner.title}}</p>
+	  						<p>{{partner.body | raw}}</p>
+	  					</div>
+	  				</div>
+	  			{% endfor %}
 	  			<div class="partenaires-list">
 	  				<ul>
-	  					<li>
+	  					{# <li>
 	  						<a href=""><img src="assets/partenaires/novartis.gif" alt="novartis"></a>
 	  					</li>
 	  					<li>
@@ -236,7 +246,12 @@
 	  					</li>
 	  					<li>
 	  						<a href=""><img src="assets/partenaires/infos-sarkomes.jpg" alt="infos-sarkomes"></a>
-	  					</li>
+	  					</li> #}
+	  					{% for partner in noText %}
+	  						<li>
+	  							<a href="{{partner.link}}"><img src="assets/partenaires/{{partner.image}}" alt="{{partner.title}}"></a>
+	  						</li>
+	  					{% endfor %}
 	  				</ul>
 	  			</div>
 	  		</div>
