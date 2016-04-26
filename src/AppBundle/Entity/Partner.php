@@ -37,7 +37,7 @@ class Partner
     /**
      * @var string
      *
-     * @ORM\Column(name="body", type="string", length=255)
+     * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;
 
