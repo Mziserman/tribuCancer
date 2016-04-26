@@ -5,29 +5,16 @@
     <main class="main-content main-rompre">
         <div class="wide-wrap service">
             <div class="services-switch">
-                <div class="service" >
-                    <a href="#" class="active" data-item="1">
-                        <h3 class="item-title">Voile</h3>
-                    </a>
-                </div>
-                <div class="service">
-                    <a href="#" data-item="2">
-                        <h3 class="item-title">Foulées du large</h3>
-                    </a>
-                </div>
-                <div class="service">
-                    <a href="#" data-item="3">
-                        <h3 class="item-title">Foulées du printemps</h3>
-                    </a>
-                </div>
-                <div class="service">
-                    <a href="#" data-item="4">
-                        <h3 class="item-title">Plongée avec aquadémie</h3>
-                    </a>
-                </div>
+                {% for event in events %}
+                    <div class="service">
+                        <a href="" class="{% if loop.index == 1 %} active {% endif %}" data-item="{{event.id}}">
+                            <h3 class="item-title">{{event.name}}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
             <div class="services-container">
-                <div class="service-activity show" id="item-1">
+                {# <div class="service-activity show" id="item-1">
                     <div class="service-content">
                         <h3 class="item-title">Description</h3>
                         <p>L'association organise des journées en mer pour les malades et leurs proches sur son voilier Tribu Cancer (Beneteau First 36.7 de 10 places). Elle leur offre également la possibilité de participer à des régates. Cette actiivté a été créée par Alain Veyrat alors vice-président de Tribu Cancer et passioné de voile (voir vidéo). Aujourd'hui, Alain nous a quittés mais il avait souhaité que cette activité voile pour les patients et leurs proches se poursuive.</p>
@@ -331,7 +318,101 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> #}
+
+                {% for event in events %}
+                    <div class="service-activity {% if loop.index == 1 %} show {% endif %}" id="item-{{event.id}}">
+                        <div class="service-content">
+                            <h3 class="item-title">Description</h3>
+                            {{event.body | raw}}
+                        </div>
+                        <div class="service-content">
+                            <h3 class="item-title">Photos et vidéos</h3>
+                            <div class="photo-gallery">
+                                <a href="{{event.flickr}}" class="access-gallery">Accèder à la galerie photos/vidéos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="item-title">Les dates</h3>
+                            <h6>{{event.date}}</h6>
+                        </div>
+                        {% if event.inscription == 1 %}
+                            <div class="service-content">
+                                <h3 class="item-title">Inscription</h3>
+                                <h6>Pour vous inscrire, deux solutions: remplir le formulaire en ligne ci-dessous ou télécharger puis remplur le bulletin d'inscription dans les documents et le retourner à TribuCancer.</h6>
+                                <div class="inscription-form">
+                                    <h6>Inscription en ligne</h6>
+                                    <form action="">
+                                        <fieldset>
+                                            <label for="last-name">Nom<span>*</span>:</label>
+                                            <input type="text" name="last-name" id="last-name">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <label for="first-name">Prénom<span>*</span>:</label>
+                                            <input type="text" name="first-name" id="first-name">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <label for="email">Email<span>*</span>:</label>
+                                            <input type="email" name="email" id="email">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <label for="phone">Téléphone<span>*</span>:</label>
+                                            <input type="phone" name="phone" id="phone">
+                                        </fieldset>
+
+                                        <fieldset class="full-size">
+                                            <label for="adress">Adresse<span>*</span>:</label>
+                                            <input type="adress" name="adress" id="adress">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <label for="city">Ville<span>*</span>:</label>
+                                            <input type="text" name="city" id="city">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <label for="postal">Code postal<span>*</span>:</label>
+                                            <input type="text" name="postal" id="postal">
+                                        </fieldset>
+
+                                        <input type="submit" id="submit-form" class="hidden" />
+                                    </form>
+
+                                    <label class="submit-button" for="submit-form">Valider mes informations et m'inscrire à {{event.name}}<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="service-documents">
+                            <h3 class="item-title">Documents</h3>
+                            <ul>
+                                <li>
+                                    <a class="button button-red button-pdf" href="" download>
+                                        <span>pdf</span><span class="document-name">Bulletin d'inscription edition 2016</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="button button-red button-pdf" href="" download>
+                                        <span>pdf</span><span class="document-name">Affiche des courses</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="button button-red button-pdf" href="" download>
+                                        <span>pdf</span><span class="document-name">Affiche de la marche</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="button button-red button-pdf" href="" download>
+                                        <span>pdf</span><span class="document-name">Classement de la course</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </main>
