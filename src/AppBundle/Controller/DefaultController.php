@@ -69,9 +69,25 @@ class DefaultController extends Controller
      */
     public function partenairesAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Partner');
+
+        $partners = $repository->findAll();
+        $textPartner = [];
+        $noTextPartner = [];
+
+        for ($i = 0; $i < count($partners); $i++) {
+            if ($partners[$i]->getBody()) {
+                array_push($textPartner, $partners[$i]);
+            } else {
+                array_push($noTextPartner, $partners[$i]);
+            }
+        }
+
         return $this->render('partenaires.html.twig', array(
-           'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-           'myTitle'=>  'Partenaires'
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Partenaires',
+            'text' => $textPartner,
+            'noText' => $noTextPartner
         ));
     }
 
