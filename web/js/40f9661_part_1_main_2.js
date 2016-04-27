@@ -4,7 +4,8 @@ var nav = $('header'),
     navLink = $('header li a'),
     serviceSwitcher = $('.services-switch'),
     serviceSwicherLink = $('.services-switch a'),
-    service = $('.service-activity');
+    service = $('.service-activity'),
+    shadow = $('.shadow');
 
 
 /* Handle menu */
@@ -36,3 +37,31 @@ var nav = $('header'),
     });
 
 /* END SWITCH PANELS */
+
+// $('.gallery-item').on('click', function(e) {
+//     e.preventDefault();
+    
+//     $(this).addClass('active');
+//     $('.shadow').addClass('show');
+// });
+
+var Lightbox = function () {
+
+    this.gallery = $('.gallery');
+    this.item = $('.gallery-item');
+
+    console.log('hello')
+
+    this.bind();
+}
+
+Lightbox.prototype.bind = function() {
+        
+    this.item.on('click', $.proxy(this.openImage, this));
+};
+
+Lightbox.prototype.openImage = function(e) {
+    e.preventDefault();
+
+    console.log('hi there')
+};

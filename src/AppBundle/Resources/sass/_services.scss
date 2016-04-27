@@ -147,27 +147,7 @@
 
     .button {
       padding-right: 15px;
-    }
-
-    .photo-gallery {
-
-      .access-gallery {
-        margin-top: 10px;
-        font-size: 12px;
-        text-transform: uppercase;
-        font-weight: $lato-black;
-        color: rgba($black, .8);
-        letter-spacing: 1.01px;
-        &:hover {
-          img { margin-left: 15px; }
-        }
-        img {
-          margin-left: 10px;
-          width: 25px;
-          transition: all .3s ease;
-        }
-      }
-    }
+    }    
 
     .inscription-form {
 
@@ -249,6 +229,65 @@
           width: 25px;
           transition: all .3s ease;
         }
+      }
+    }
+  }
+
+  .photo-gallery {
+
+    .access-gallery {
+      margin-top: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: $lato-black;
+      color: rgba($black, .8);
+      letter-spacing: 1.01px;
+      &:hover {
+        img { margin-left: 15px; }
+      }
+      img {
+        margin-left: 10px;
+        width: 25px;
+        transition: all .3s ease;
+      }
+    }
+
+    .gallery {
+      width: 100%;
+      margin: 20px 0px 40px 0px;
+
+      .gallery-item {
+        display: inline-block;
+        height: 240px;
+        margin-right: 40px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .shadow {
+    background-color: rgba($black, .8);
+  }
+
+}
+
+@media screen and (max-width: 1220px) {
+  .service {
+    .photo-gallery {
+      .gallery { 
+        .gallery-item { margin-bottom: 20px; margin-right: 20px; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .service {
+    .photo-gallery {
+      .gallery { 
+        // text-align: center;
       }
     }
   }
