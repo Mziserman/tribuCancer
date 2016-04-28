@@ -43,30 +43,42 @@ var nav = $('header'),
 
 /* END SWITCH PANELS */
 
-// $('.gallery-item').on('click', function(e) {
-//     e.preventDefault();
-    
-//     $(this).addClass('active');
-//     $('.shadow').addClass('show');
-// });
 
-var Lightbox = function () {
 
-    this.gallery = $('.gallery');
-    this.item = $('.gallery-item');
-
-    console.log('hello')
-
-    this.bind();
-}
-
-Lightbox.prototype.bind = function() {
-        
-    this.item.on('click', $.proxy(this.openImage, this));
-};
-
-Lightbox.prototype.openImage = function(e) {
+$('.gallery-item').on('click', function(e) {
     e.preventDefault();
 
-    console.log('hi there')
-};
+    var target = $(this).attr('href');
+    
+    openLightbox(target);
+});
+
+
+$('#lightbox .close').on('click', function(e) {
+    closeLightbox();
+})
+$(window).on('keydown', function(e) {
+    if(e.keyCode == "27") {
+        closeLightbox();
+    }
+}); 
+
+function openLightbox(image) {
+    var wideImage = $('.lightbox-container img');
+    // $('.lightbox').addClass('show');
+    $('#lightbox').fadeIn();
+
+    wideImage.attr('src', image);
+}
+
+function closeLightbox() {
+    $('#lightbox').fadeOut();   
+}
+
+
+
+
+
+
+
+

@@ -47,9 +47,14 @@ class DefaultController extends Controller
      */
     public function rompreAction(Request $request)
     {
+      $repository = $this->getDoctrine()->getRepository("AppBundle:Service");
+
+      $services = $repository->findBy(array(), null, 5);
+
       return $this->render('rompre.html.twig', array(
        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-       'myTitle'=>  'Rompre l\'isolement'
+       'myTitle'=>  'Rompre l\'isolement',
+       'services'=> $services
       ));
     }
 

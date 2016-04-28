@@ -5,7 +5,7 @@
     <main class="main-content main-rompre">
         <div class="wide-wrap service">
             <div class="services-switch">
-                <div class="service" >
+                {# <div class="service" >
                     <a href="#" class="active" data-item="1">
                         <svg width="51px" height="40px" viewBox="0 0 51 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <!-- Generator: Sketch 3.6 (26304) - http://www.bohemiancoding.com/sketch -->
@@ -64,10 +64,18 @@
                         </svg>
                         <h3 class="item-title">Coaching pro</h3>
                     </a>
-                </div>
+                </div> #}
+                {% for service in services %}
+                    <div class="service">
+                        <a href="" {% if loop.index == "1" %}class="active"{% endif %} data-item="{{loop.index}}">
+                            <img src="/assets/icons/{{service.icon}}" alt="{{service.name}}">
+                            <h3 class="item-title">{{service.name}}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
             <div class="services-container">
-                <div class="service-activity show" id="item-1">
+                {# <div class="service-activity show" id="item-1">
                     <div class="header">
                         <span class="shadow"></span>
                         <img src="assets/imgs/maildenuit-banner.png" alt="mail de nuit le soutien psychologique">
@@ -136,7 +144,6 @@
                         <p>Le comité éditorial est constitué du Pr Jean-Pierre LOTZ, chef du service Oncologie Médicale à l’hôpital Tenon, Paris, Marie-Hélène BRIAN, attachée de presse et Jean-Louis LAPORTE, président de l’association Tribu Cancer.</p>
                     </div>
                 </div>
-
                 <div class="service-activity" id="item-3">
                     <div class="header">
                         <img src="assets/imgs/coachingpro-banner.png" alt="coaching pro tribucancer">
@@ -167,7 +174,33 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> #}
+                {% for service in services %}
+                    <div class="service-activity {% if loop.index == "1" %}show{% endif %}" id="item-{{loop.index}}">
+                        <div class="header">
+                            <img src="assets/imgs/service/{{service.image}}" alt="{{service.name}} tribucancer">
+                            <div class="content">
+                                <h1>{{service.name}}</h1>
+                                <p>{{service.shortDesc | raw}}</p>
+                                <a href="{{service.link}}" class="button button-orange button-small">Accèder au service</a>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="item-title">Description</h3>
+                            <p>{{service.body | raw}}</p>
+                        </div>
+                        <div class="service-documents">
+                            <h3 class="item-title">Documents</h3>
+                            <ul>
+                                <li>
+                                    <a class="button button-red button-pdf" href="" download>
+                                        <span>pdf</span><span class="document-name">Guide démarches sociales et cancer</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </main>

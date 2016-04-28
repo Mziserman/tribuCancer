@@ -338,13 +338,16 @@
                                 <div class="gallery-view-box"></div>
                             </div>
                         </div>
-                        <div class="service-content">
-                            <h3 class="item-title">Les dates</h3>
-                            <h6>{{event.date}}</h6>
-                        </div>
-                        {% if event.inscription == 1 %}
+                        {% if event.date %}
                             <div class="service-content">
-                                <h3 class="item-title">Inscription</h3>
+                                <h3 class="item-title">Les dates</h3>
+                                <h6>{{event.date}}</h6>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="service-content">
+                            <h3 class="item-title">Inscription</h3>
+                            {% if event.inscription == 1 %}
                                 <h6>Pour vous inscrire, deux solutions: remplir le formulaire en ligne ci-dessous ou télécharger puis remplur le bulletin d'inscription dans les documents et le retourner à TribuCancer.</h6>
                                 <div class="inscription-form">
                                     <h6>Inscription en ligne</h6>
@@ -389,8 +392,13 @@
 
                                     <label class="submit-button" for="submit-form">Valider mes informations et m'inscrire à {{event.name}}<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
                                 </div>
-                            </div>
-                        {% endif %}
+                            {% endif %}
+                            {% if event.name == "Plongée avec aquadémie" %}
+                                <h6>Pour vous inscrire, rendez-vous sur le site d’Aquadémie via le lien ci-dessous.</h6>
+                                <br/>
+                                <a href="" class="access-gallery" target="_blank">SE RENDRE SUR LE SITE INTERNET D’AQUADÉMIE<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                            {% endif %}
+                        </div>
 
                         <div class="service-documents">
                             <h3 class="item-title">Documents</h3>
