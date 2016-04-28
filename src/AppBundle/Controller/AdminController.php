@@ -49,10 +49,10 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-      return $this->render('AppBundle:Admin:index.html.twig', array(
-        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Administration'
-      ));
+        return $this->render('AppBundle:Admin:index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Administration'
+        ));
     }
 
     /**
@@ -95,7 +95,7 @@ class AdminController extends Controller
         $entities = $this->getDoctrine()
           ->getRepository($repository)
           ->findAll();
-        
+
         // SECTION WHERE WE RENDER THE TEMPLATE CREATE
 
         return $this->render('AppBundle:Admin:list.html.twig', array(

@@ -14,10 +14,24 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-      return $this->render('index.html.twig', array(
-        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'Mail de nuit'
-      ));
+
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findBy(array(), array('position' => 'ASC'), 3);
+        $services = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findBy(array(), array('position' => 'ASC'), 3);
+        $events = $this->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->findBy(array(), array('position' => 'ASC'), 4);
+
+        return $this->render('index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Mail de nuit',
+            'articles' => $articles,
+            'services' => $services,
+            'events' => $events
+        ));
     }
 
     /**
