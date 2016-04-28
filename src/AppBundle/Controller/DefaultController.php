@@ -61,15 +61,24 @@ class DefaultController extends Controller
      */
     public function rompreAction(Request $request)
     {
-      $repository = $this->getDoctrine()->getRepository("AppBundle:Service");
+        $pdf = [];
+        $repository = $this
+            ->getDoctrine()
+            ->getRepository("AppBundle:Service");
 
-      $services = $repository->findBy(array(), null, 5);
+        $services = $repository->findBy(array(), null, 5);
 
-      return $this->render('rompre.html.twig', array(
-       'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-       'myTitle'=>  'Rompre l\'isolement',
-       'services'=> $services
-      ));
+        for ($i = 0; $i < count($services); $i++) {
+            $service = $services[$i];
+            $pdf[$i] = $service->getPdf();
+        }
+
+        return $this->render('rompre.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'Rompre l\'isolement',
+            'services'=> $services,
+            'pdf' => $pdf
+        ));
     }
 
     /**
@@ -80,11 +89,18 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository("AppBundle:Event");
 
         $events = $repository->findBy(array(), null, 5);
-        
+
+        for ($i = 0; $i < count($events); $i++) {
+            $event = $events[$i];
+            $pdf[$i] = $event->getPdf();
+        }
+
+
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
-            'events' => $events
+            'events' => $events,
+            'pdf' => $pdf
         ));
     }
 
@@ -137,17 +153,18 @@ class DefaultController extends Controller
 
         $autreArticles = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
-            ->findAll(
-                array("position" => "DESC")
-            );
-        /*for($i = 0; $i < 4; $i++) {
+            ->findAll();
+
+        for($i = 0; $i < 5; $i++) {
+            echo $autreArticles[$i]->getId();
             if ($autreArticles[$i]->getId() == $id) {
+                echo "yololo";
                 $temp = array_splice($autreArticles, $i);
                 dump($temp);
                 dump($autreArticles);
             }
-        }*/
-        array_splice($autreArticles, 3);
+        }
+       
         return $this->render('actu_template.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle' =>  'Actualite',
