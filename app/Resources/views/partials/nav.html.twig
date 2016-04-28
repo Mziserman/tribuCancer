@@ -5,12 +5,24 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url('lassociation') }}">L'association</a></li>
-                <li><a href="{{ url('nous-soutenir') }}">Nous soutenir</a></li>
-                <li><a href="{{ url('rompre-lisolement') }}">Rompre l'isolement</a></li>
-                <li><a href="{{ url('sevader') }}">S'évader</a></li>
-                <li><a href="{{ url('partenaires') }}">Partenaires</a></li>
-                <li><a href="{{ url('contact') }}">Contact</a></li>
+                <li>
+                    <a href="{{ url('lassociation') }}" {% if app.request.get('_route') == 'lassociation' %}class="active"{% endif %}>L'association</a>
+                </li>
+                <li>
+                    <a href="{{ url('nous-soutenir') }}" {% if app.request.get('_route') == 'nous-soutenir' %}class="active"{% endif %}>Nous soutenir</a>
+                </li>
+                <li>
+                    <a href="{{ url('rompre-lisolement') }}" {% if app.request.get('_route') == 'rompre-lisolement' %}class="active"{% endif %}>Rompre l'isolement</a>
+                </li>
+                <li>
+                    <a href="{{ url('sevader') }}" {% if app.request.get('_route') == 'sevader' %}class="active"{% endif %}>S'évader</a>
+                </li>
+                <li>
+                    <a href="{{ url('partenaires') }}" {% if app.request.get('_route') == 'partenaires' %}class="active"{% endif %}>Partenaires</a>
+                </li>
+                <li>
+                    <a href="{{ url('contact') }}" {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>Contact</a>
+                </li>
             </ul>
         </nav>
         <a class="button button-red button-pdf" href="" download>
@@ -20,3 +32,9 @@
     </div>
 </header>
 
+<div id="lightbox">
+    <span class="close"></span>
+    <div class="lightbox-container">
+        <img src="" alt="">
+    </div>
+</div>

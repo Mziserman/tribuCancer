@@ -9,7 +9,8 @@ var nav = $('header'),
     navLink = $('header li a'),
     serviceSwitcher = $('.services-switch'),
     serviceSwicherLink = $('.services-switch a'),
-    service = $('.service-activity');
+    service = $('.service-activity'),
+    shadow = $('.shadow');
 
 
 /* Handle menu */
@@ -41,3 +42,43 @@ var nav = $('header'),
     });
 
 /* END SWITCH PANELS */
+
+
+
+$('.gallery-item').on('click', function(e) {
+    e.preventDefault();
+
+    var target = $(this).attr('href');
+    
+    openLightbox(target);
+});
+
+
+$('#lightbox .close').on('click', function(e) {
+    closeLightbox();
+})
+$(window).on('keydown', function(e) {
+    if(e.keyCode == "27") {
+        closeLightbox();
+    }
+}); 
+
+function openLightbox(image) {
+    var wideImage = $('.lightbox-container img');
+    // $('.lightbox').addClass('show');
+    $('#lightbox').fadeIn();
+
+    wideImage.attr('src', image);
+}
+
+function closeLightbox() {
+    $('#lightbox').fadeOut();   
+}
+
+
+
+
+
+
+
+
