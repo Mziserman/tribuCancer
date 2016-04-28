@@ -24,13 +24,17 @@ class DefaultController extends Controller
         $events = $this->getDoctrine()
             ->getRepository('AppBundle:Event')
             ->findBy(array(), array('position' => 'ASC'), 4);
+        $archives = $this->getDoctrine()
+            ->getRepository('AppBundle:Archive')
+            ->findBy(array(), array('position' => 'ASC'), 3);
 
         return $this->render('index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Mail de nuit',
             'articles' => $articles,
             'services' => $services,
-            'events' => $events
+            'events' => $events,
+            'archives' => $archives
         ));
     }
 
@@ -77,7 +81,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Rompre l\'isolement',
             'services'=> $services,
-            'pdf' => $pdf
+            'pdfs' => $pdf
         ));
     }
 
@@ -100,7 +104,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
             'events' => $events,
-            'pdf' => $pdf
+            'pdfs' => $pdf
         ));
     }
 
@@ -155,15 +159,15 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Article')
             ->findAll();
 
-        for($i = 0; $i < 5; $i++) {
-            echo $autreArticles[$i]->getId();
-            if ($autreArticles[$i]->getId() == $id) {
-                echo "yololo";
-                $temp = array_splice($autreArticles, $i);
-                dump($temp);
-                dump($autreArticles);
-            }
-        }
+        // for($i = 0; $i < 5; $i++) {
+        //     echo $autreArticles[$i]->getId();
+        //     if ($autreArticles[$i]->getId() == $id) {
+                
+        //         $temp = array_splice($autreArticles, $i);
+                
+        //     }
+        //     dump($temp);
+        // }
        
         return $this->render('actu_template.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),

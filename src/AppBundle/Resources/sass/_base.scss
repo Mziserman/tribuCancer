@@ -69,6 +69,10 @@ h3 {
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-image: linear-gradient(to bottom, transparent 50%, $orange 50%);
+    a {
+      font-size: 12px;
+      font-weight: $lato-black;
+    }
   }
 }
 

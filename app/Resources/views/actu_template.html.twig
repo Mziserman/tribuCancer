@@ -9,15 +9,15 @@
 	    	<div class="service-content actualite">
 	    		<p class="actu-title">{{ article.title }}</p>
 					<div class="header">
-					    <img src="assets/imgs/actu-cover.png" alt="foulées du large success">
+					    <img src="/assets/imgs/article/{{article.image}}" alt="{{article.title}}">
 					</div>
 
 					<div class="actualite-content">
-						<p>{{ article.body }}</p>
+						<p>{{ article.body | raw }}</p>
 						<p>Organisateur et contact : Stéphane Boutet - fouleesdularge@gmail.com</p>
 
-		    		<a href="#" class="access-link">LA PAGE FACEBOOK DES FOULÉES DU LARGEe<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
-		    		<a href="#" class="access-link">ACCÉDER À LA GALERIE PHOTOS/VIDÉOS DES FOULÉES DU LARGE 2015<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+		    		<a href="#" class="access-link">LA PAGE FACEBOOK DES FOULÉES DU LARGEe<img src="/assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+		    		<a href="#" class="access-link">ACCÉDER À LA GALERIE PHOTOS/VIDÉOS DES FOULÉES DU LARGE 2015<img src="/assets/icons/arrow-right.svg" alt="en savoir plus"></a>
 					</div>
 
 	    		<div class="service-documents">
@@ -56,7 +56,7 @@
 
 			<a href="{{ path('actualite', {'id': article.id}) }}" class="item-news">
 				  <div class="items-news-image">
-					  <img src="assets/imgs/{{ article.image }}" alt="les foulées du large">
+					  <img src="/assets/imgs/article/{{ article.image }}" alt="les foulées du large">
 				  </div>
 				  <div class="items-news-title">
 					  <p>{{ article.title }}</p>
