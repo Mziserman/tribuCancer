@@ -124,14 +124,14 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="flickr", type="string", length=255)
+     * @ORM\Column(name="flickr", type="string", length=255, nullable=true)
      */
     private $flickr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="youtube", type="string", length=255)
+     * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
      */
     private $youtube;
 

@@ -95,7 +95,7 @@ class AdminController extends Controller
         $entities = $this->getDoctrine()
           ->getRepository($repository)
           ->findAll();
-
+        
         // SECTION WHERE WE RENDER THE TEMPLATE CREATE
 
         return $this->render('AppBundle:Admin:list.html.twig', array(
