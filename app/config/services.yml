@@ -3,3 +3,7 @@
 parameters:
 
 services:
+    app.service:
+        class: AppBundle\Utils\Service
+    app.event:
+        class: AppBundle\Utils\Event
