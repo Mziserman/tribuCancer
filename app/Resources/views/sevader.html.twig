@@ -403,7 +403,7 @@
                         <div class="service-documents">
                             <h3 class="item-title">Documents</h3>
                             <ul>
-                                <li>
+                                {# <li>
                                     <a class="button button-red button-pdf" href="" download>
                                         <span>pdf</span><span class="document-name">Bulletin d'inscription edition 2016</span>
                                     </a>
@@ -422,7 +422,14 @@
                                     <a class="button button-red button-pdf" href="" download>
                                         <span>pdf</span><span class="document-name">Classement de la course</span>
                                     </a>
-                                </li>
+                                </li> #}
+                                {% for pdf in pdfs %}
+                                    <li>
+                                        <a class="button button-{{pdf.color}} button-pdf" href="" download>
+                                            <span>pdf</span><span class="document-name">{{pdf.name}}</span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
