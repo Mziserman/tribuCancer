@@ -90,7 +90,6 @@ class DefaultController extends Controller
         $events = $this->get("app.event")->arrayFromRepository($repository);
 
 
-
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
