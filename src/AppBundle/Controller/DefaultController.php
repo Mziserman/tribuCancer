@@ -61,23 +61,16 @@ class DefaultController extends Controller
      */
     public function rompreAction(Request $request)
     {
-        $pdf = [];
         $repository = $this
             ->getDoctrine()
             ->getRepository("AppBundle:Service");
 
-        $services = $repository->findBy(array(), null, 5);
-
-        for ($i = 0; $i < count($services); $i++) {
-            $service = $services[$i];
-            $pdf[$i] = $service->getPdf();
-        }
-
+        $services = $this->get("app.service")->arrayFromRepository($repository);
+        
         return $this->render('rompre.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Rompre l\'isolement',
             'services'=> $services,
-            'pdf' => $pdf
         ));
     }
 
@@ -86,21 +79,18 @@ class DefaultController extends Controller
      */
     public function sevaderAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository("AppBundle:Event");
+        $repository = $this
+            ->getDoctrine()
+            ->getRepository("AppBundle:Event");
 
-        $events = $repository->findBy(array(), null, 5);
+        $events = $this->get("app.event")->arrayFromRepository($repository);
 
-        for ($i = 0; $i < count($events); $i++) {
-            $event = $events[$i];
-            $pdf[$i] = $event->getPdf();
-        }
 
 
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
-            'events' => $events,
-            'pdf' => $pdf
+            'events' => $events
         ));
     }
 
