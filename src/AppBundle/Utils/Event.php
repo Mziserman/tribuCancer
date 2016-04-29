@@ -8,6 +8,7 @@ class Event
         $i = 0;
 
         foreach ($pdfs as $pdf) {
+            $arrayPdf[$i]["name"] = $pdf->getId();
             $arrayPdf[$i]["name"] = $pdf->getName();
             $arrayPdf[$i]["color"] = $pdf->getColor();
             $arrayPdf[$i]["file"] = $pdf->getFile();
@@ -23,6 +24,7 @@ class Event
         $i = 0;
 
         foreach ($events as $event) {
+            $arrayEvent[$i]["id"] = $event->getId();
             $arrayEvent[$i]["name"] = $event->getName();
             $arrayEvent[$i]["short_desc"] = $event->getShortDesc();
             $arrayEvent[$i]["body"] = $event->getBody();
@@ -34,6 +36,7 @@ class Event
             ];
             $arrayEvent[$i]["flickr"] = $event->getFlickr();
             $arrayEvent[$i]["youtube"] = $event->getYoutube();
+            $arrayEvent[$i]["inscription"] = $event->getInscription();
             $arrayEvent[$i]["position"] = $event->getPosition();
             $arrayEvent[$i]["pdf"] = $this->arrayFromPdf($event->getPdf());
 

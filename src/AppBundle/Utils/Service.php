@@ -8,6 +8,7 @@ class Service
         $i = 0;
 
         foreach ($pdfs as $pdf) {
+            $arrayPdf[$i]["id"] = $pdf->getId();
             $arrayPdf[$i]["name"] = $pdf->getName();
             $arrayPdf[$i]["color"] = $pdf->getColor();
             $arrayPdf[$i]["file"] = $pdf->getFile();
@@ -23,6 +24,7 @@ class Service
         $i = 0;
 
         foreach ($services as $service) {
+            $arrayService[$i]["id"] = $service->getId();
             $arrayService[$i]["name"] = $service->getName();
             $arrayService[$i]["link"] = $service->getLink();
             $arrayService[$i]["short_desc"] = $service->getShortDesc();
