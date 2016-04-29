@@ -99,7 +99,6 @@ class DefaultController extends Controller
             $pdf[$i] = $event->getPdf();
         }
 
-
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
