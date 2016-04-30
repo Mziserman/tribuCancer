@@ -8,7 +8,7 @@ class Event
         $i = 0;
 
         foreach ($pdfs as $pdf) {
-            $arrayPdf[$i]["name"] = $pdf->getId();
+            $arrayPdf[$i]["id"] = $pdf->getId();
             $arrayPdf[$i]["name"] = $pdf->getName();
             $arrayPdf[$i]["color"] = $pdf->getColor();
             $arrayPdf[$i]["file"] = $pdf->getFile();
