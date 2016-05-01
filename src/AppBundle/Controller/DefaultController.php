@@ -43,10 +43,10 @@ class DefaultController extends Controller
      */
     public function associationAction(Request $request)
     {
-      return $this->render('association.html.twig', array(
-        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=>  'L\'association'
-      ));
+          return $this->render('association.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle'=>  'L\'association'
+          ));
     }
 
     /**
@@ -70,6 +70,8 @@ class DefaultController extends Controller
             ->getRepository("AppBundle:Service");
 
         $services = $this->get("app.service")->arrayFromRepository($repository);
+
+        // dump($services);die;
         
         return $this->render('rompre.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
@@ -88,7 +90,6 @@ class DefaultController extends Controller
             ->getRepository("AppBundle:Event");
 
         $events = $this->get("app.event")->arrayFromRepository($repository);
-
 
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
