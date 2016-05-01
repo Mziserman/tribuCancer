@@ -43,10 +43,19 @@ class DefaultController extends Controller
      */
     public function associationAction(Request $request)
     {
-          return $this->render('association.html.twig', array(
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Association');
+
+        $pdf = $this->get('app.association')
+            ->arrayFromRepository($repository);
+
+        // dump($pdf);die();
+
+        return $this->render('association.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-            'myTitle'=>  'L\'association'
-          ));
+            'myTitle'=>  'L\'association',
+            'pdf' => $pdf
+        ));
     }
 
     /**
@@ -65,8 +74,7 @@ class DefaultController extends Controller
      */
     public function rompreAction(Request $request)
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getRepository("AppBundle:Service");
 
         $services = $this->get("app.service")->arrayFromRepository($repository);

@@ -7,3 +7,5 @@ services:
         class: AppBundle\Utils\Service
     app.event:
         class: AppBundle\Utils\Event
+    app.association:
+        class: AppBundle\Utils\Association
