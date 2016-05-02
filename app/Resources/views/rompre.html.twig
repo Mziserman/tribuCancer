@@ -66,7 +66,6 @@
                     </a>
                 </div> #}
                 {% for service in services %}
-                    {{ selected }}
                     <div class="service">
                         <a href="" {% if loop.index == "1" %}class="active"{% endif %} data-item="{{service.id}}">
                             <img src="/assets/icons/{{service.icon}}" alt="{{service.name}}">
@@ -189,7 +188,6 @@
                         <div class="service-content">
                             <h3 class="item-title">Description</h3>
                             <p>{{service.body | raw}}</p>
-                            <p>{{ selected }}</p>
                         </div>
                         <div class="service-documents">
                             <h3 class="item-title">Documents</h3>
