@@ -58,3 +58,44 @@
     }
   }
 }
+
+
+.confirm-delete-content{
+  display: none;
+  background: black;
+  opacity: 0.2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  .box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    background: $grey-striped;
+    .text{
+      text-align: center;
+      padding: 20px 40px;
+    }
+    .confirm-action{
+
+      .button-ok{
+        float: left;
+        margin: 0px 5px 20px 20px;
+      }
+      .button-cancel{
+        float: right;
+        margin: 0px 20px 20px 5px;
+      }
+    }
+  }
+}
