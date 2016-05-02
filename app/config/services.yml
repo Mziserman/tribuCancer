@@ -9,3 +9,5 @@ services:
         class: AppBundle\Utils\Event
     app.association:
         class: AppBundle\Utils\Association
+    app.slug:
+        class: AppBundle\Utils\Slug

@@ -14,6 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
 
         $articles = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
@@ -21,9 +22,13 @@ class DefaultController extends Controller
         $services = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findBy(array(), array('position' => 'ASC'), 3);
+        $services = $this->container->get('app.slug')->setSlugForEntities($services, $em);
+
         $events = $this->getDoctrine()
             ->getRepository('AppBundle:Event')
             ->findBy(array(), array('position' => 'ASC'), 4);
+        $events = $this->container->get('app.slug')->setSlugForEntities($events, $em);
+
         $archives = $this->getDoctrine()
             ->getRepository('AppBundle:Archive')
             ->findBy(array(), array('position' => 'ASC'), 3);
@@ -48,8 +53,6 @@ class DefaultController extends Controller
 
         $pdf = $this->get('app.association')
             ->arrayFromRepository($repository);
-
-        // dump($pdf);die();
 
         return $this->render('association.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
@@ -79,12 +82,15 @@ class DefaultController extends Controller
 
         $services = $this->get("app.service")->arrayFromRepository($repository);
 
-        // dump($services);die;
-        
+        $session = $request->getSession();
+        $selected = $session->get("rompre-lisolement");
+        $session->invalidate();
+
         return $this->render('rompre.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Rompre l\'isolement',
-            'services'=> $services
+            'services'=> $services,
+            'selected' => $selected
         ));
     }
 
@@ -99,10 +105,15 @@ class DefaultController extends Controller
 
         $events = $this->get("app.event")->arrayFromRepository($repository);
 
+        $session = $request->getSession();
+        $selected = $session->get("sevader");
+        $session->invalidate();
+
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
-            'events' => $events
+            'events' => $events,
+            'selected' => $selected
         ));
     }
 
@@ -160,18 +171,29 @@ class DefaultController extends Controller
         // for($i = 0; $i < 5; $i++) {
         //     echo $autreArticles[$i]->getId();
         //     if ($autreArticles[$i]->getId() == $id) {
-                
+
         //         $temp = array_splice($autreArticles, $i);
-                
+
         //     }
         //     dump($temp);
         // }
-       
+
         return $this->render('actu_template.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle' =>  'Actualite',
             'article' =>  $article,
             'autreArticles' => $autreArticles,
         ));
+    }
+
+    /**
+     * @Route("redirect/{page}/{slug}", name="redirect")
+     */
+    public function redirectServiceAction(Request $request, $page, $slug)
+    {
+        $session = $request->getSession();
+        $session->set($page, $slug);
+
+        return $this->redirectToRoute($page);
     }
 }

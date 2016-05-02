@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Article;
 use AppBundle\Form\create\ArticleType as ArticleCreate;
@@ -277,6 +278,61 @@ class AdminController extends Controller
           'slug' => $slug,
           'form' => $form->createView()
       ));
+    }
+
+
+    /**
+     * @Route("/{slug}/delete/{id}", name="admin_delete" )
+     */
+    public function deleteAction(Request $request, $slug, $id)
+    {
+        $status;
+        $em = $this->getDoctrine()->getEntityManager();
+
+        switch ($slug) {
+            case 'association':
+                $repository = 'AppBundle:Association';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+
+                break;
+            case 'service':
+                $repository = 'AppBundle:Service';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+                break;
+            case 'event':
+                $repository = 'AppBundle:Event';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+                break;
+            case 'partner':
+                $repository = 'AppBundle:Partner';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+                break;
+            case 'article':
+                $title = 'Edit article';
+                $repository = 'AppBundle:Article';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+                break;
+            case 'archive':
+                $repository = 'AppBundle:Archive';
+                $entity = $em->getRepository($repository)
+                    ->find($id);
+                break;
+            default:
+                return new Response("false");
+                
+        }
+        if ( $entity != null ){       
+            // $em->remove($entity);
+            // $em->flush();
+            return new Response("true");
+        } else {
+            return new Response("false");
+        }
     }
 
 

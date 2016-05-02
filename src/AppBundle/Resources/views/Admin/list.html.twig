@@ -10,7 +10,7 @@
 					<tr>
 		    			<th><span>Position</span></th>
 			        	<th><span>Titre</span></th>
-			        	<th><span>Contenue</span></th>
+			        	<th><span>Contenu</span></th>
 			        	<th><span>Image</span></th>
 			        	<th><span>Pdf</span></th>
 			        	<th><span>Actions</span></th>
@@ -39,7 +39,7 @@
 			        	</td>
 			        	<td class="td-actions">
 				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
-				        	<a href="#" class="button button-red button-small button-delete">Supprimer</a>
+				        	<a href="#" class="button button-red button-small button-delete" data-delete-id="{{_data.id}}" data-delete-slug="{{_data.getClass()}}" data-delete-title="{{_data.title}}">Supprimer</a>
 			        	</td>
 		        	</tr>
 					{% endfor %}
@@ -69,6 +69,15 @@
 	        {% endif %}
         </table>
   	</main>
+  	<div class="confirm-delete-content" data-type="confirm-box" >
+    	<div class="box" >
+    		<h2 class="text">Voulez vous supprimer <span class="title-delete" data-title></span> ?</h2>
+    		<div class="confirm-action">
+	    		<a href="#" data-type="confirm-ok" class="button button-blue button-small button-ok">Oui</a>
+	        	<a href="#" data-type="confirm-cancel" class="button button-red button-small button-cancel">Annuler</a>
+    		</div>
+    	</div>
+    </div>
 
 {% endblock %}
 

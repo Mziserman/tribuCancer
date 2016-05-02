@@ -84,10 +84,66 @@ FormPdf.prototype =
     },
 };
 
+var DeleteButton = function(options){
+
+    this.main = options.target;
+    this.button = this.main.find("[data-delete-id]");
+    this.confirmBox = this.main.find("[data-type=confirm-box]");
+    this.confirmTitle = this.confirmBox.find("[data-title]");
+    this.confirmOk = this.confirmBox.find("[data-type=confirm-ok]");
+    this.confirmCancel = this.confirmBox.find("[data-type=confirm-cancel]");
+    this.init(options);
+};
+
+DeleteButton.prototype =
+{
+    init : function(options)
+    {
+        var that = this;
+        this.button.on('click', function(e){
+            e.preventDefault();
+            var id = $(this).attr('data-delete-id');
+            var slug = $(this).attr('data-delete-slug');
+            var title = $(this).attr('data-delete-title');
+            var url = ""+slug+"/delete/"+id;
+            that.confirm(this,url,title);
+        });
+    },
+
+    confirm : function(self,url,title)
+    {
+        this.confirmTitle.html(title);
+        this.confirmBox.css('Display','block');
+        this.confirmCancel.on('click', function(e){
+            this.confirmBox.css('Display','none')
+        });
+    },
+
+    deleteAction : function(url, self)
+    {
+        $.ajax({
+          type: "POST",
+          url: url,
+          success: function(data){
+            console.log(data);
+            if ( data == "true" ){
+                $(self).parent().parent().remove();
+            } else {
+                alert("Une erreur s'est produite, veuiller réessayer plus tard");
+            }
+          },
+          error: function(){
+            alert('Une erreur s\'est produite, veuiller réessayer plus tard');
+          }
+        });
+    }
+};
+
 
 jQuery(document).ready(function() {
 
     var fromPdf = new FormPdf({ target : $('body') });
+    var deleteButton = new DeleteButton({target : $('body')});
 
 });
 

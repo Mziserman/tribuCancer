@@ -19,13 +19,13 @@
             <ul>
               <h4>Rompre l'isolement</h4>
               {% for service in services %}
-                <li><a href="{{ url('rompre-lisolement') }}">{{service.name}}</a></li>
+                <li><a href="{{ path('redirect', {'page': 'rompre-lisolement', 'slug': service.slug}) }}">{{service.name}}</a></li>
               {% endfor %}
             </ul>
             <ul>
               <h4>S'évader</h4>
               {% for event in events %}
-                 <li><a href="{{ url('sevader') }}">{{event.name}}</a></li>
+                 <li><a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">{{event.name}}</a></li>
               {% endfor %}
             </ul>
           </div>
