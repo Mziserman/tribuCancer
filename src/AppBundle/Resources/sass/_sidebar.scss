@@ -8,6 +8,8 @@
     width: 290px;
     background-color: $white;
     border-right: 1px solid rgba(0, 0, 0, 0.15);
+    transform: translateX(0);
+    transition: all .3s ease;
     //background-image: radial-gradient(50% 0%, #020A6E 0%, #010434 100%);
 
     h4 {
@@ -118,6 +120,11 @@
         margin-bottom: 10px;
       }
     }
+  
+    @media screen and (max-width: 1120px) {
+      transform: translateX(-100%);
+    }
+
   }
 
 /* @endgroup */

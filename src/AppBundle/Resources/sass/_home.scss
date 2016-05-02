@@ -140,6 +140,22 @@ main.main-home {
       }
     }
   }
+
+  @media screen and (max-width: 1260px) {
+
+    .width-wrap .line .item .rompre {
+      width: auto;
+      margin-right: 0;
+    }
+    .support-us {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1120px) {
+    padding-left: 0;
+  }
+
 }
 
 /* @endgroup */

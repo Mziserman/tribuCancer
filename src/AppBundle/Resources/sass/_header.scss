@@ -41,6 +41,12 @@
       color: $white;
     }
   }
+
+  @media screen and (max-width: 860px) {
+    img {
+      top: -10%;
+    }
+  }
 }
 
 /* @endgroup */
