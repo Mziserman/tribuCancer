@@ -8,6 +8,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Pdf;
+use Cocur\Slugify\Slugify;
+
 /**
  * Event
  *
@@ -136,6 +138,13 @@ class Event
     private $youtube;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="Pdf", mappedBy="event", cascade={"persist", "remove"})
      */
     private $pdf;
@@ -147,6 +156,9 @@ class Event
 
     public function __construct() {
         $this->pdf = new ArrayCollection();
+        $slugify = new Slugify();
+
+        $this->slug = $slugify->slugify($this->name);
     }
 
 
@@ -501,5 +513,28 @@ class Event
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Event
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

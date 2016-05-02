@@ -8,6 +8,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Pdf;
+use Cocur\Slugify\Slugify;
 
 /**
  * Service
@@ -75,6 +76,13 @@ class Service
     private $icon;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
      * @Vich\UploadableField(mapping="images_icon", fileNameProperty="icon")
      * @var File
      */
@@ -103,6 +111,9 @@ class Service
 
     public function __construct() {
         $this->pdf = new ArrayCollection();
+        $slugify = new Slugify();
+
+        $this->slug = $slugify->slugify($this->name);
     }
     
     /**
@@ -343,5 +354,28 @@ class Service
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Service
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
