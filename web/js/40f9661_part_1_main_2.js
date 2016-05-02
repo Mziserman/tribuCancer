@@ -51,7 +51,10 @@ $('.gallery-item').on('click', function(e) {
 
 $('#lightbox .close').on('click', function(e) {
     closeLightbox();
-})
+});
+$('#lightbox').on('click', function(e) {
+    closeLightbox();
+});
 $(window).on('keydown', function(e) {
     if(e.keyCode == "27") {
         closeLightbox();

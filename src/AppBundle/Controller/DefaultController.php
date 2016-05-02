@@ -107,8 +107,7 @@ class DefaultController extends Controller
 
         $session = $request->getSession();
         $selected = $session->get("sevader");
-
-        dump($selected);die;
+        $session->invalidate();
 
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),

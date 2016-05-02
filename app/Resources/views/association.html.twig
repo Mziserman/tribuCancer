@@ -38,42 +38,19 @@
     		<div class="documents module">
     			<p>Vous pouvez <span class="strong">télécharger</span> en cliquant sur les boutons ci-dessous tous les <span class="strong">documents PDF</span> en rapport avec la présentation de l’association Tribu Cancer.</p>
     			<ul>
-    				<li>
-    					<a class="button button-red button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Plaquette tribu cancer</span>
-    					</a>
-    				</li>
-    				<li>
-    					<a class="button button-blue button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Charte éthique</span>
-    					</a>
-    				</li>
-    				<li>
-    					<a class="button button-grey button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Mots du président</span>
-    					</a>
-    				</li>
-    				<li>
-    					<a class="button button-grey button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Conseil d'administration</span>
-    					</a>
-    				</li>
-    				<li>
-    					<a class="button button-grey button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Comité scientifique</span>
-    					</a>
-    				</li>
-    				<li>
-    					<a class="button button-grey button-pdf" href="" download>
-    					  <span>pdf</span><span class="document-name">Démarche qualité coaching</span>
-    					</a>
-    				</li>
+                    {% for doc in pdf.0 %}
+                        <li>
+                            <a class="button button-{{doc.color}} button-pdf" href="assets/pdf/{{doc.file}}" download>
+                              <span>pdf</span><span class="document-name">{{doc.name}}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
     			</ul>
     		</div>
     		<h2>Réseaux sociaux</h2>
     		<div class="social-networks module">
     			<p>Retrouvez <span class="strong">Tribu Cancer</span> sur les <span class="strong">réseaux sociaux</span> pour être tenu informer des <span class="strong">dernières actualités</span> de l’association.</p>
-    			<a href="https://www.facebook.com/tribucancer"><img src="assets/icons/facebook-logo.png" alt="tribu cancer facebook page"></a>
+    			<a href="https://www.facebook.com/tribucancer"><img src="assets/icons/facebook-logo.svg" alt="tribu cancer facebook page"></a>
     		</div>
     	</div>
     </div>

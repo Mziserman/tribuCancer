@@ -331,9 +331,9 @@
                             <div class="photo-gallery">
                                 <a href="{{event.flickr}}" class="access-gallery" target="_blank">Accèder à la galerie photos/vidéos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
                                 <div class="gallery">
-                                    <a href="assets/imgs/event/{{event.image1}}" class="gallery-item"><img src="assets/imgs/event/{{event.image1}}" alt="{{event.name}}-{{loop.index}}"></a>
-                                    <a href="assets/imgs/event/{{event.image2}}" class="gallery-item"><img src="assets/imgs/event/{{event.image2}}" alt="{{event.name}}-{{loop.index}}"></a>
-                                    <a href="assets/imgs/event/{{event.image3}}" class="gallery-item"><img src="assets/imgs/event/{{event.image3}}" alt="{{event.name}}-{{loop.index}}"></a>
+                                    <a href="assets/imgs/event/{{event.image.0}}" class="gallery-item"><img src="assets/imgs/event/{{event.image.0}}" alt="{{event.name}}-{{loop.index}}"></a>
+                                    <a href="assets/imgs/event/{{event.image.1}}" class="gallery-item"><img src="assets/imgs/event/{{event.image.1}}" alt="{{event.name}}-{{loop.index}}"></a>
+                                    <a href="assets/imgs/event/{{event.image.2}}" class="gallery-item"><img src="assets/imgs/event/{{event.image.2}}" alt="{{event.name}}-{{loop.index}}"></a>
                                 </div>
                                 <div class="gallery-view-box"></div>
                             </div>
@@ -423,10 +423,10 @@
                                         <span>pdf</span><span class="document-name">Classement de la course</span>
                                     </a>
                                 </li> #}
-                                {% for pdf in pdfs %}
+                                {% for doc in event.pdf %}
                                     <li>
-                                        <a class="button button-{{pdf.color}} button-pdf" href="" download>
-                                            <span>pdf</span><span class="document-name">{{pdf.name}}</span>
+                                        <a class="button button-{{doc.color}} button-pdf" href="assets/pdf/{{doc.file}}" download>
+                                            <span>pdf</span><span class="document-name">{{doc.name}}</span>
                                         </a>
                                     </li>
                                 {% endfor %}
