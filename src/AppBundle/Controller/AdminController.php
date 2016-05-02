@@ -249,9 +249,14 @@ class AdminController extends Controller
         }
 
         $form->add('submit', SubmitType::class, array(
-            'label' => 'Create',
+            'label' => 'Modifier',
             'attr'  => array('class' => 'btn btn-default pull-right')
         ));
+
+        $oldPosition = null;
+        if ( is_callable(array($entity, 'getPosition')) ){
+            $oldPosition = $entity->getPosition();
+        }
 
         //SECTION WHERE WE RECEIVE THE DATA FORM
 
@@ -261,7 +266,7 @@ class AdminController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $this->prePersist($entity, $repository);
+            $this->prePersist($entity, $repository, $oldPosition, $em);
 
             $em->persist($entity);
             $em->flush();
@@ -327,8 +332,11 @@ class AdminController extends Controller
                 
         }
         if ( $entity != null ){       
-            // $em->remove($entity);
-            // $em->flush();
+            
+            $position = $entity->getPosition();
+            $this->positionUpdateEmpty($position, $repository);
+            $em->remove($entity);
+            $em->flush();
             return new Response("true");
         } else {
             return new Response("false");
@@ -340,10 +348,15 @@ class AdminController extends Controller
 
     //FONCTIONS DIVERSES
 
-    public function prePersist($entity, $repository)
+    public function prePersist($entity, $repository, $oldPosition = null, $em = null)
     {
     	if ( is_callable(array($entity, 'getPosition')) ){
     		$position = $entity->getPosition();
+            if ( ($oldPosition != null) && ($em != null) && ($position > $oldPosition) ){
+                $this->positionUpdateEmpty($oldPosition, $repository);
+                $em->persist($entity);
+                $em->flush();
+            }
       	    $this->positionUpdateAuto($entity, $position, $repository);
     	}
       if ( (is_callable(array($entity, 'getPdf'))) && !empty($entity->getPdf()) ){
@@ -367,6 +380,20 @@ class AdminController extends Controller
         } else {
             $entity[0]->setPosition($position);
         } 
+    }
+
+    public function positionUpdateEmpty($position, $repository)
+    {
+        $allEntities = $this->getDoctrine()
+          ->getRepository($repository)
+          ->findAll();
+
+        foreach ($allEntities as $key => $value) {
+            $otherPosition = $value->getPosition();
+            if ( $otherPosition > $position  ){
+                $value->setPosition($otherPosition - 1);
+            }
+        }
     }
 
 
