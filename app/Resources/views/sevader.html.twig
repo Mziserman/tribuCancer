@@ -7,7 +7,7 @@
             <div class="services-switch">
                 {% for event in events %}
                     <div class="service">
-                        <a href="" class="{% if loop.index == 1 %} active {% endif %}" data-item="{{event.id}}">
+                        <a href="" class="{% if loop.index == 1 and selected is empty %} active {% endif %}{% if selected == event.slug %} active {% endif %}" data-item="{{event.id}}">
                             <h3 class="item-title">{{event.name}}</h3>
                         </a>
                     </div>
@@ -321,7 +321,7 @@
                 </div> #}
 
                 {% for event in events %}
-                    <div class="service-activity {% if loop.index == 1 %} show {% endif %}" id="item-{{event.id}}">
+                    <div class="service-activity {% if loop.index == 1 and selected is empty %} show {% endif %}{% if selected == event.slug %} show {% endif %}" id="item-{{event.id}}">
                         <div class="service-content">
                             <h3 class="item-title">Description</h3>
                             {{event.body | raw}}
@@ -347,7 +347,7 @@
                         
                         <div class="service-content">
                             <h3 class="item-title">Inscription</h3>
-                            {% if event.inscription == 1 %}
+                            {% if event.inscription %}
                                 <h6>Pour vous inscrire, deux solutions: remplir le formulaire en ligne ci-dessous ou télécharger puis remplur le bulletin d'inscription dans les documents et le retourner à TribuCancer.</h6>
                                 <div class="inscription-form">
                                     <h6>Inscription en ligne</h6>
@@ -387,13 +387,15 @@
                                             <input type="text" name="postal" id="postal">
                                         </fieldset>
 
+                                        <input type="hidden" id="form-slug" value="{{event.slug}}">
+
                                         <input type="submit" id="submit-form" class="hidden" />
                                     </form>
 
                                     <label class="submit-button" for="submit-form">Valider mes informations et m'inscrire à {{event.name}}<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
                                 </div>
                             {% endif %}
-                            {% if event.name == "Plongée avec aquadémie" %}
+                            {% if event.slug == "plongee-avec-aquademie" %}
                                 <h6>Pour vous inscrire, rendez-vous sur le site d’Aquadémie via le lien ci-dessous.</h6>
                                 <br/>
                                 <a href="" class="access-gallery" target="_blank">SE RENDRE SUR LE SITE INTERNET D’AQUADÉMIE<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>

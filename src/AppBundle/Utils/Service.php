@@ -32,6 +32,7 @@ class Service
             $arrayService[$i]["image"] = $service->getImage();
             $arrayService[$i]["icon"] = $service->getIcon();
             $arrayService[$i]["position"] = $service->getPosition();
+            $arrayService[$i]["slug"] = $service->getSlug();
             $arrayService[$i]["pdf"] = $this->arrayFromPdf($service->getPdf());
 
             $i++;

@@ -38,6 +38,7 @@ class Event
             $arrayEvent[$i]["youtube"] = $event->getYoutube();
             $arrayEvent[$i]["inscription"] = $event->getInscription();
             $arrayEvent[$i]["position"] = $event->getPosition();
+            $arrayEvent[$i]["slug"] = $event->getSlug();
             $arrayEvent[$i]["pdf"] = $this->arrayFromPdf($event->getPdf());
 
             $i++;

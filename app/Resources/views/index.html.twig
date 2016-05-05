@@ -34,7 +34,7 @@
             <img src="assets/imgs/maildenuit-banner.png" alt="mail de nuit le soutien psychologique">
             <h4>Mail de nuit</h4>
             <p>Pour ne plus être seul avec la maladie</p>
-            <a href="#" class="button button-orange">Accèder au service</a>
+            <a href="{{ path('redirect', {'page': 'rompre-lisolement', 'slug': 'mail-de-nuit'}) }}" class="button button-orange">Accèder au service</a>
           </div>
           <div class="newsletter">
             <h4>Newsletter</h4>
@@ -67,7 +67,7 @@
                   <h3 class="item-title">{{service.name}}</h3>
                   <p>{{service.shortDesc | raw}}</p>
                   <div class="see-more">
-                      <a href="{{ url('rompre-lisolement') }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                      <a href="{{ path('redirect', {'page': 'rompre-lisolement', 'slug': service.slug}) }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
                   </div>
                 </div>
               {% endfor %}
@@ -93,7 +93,7 @@
                       <h3 class="item-title"><a href="{{ url('sevader') }}">{{event.name}}</a></h3>
                       <p>{{event.shortDesc | raw}}</p>
                       <div class="see-more">
-                        <a href="{{ url('sevader') }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                        <a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
                       </div>
                     </div>
                   </div>

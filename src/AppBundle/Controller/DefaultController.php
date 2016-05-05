@@ -86,6 +86,7 @@ class DefaultController extends Controller
         $selected = $session->get("rompre-lisolement");
         $session->invalidate();
 
+
         return $this->render('rompre.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Rompre l\'isolement',
