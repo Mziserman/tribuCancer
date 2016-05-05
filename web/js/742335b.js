@@ -112,10 +112,17 @@ DeleteButton.prototype =
 
     confirm : function(self,url,title)
     {
+        var that = this;
         this.confirmTitle.html(title);
-        this.confirmBox.css('Display','block');
+        this.confirmBox.css('display','block');
         this.confirmCancel.on('click', function(e){
-            this.confirmBox.css('Display','none')
+            e.preventDefault();
+            that.confirmBox.css('display','none');
+        });
+        this.confirmOk.on('click', function(e){
+            e.preventDefault();
+            that.deleteAction(url,self);
+            that.confirmBox.css('display','none');
         });
     },
 
@@ -125,9 +132,8 @@ DeleteButton.prototype =
           type: "POST",
           url: url,
           success: function(data){
-            console.log(data);
             if ( data == "true" ){
-                $(self).parent().parent().remove();
+                document.location.reload(true);
             } else {
                 alert("Une erreur s'est produite, veuiller réessayer plus tard");
             }

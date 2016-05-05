@@ -44,28 +44,173 @@
 		        	</tr>
 					{% endfor %}
 				</tbody>
+	        {% elseif slug == 'partner' %}
+	        	<thead class="row row-head row-5">
+					<tr>
+		    			<th><span>Position</span></th>
+			        	<th><span>Nom</span></th>
+			        	<th><span>Contenu</span></th>
+			        	<th><span>Lien</span></th>
+			        	<th><span>Image</span></th>
+			        	<th><span>Actions</span></th>
+		    		</tr>
+	        	</thead>
+	        	<tbody>
+					{% for _data in data %}
+					<tr class="row row-data row-5">
+			        	<td>{{ _data.position|e }}</td>
+			        	<td>{{ _data.title|e }}</td>
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
+			        		{% if _data.body|length > 100 %}
+								...
+							{% endif %}
+						</td>
+						<td> <a href="{{ _data.link }}">Lien</a></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_partner') }}" alt="image de partenaires"></td>
+			        	<td class="td-actions">
+				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
+				        	<a href="#" class="button button-red button-small button-delete" data-delete-id="{{_data.id}}" data-delete-slug="{{_data.getClass()}}" data-delete-title="{{_data.title}}">Supprimer</a>
+			        	</td>
+		        	</tr>
+					{% endfor %}
+				</tbody>
 	        {% elseif slug == 'event' %}
-	        	{{ data.name }}
-				{{ data.shortDesc }}
-				{{ data.body }}
-				{{ data.inscription }}
-				{{ data.date }}
-				{{ data.position }}
-				{{ data.thumbnailFile }}
-				{{ data.imageFile1 }}
-				{{ data.imageFile2 }}
-				{{ data.imageFile3 }}
-				{{ data.flickr }}
-				{{ data.youtube }}
+	        	<thead class="row row-head row-5">
+					<tr>
+		    			<th><span>Position</span></th>
+			        	<th><span>Nom</span></th>
+			        	<th><span>Courte Description</span></th>
+			        	<th><span>Contenu</span></th>
+			        	<th><span>Inscription</span></th>
+			        	<th><span>Date</span></th>
+			        	<th><span>Vignette</span></th>
+			        	<th><span>Image n°1</span></th>
+			        	<th><span>Image n°2</span></th>
+			        	<th><span>Image n°3</span></th>
+			        	<th><span>Lien Flickr</span></th>
+			        	<th><span>Lien Youtube</span></th>
+			        	<th><span>Pdf</span></th>
+			        	<th><span>Actions</span></th>
+		    		</tr>
+	        	</thead>
+	        	<tbody>
+					{% for _data in data %}
+					<tr class="row row-data row-5">
+			        	<td>{{ _data.position|e }}</td>
+			        	<td>{{ _data.name|e }}</td>
+			        	<td class="td-body" >{{ _data.shortDesc|slice(0, 100)|raw  }}
+			        		{% if _data.shortDesc|length > 100 %}
+								...
+							{% endif %}
+						</td>
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
+			        		{% if _data.body|length > 100 %}
+								...
+							{% endif %}
+						</td>
+						<td>
+							{% if _data.inscription|e == 1 %}
+								Oui
+							{% else %}
+								Non
+							{% endif %}
+						</td>
+						<td>{{ _data.date|e }}</td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.thumbnail , 'img_event') }}" alt="image de vignette"></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image1 , 'img_event') }}" alt="image 1 d'article"></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image2 , 'img_event') }}" alt="image 2 d'article"></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image3 , 'img_event') }}" alt="image 3 d'article"></td>
+						<td> <a href="{{ _data.flickr }}">Flickr</a></td>
+						<td> <a href="{{ _data.youtube }}">Youtube</a></td>
+			        	<td class="td-pdf">
+			        		{% for _pdf in _data.pdf %}
+			        			<a class="button button-pdf button-{{_pdf.color}}" href="{{ asset( _pdf.file , 'pdf') }}" target="_blank">
+						            <span>pdf</span>
+						            {{_pdf.name}}
+						        </a>
+						    {% else %}
+						    	Aucun Pdf.   
+			        		{% endfor %}
+			        	</td>
+			        	<td class="td-actions">
+				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
+				        	<a href="#" class="button button-red button-small button-delete" data-delete-id="{{_data.id}}" data-delete-slug="{{_data.getClass()}}" data-delete-title="{{_data.name}}">Supprimer</a>
+			        	</td>
+		        	</tr>
+					{% endfor %}
+				</tbody>
 	        {% elseif slug == 'service' %}
-	        	{{ data.name }}
-				{{ data.shortDesc }}
-				{{ data.body }}
-				{{ data.link }}
-				{{ data.position }}
-				{{ data.imageFile }}
-				{{ data.iconFile }}
+	        	<thead class="row row-head row-5">
+					<tr>
+		    			<th><span>Position</span></th>
+			        	<th><span>Nom</span></th>
+			        	<th><span>Courte Description</span></th>
+			        	<th><span>Contenu</span></th>
+			        	<th><span>Lien</span></th>
+			        	<th><span>Image</span></th>
+			        	<th><span>Icone</span></th>
+			        	<th><span>Pdf</span></th>
+			        	<th><span>Actions</span></th>
+		    		</tr>
+	        	</thead>
+	        	<tbody>
+					{% for _data in data %}
+					<tr class="row row-data row-5">
+			        	<td>{{ _data.position|e }}</td>
+			        	<td>{{ _data.name|e }}</td>
+			        	<td class="td-body" >{{ _data.shortDesc|slice(0, 100)|raw  }}
+			        		{% if _data.shortDesc|length > 100 %}
+								...
+							{% endif %}
+						</td>
+			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
+			        		{% if _data.body|length > 100 %}
+								...
+							{% endif %}
+						</td>
+						<td> <a href="{{ _data.lien }}">Lien</a></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_service') }}" alt="image de d'article"></td>
+			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.icon , 'img_icon') }}" alt="Icone"></td>
+			        	<td class="td-pdf">
+			        		{% for _pdf in _data.pdf %}
+			        			<a class="button button-pdf button-{{_pdf.color}}" href="{{ asset( _pdf.file , 'pdf') }}" target="_blank">
+						            <span>pdf</span>
+						            {{_pdf.name}}
+						        </a>
+						    {% else %}
+						    	Aucun Pdf.   
+			        		{% endfor %}
+			        	</td>
+			        	<td class="td-actions">
+				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
+				        	<a href="#" class="button button-red button-small button-delete" data-delete-id="{{_data.id}}" data-delete-slug="{{_data.getClass()}}" data-delete-title="{{_data.name}}">Supprimer</a>
+			        	</td>
+		        	</tr>
+					{% endfor %}
+				</tbody>
 			{% elseif slug == 'association' %}
+				<thead class="row row-head row-5">
+					<tr>
+			        	<th><span>Pdf</span></th>
+		    		</tr>
+	        	</thead>
+	        	<tbody>
+	        		{% for _data in data %}
+						<td class="td-pdf">
+			        		{% for _pdf in _data.pdf %}
+			        			<a class="button button-pdf button-{{_pdf.color}}" href="{{ asset( _pdf.file , 'pdf') }}" target="_blank">
+						            <span>pdf</span>
+						            {{_pdf.name}}
+						        </a>
+						    {% else %}
+						    	Aucun Pdf.   
+			        		{% endfor %}
+			        	</td>
+			        	<td class="td-actions">
+				        	<a href="{{ path('admin_edit', {'slug': slug, 'id': _data.id}) }}" class="button button-blue button-small button-edit">Modifier</a>
+			        	</td>
+		        	{% endfor %}
+        		</tbody>
 	        {% endif %}
         </table>
   	</main>

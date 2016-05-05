@@ -59,18 +59,26 @@
   }
 }
 
-
 .confirm-delete-content{
   display: none;
-  background: black;
-  opacity: 0.2;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
 
+  .shadow{
+    background: black;
+    opacity: 0.2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
   .box{
+    z-index: 10;
     position: absolute;
     left: 50%;
     top: 50%;

@@ -47,7 +47,7 @@ framework:
             img_service:
                 base_path: %app.path.images_service%
             img_partner:
-                base_path: %app.path.images_article%
+                base_path: %app.path.images_partner%
 
 twig:
     form_themes:
@@ -64,7 +64,7 @@ imports:
 parameters: 
   locale: fr
   app.path.images_article: /assets/imgs/article
-  app.path.images_icon: /assets/imgs/icons
+  app.path.images_icon: /assets/icons
   app.path.images_event: /assets/imgs/event
   app.path.images_service: /assets/imgs/service
   app.path.images_partner: /assets/partenaires
@@ -125,7 +125,7 @@ vich_uploader:
             delete_on_update: true
             namer: vich_uploader.namer_uniqid
         pdf_files:
-            uri_prefix: %app.path.pdf_files%
+            uri_prefix:         %app.path.pdf_files%
             upload_destination: %kernel.root_dir%/../web/assets/pdf
             delete_on_remove: true
             delete_on_update: true
