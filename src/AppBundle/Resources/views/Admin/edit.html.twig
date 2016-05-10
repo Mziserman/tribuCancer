@@ -3,8 +3,7 @@
 
 {% block body %}
 	<main class="main-create">
-		haha
-		{{ form.vars.data.icon }}
+		{% form_theme form 'form/fields.html.twig' %}
 
 		{{ form_start(form) }}
 
@@ -12,7 +11,6 @@
 			{{ form_row(form.title) }}
 			{{ form_row(form.body) }}
 			{{ form_row(form.position) }}
-			<img src="{{ form.vars.data.image}}" alt="">
 			{{ form_widget(form.imageFile) }}
 		{% elseif slug == 'event' %}
 			{{ form_row(form.name) }}
@@ -40,12 +38,14 @@
 		{% endif %}
 
 		{% if form.pdf %}
-			<h3>Pdf</h3>
+			<h2 class="pdf-section" >Pdf</h2>
 			<ul class="pdf-list" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
 				{{ form_widget(form.pdf) }}
 			</ul>
 		{% endif %}
-
+		<div class="submit-div">
+        	{{ form_row(form.submit) }}
+        </div>
 		{{ form_end(form) }}
 	</main>
 

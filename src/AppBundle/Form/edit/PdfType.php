@@ -14,17 +14,21 @@ class PdfType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label' => 'Nom'))
+            ->add('name','text', array('label' => 'Nom',
+                'attr' => array('class' => 'input_admin')
+                ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
                     'attr' => array('class' => 'pdf-position'),
-                    'label' => 'Position'
+                    'label' => 'Position',
+                'attr' => array('class' => 'input_admin')
                 ))
             ->add('pdfFile', 'vich_file', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Le fichier'
+                    'label' => 'Le fichier',
+                    'attr' => array('class' => 'pdf_admin')
                 ))
             ->add('color', ChoiceType::class, array(
                 'choices'  => array(

@@ -1,0 +1,31 @@
+{% block vich_file_widget %}
+{% spaceless %}
+    <div class="vich-file">
+        <div class="vich_file_container" >
+            {% if download_uri is defined and download_uri %}
+             <a class="vich_file_preview" target="_blank" href="{{ download_uri }}">Le PDF Déja présent</a>
+            {% endif %}
+        </div>
+        {{ form_widget(form.file) }}
+        {% if form.delete is defined %}
+        {{ form_row(form.delete) }}
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block vich_image_widget %}
+{% spaceless %}
+    <div class="vich-image">
+        <div class="vich_image_container" >
+            {% if download_uri is defined and download_uri %}
+             <a href="{{ download_uri }}" target="_blank" ><img class="vich_image_preview" src="{{ download_uri }}" alt="" /></a>
+            {% endif %}
+        </div>
+        {{ form_row(form.file) }}
+        {% if form.delete is defined %}
+        {{ form_row(form.delete) }}
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock %}

@@ -10,7 +10,6 @@
 					<tr>
 		    			<th><span>Position</span></th>
 			        	<th><span>Titre</span></th>
-			        	<th><span>Contenu</span></th>
 			        	<th><span>Image</span></th>
 			        	<th><span>Pdf</span></th>
 			        	<th><span>Actions</span></th>
@@ -21,11 +20,6 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.title|e }}</td>
-			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
-			        		{% if _data.body|length > 100 %}
-								...
-							{% endif %}
-						</td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_article') }}" alt="image d'article"></td>
 			        	<td class="td-pdf">
 			        		{% for _pdf in _data.pdf %}
@@ -49,7 +43,6 @@
 					<tr>
 		    			<th><span>Position</span></th>
 			        	<th><span>Nom</span></th>
-			        	<th><span>Contenu</span></th>
 			        	<th><span>Lien</span></th>
 			        	<th><span>Image</span></th>
 			        	<th><span>Actions</span></th>
@@ -60,11 +53,6 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.title|e }}</td>
-			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
-			        		{% if _data.body|length > 100 %}
-								...
-							{% endif %}
-						</td>
 						<td> <a href="{{ _data.link }}">Lien</a></td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_partner') }}" alt="image de partenaires"></td>
 			        	<td class="td-actions">
@@ -79,14 +67,9 @@
 					<tr>
 		    			<th><span>Position</span></th>
 			        	<th><span>Nom</span></th>
-			        	<th><span>Courte Description</span></th>
-			        	<th><span>Contenu</span></th>
 			        	<th><span>Inscription</span></th>
 			        	<th><span>Date</span></th>
 			        	<th><span>Vignette</span></th>
-			        	<th><span>Image n°1</span></th>
-			        	<th><span>Image n°2</span></th>
-			        	<th><span>Image n°3</span></th>
 			        	<th><span>Lien Flickr</span></th>
 			        	<th><span>Lien Youtube</span></th>
 			        	<th><span>Pdf</span></th>
@@ -98,16 +81,6 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.name|e }}</td>
-			        	<td class="td-body" >{{ _data.shortDesc|slice(0, 100)|raw  }}
-			        		{% if _data.shortDesc|length > 100 %}
-								...
-							{% endif %}
-						</td>
-			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
-			        		{% if _data.body|length > 100 %}
-								...
-							{% endif %}
-						</td>
 						<td>
 							{% if _data.inscription|e == 1 %}
 								Oui
@@ -117,9 +90,6 @@
 						</td>
 						<td>{{ _data.date|e }}</td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.thumbnail , 'img_event') }}" alt="image de vignette"></td>
-			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image1 , 'img_event') }}" alt="image 1 d'article"></td>
-			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image2 , 'img_event') }}" alt="image 2 d'article"></td>
-			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image3 , 'img_event') }}" alt="image 3 d'article"></td>
 						<td> <a href="{{ _data.flickr }}">Flickr</a></td>
 						<td> <a href="{{ _data.youtube }}">Youtube</a></td>
 			        	<td class="td-pdf">
@@ -144,8 +114,6 @@
 					<tr>
 		    			<th><span>Position</span></th>
 			        	<th><span>Nom</span></th>
-			        	<th><span>Courte Description</span></th>
-			        	<th><span>Contenu</span></th>
 			        	<th><span>Lien</span></th>
 			        	<th><span>Image</span></th>
 			        	<th><span>Icone</span></th>
@@ -158,16 +126,6 @@
 					<tr class="row row-data row-5">
 			        	<td>{{ _data.position|e }}</td>
 			        	<td>{{ _data.name|e }}</td>
-			        	<td class="td-body" >{{ _data.shortDesc|slice(0, 100)|raw  }}
-			        		{% if _data.shortDesc|length > 100 %}
-								...
-							{% endif %}
-						</td>
-			        	<td class="td-body" >{{ _data.body|slice(0, 100)|raw  }}
-			        		{% if _data.body|length > 100 %}
-								...
-							{% endif %}
-						</td>
 						<td> <a href="{{ _data.lien }}">Lien</a></td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.image , 'img_service') }}" alt="image de d'article"></td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.icon , 'img_icon') }}" alt="Icone"></td>

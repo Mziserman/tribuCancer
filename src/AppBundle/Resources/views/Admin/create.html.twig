@@ -3,7 +3,7 @@
 
 {% block body %}
 	<main class="main-create">
-
+		{% form_theme form 'form/fields.html.twig' %}
 	    {{ form_start(form) }}
 
 	        {% if slug == "article" or slug == 'archive' %}
@@ -35,12 +35,14 @@
 	        {% endif %}
 
 	        {% if form.pdf %}
-	            <h3>Pdf</h3>
+	            <h2 class="pdf-section" >Pdf</h2>
 			    <ul class="pdf-list" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
 				  {{ form_widget(form.pdf) }}
 				</ul>
 	        {% endif %}
-
+	        <div class="submit-div">
+	        	{{ form_row(form.submit) }}
+	        </div>
 		{{ form_end(form) }}
   	</main>
 
