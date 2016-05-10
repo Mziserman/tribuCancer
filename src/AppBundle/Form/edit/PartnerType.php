@@ -14,21 +14,27 @@ class PartnerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', array('label' => 'Titre'))
+            ->add('title','text', array('label' => 'Nom',
+                'attr' => array('class' => 'input_admin')
+                ))
             ->add('body', TextareaType::class, array( 
                 'label' => 'Contenu',
                 'attr' => array('class' => 'tinymce')
                 ))
-            ->add('link','text', array('label' => 'Lien'))
+            ->add('link','text', array('label' => 'Lien',
+                'attr' => array('class' => 'input_admin')
+                ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'label' => 'Position'
+                    'label' => 'Position',
+                'attr' => array('class' => 'input_admin')
                 ))
-            ->add('imageFile', 'vich_file', array(
+            ->add('imageFile', 'vich_image', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Image'
+                    'label' => 'Image',
+                    'attr' => array('class' => 'image_admin')
                 ))
         ;
     }

@@ -17,7 +17,9 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('label' => 'Nom'))
+            ->add('name','text', array('label' => 'Nom',
+                'attr' => array('class' => 'input_admin')
+                ))
             ->add('shortDesc', TextareaType::class, array( 
                 'label' => 'Petite Déscription',
                 'attr' => array('class' => 'tinymce')
@@ -33,34 +35,43 @@ class EventType extends AbstractType
             ->add('date','text', array('label' => 'La date, ( une phrase ) '))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'label' => 'Position'
+                    'label' => 'Position',
+                'attr' => array('class' => 'input_admin')
                 ))
-            ->add('thumbnailFile', 'vich_file', array(
+            ->add('thumbnailFile', 'vich_image', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Vignette'
+                    'label' => 'Vignette',
+                    'attr' => array('class' => 'image_admin')
                 ))
-            ->add('imageFile1', 'vich_file', array(
+            ->add('imageFile1', 'vich_image', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Première image'
+                    'label' => 'Première image',
+                    'attr' => array('class' => 'image_admin')
                 ))
-            ->add('imageFile2', 'vich_file', array(
+            ->add('imageFile2', 'vich_image', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Seconde image'
+                    'label' => 'Seconde image',
+                    'attr' => array('class' => 'image_admin')
                 ))
-            ->add('imageFile3', 'vich_file', array(
+            ->add('imageFile3', 'vich_image', array(
                     'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
-                    'label' => 'Troisième image'
+                    'label' => 'Troisième image',
+                    'attr' => array('class' => 'image_admin')
                 ))
-            ->add('flickr','text', array('label' => 'Lien Flickr'))
-            ->add('youtube','text', array('label' => 'Lien Youtube'))
+            ->add('flickr','text', array('label' => 'Lien Flickr',
+                'attr' => array('class' => 'input_admin')
+                ))
+            ->add('youtube','text', array('label' => 'Lien Youtube',
+                'attr' => array('class' => 'input_admin')
+                ))
         ;
 
         $builder->add('pdf', CollectionType::class, array(

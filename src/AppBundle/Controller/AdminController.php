@@ -156,8 +156,8 @@ class AdminController extends Controller
   		}
 
 		  $form->add('submit', SubmitType::class, array(
-            'label' => 'Create',
-            'attr'  => array('class' => 'btn btn-default pull-right')
+            'label' => 'Créer !',
+            'attr'  => array('class' => 'btn-create')
         ));
 
       //SECTION WHERE WE RECEIVE THE DATA FORM
@@ -250,7 +250,7 @@ class AdminController extends Controller
 
         $form->add('submit', SubmitType::class, array(
             'label' => 'Modifier',
-            'attr'  => array('class' => 'btn btn-default pull-right')
+            'attr'  => array('class' => 'btn-create')
         ));
 
         $oldPosition = null;
