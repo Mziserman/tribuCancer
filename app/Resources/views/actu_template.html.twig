@@ -23,26 +23,13 @@
 	    		<div class="service-documents">
     		    <h3 class="item-title">Documents</h3>
     		    <ul>
-  		        <li>
-		            <a class="button button-red button-pdf" href="" download>
-		                <span>pdf</span><span class="document-name">Affiche des courses 2015</span>
-		            </a>
-  		        </li>
-  		        <li>
-		            <a class="button button-red button-pdf" href="" download>
-		                <span>pdf</span><span class="document-name">Affiche de la manche</span>
-		            </a>
-  		        </li>
-  		        <li>
-		            <a class="button button-red button-pdf" href="" download>
-		                <span>pdf</span><span class="document-name">Classement du 5km</span>
-		            </a>
-  		        </li>
-  		        <li>
-		            <a class="button button-red button-pdf" href="" download>
-		                <span>pdf</span><span class="document-name">Classement du 10km</span>
-		            </a>
-  		        </li>
+    		    	{% for doc in article.pdf %}
+	  		        <li>
+			            <a class="button button-red button-pdf" href="assets/pdf/{{doc.file}}" download>
+			                <span>pdf</span><span class="document-name">{{doc.name}}</span>
+			            </a>
+	  		        </li>
+  		      	{% endfor %}
     		    </ul>
 	    		</div>
 
