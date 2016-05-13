@@ -262,6 +262,10 @@ class DefaultController extends Controller
     */
     public function archiveAction(Request $request, $id)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
         $archive = $this->getDoctrine()
             ->getRepository('AppBundle:Archive')
             ->find($id);
@@ -275,6 +279,7 @@ class DefaultController extends Controller
             'myTitle' =>  'Archive',
             'archive' =>  $archive,
             'autreArchives' => $autreArchives,
+            'partner' => $partner
         ));
     }
 
