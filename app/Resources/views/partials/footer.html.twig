@@ -17,15 +17,28 @@
        <div class="footer-item">
            <p class="section-title large-title">Informations</p>
            <ul>
-               <li><a href="">Actualités</a></li>
-               <li><a href="">Faits marquant</a></li>
-               <li><a href="">Photos</a></li>
-               <li><a href="">Videos</a></li>
+               <li><a href="#">Actualités</a></li>
+               <li><a href="#">Faits marquant</a></li>
+               <li><a href="#">Photos</a></li>
+               <li><a href="#">Videos</a></li>
            </ul>
        </div>
        <div class="footer-item">
            <p class="section-title large-title">Partenaires de tribu cancer</p>
-           <ul>
+           {% set index = 0 %}
+           {% for _partner in partner %}
+            {% if index <= 0  %}
+              <ul>
+            {% endif %}
+            <li><a href="{{_parnter.link}}" target="_blank">{{_partner.title}}-{{index}}</a></li>
+            {% if index >= 5 %}
+              </ul>
+              {% set index = 0 %}
+            {% else %}
+              {% set index = index + 1 %}
+            {% endif %}
+           {% endfor %}
+           <!-- <ul>
                <li><a href="http://www.afsos.org/" target="_blank">AFSOS</a></li>
                <li><a href="http://www.amgen.com/responsibility/amgen-foundation/" target="_blank">AMGEN</a></li>
                <li><a href="https://www.fondation-pfizer.org/" target="_blank">Fondation Pfizer</a></li>
@@ -45,7 +58,7 @@
                <li><a href="http://www.voixdespatients.fr/" target="_blank">La voix des patients</a></li>
                <li><a href="http://www.association-ressource.org/" target="_blank">Assocations ressources</a></li>
                <li><a href="https://www.facebook.com/lerubandelespoir" target="_blank">Le ruban de l'espoir</a></li>
-           </ul>
+           </ul> -->
        </div>
    </section>
     <section>

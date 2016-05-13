@@ -33,13 +33,18 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Archive')
             ->findBy(array(), array('position' => 'ASC'), 3);
 
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
         return $this->render('index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Mail de nuit',
             'articles' => $articles,
             'services' => $services,
             'events' => $events,
-            'archives' => $archives
+            'archives' => $archives,
+            'partner' => $partner
         ));
     }
 
@@ -48,6 +53,10 @@ class DefaultController extends Controller
      */
     public function associationAction(Request $request)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Association');
 
@@ -57,7 +66,8 @@ class DefaultController extends Controller
         return $this->render('association.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'L\'association',
-            'pdf' => $pdf
+            'pdf' => $pdf,
+            'partner' => $partner
         ));
     }
 
@@ -66,9 +76,14 @@ class DefaultController extends Controller
      */
     public function soutenirAction(Request $request)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
       return $this->render('soutenir.html.twig', array(
         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        'myTitle'=> 'Nous soutenir'
+        'myTitle'=> 'Nous soutenir',
+        'partner' => $partner
       ));
     }
 
@@ -86,12 +101,17 @@ class DefaultController extends Controller
         $selected = $session->get("rompre-lisolement");
         $session->invalidate();
 
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
 
         return $this->render('rompre.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Rompre l\'isolement',
             'services'=> $services,
-            'selected' => $selected
+            'selected' => $selected,
+            'partner' => $partner
         ));
     }
 
@@ -110,11 +130,16 @@ class DefaultController extends Controller
         $selected = $session->get("sevader");
         $session->invalidate();
 
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
         return $this->render('sevader.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'S\'évader',
             'events' => $events,
-            'selected' => $selected
+            'selected' => $selected,
+            'partner' => $partner
         ));
     }
 
@@ -141,7 +166,8 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             'myTitle'=>  'Partenaires',
             'text' => $textPartner,
-            'noText' => $noTextPartner
+            'noText' => $noTextPartner,
+            'partner' => $partners
         ));
     }
 
@@ -150,6 +176,9 @@ class DefaultController extends Controller
      */
     public function contactAction(Request $request)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
 
         if ( !empty($request->query->get('last-name')) &&
         !empty($request->query->get('first-name')) &&
@@ -171,7 +200,8 @@ class DefaultController extends Controller
 
       return $this->render('contact.html.twig', array(
        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-       'myTitle'=>  'Contact'
+       'myTitle'=>  'Contact',
+       'partner' => $partner
       ));
     }
 
@@ -180,10 +210,14 @@ class DefaultController extends Controller
      */
     public function contactConfirmAction(Request $request)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
 
       return $this->render('contactConfirm.html.twig', array(
        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-       'myTitle'=>  'ContactConfirm'
+       'myTitle'=>  'ContactConfirm',
+       'partner' => $partner
       ));
     }
 
@@ -192,6 +226,10 @@ class DefaultController extends Controller
     */
     public function actualiteAction(Request $request, $id)
     {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
         $article = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
             ->find($id);
@@ -215,6 +253,7 @@ class DefaultController extends Controller
             'myTitle' =>  'Actualite',
             'article' =>  $article,
             'autreArticles' => $autreArticles,
+            'partner' => $partner
         ));
     }
 
