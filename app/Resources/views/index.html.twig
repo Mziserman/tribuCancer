@@ -102,20 +102,33 @@
               </div>
           </div>
           <div class="item">
-            <a href="" class="news-section-title active"><h3>Actualités</h3></a>
-            <span class="dot">
-            </span><a href="#" class="news-section-title"><h3>Faits marquants</h3></a>
-            {% for article in articles %}
-              <a href="{{ url('actualite', {'id': article.id }) }}" class="item-news">
-                <div class="items-news-image">
-                  <img src="assets/imgs/article/{{article.image}}" alt="{{article.title}}">
-                </div>
-                <div class="items-news-title">
-                  <p>{{article.title}}</p>
-                </div>
-              </a>
-            {% endfor %}
-            
+            <a href="articles" class="news-section-title active"><h3>Actualités</h3></a>
+            <span class="dot"></span>
+            <a href="archives" class="news-section-title"><h3>Faits marquants</h3></a>
+            <div class="wrapper articles show">
+              {% for article in articles %}
+                <a href="{{ url('actualite', {'id': article.id }) }}" class="item-news">
+                  <div class="items-news-image">
+                    <img src="assets/imgs/article/{{article.image}}" alt="{{article.title}}">
+                  </div>
+                  <div class="items-news-title">
+                    <p>{{article.title}}</p>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+            <div class="wrapper archives">
+              {% for archive in archives %}
+                <a href="{{ url('archive', {'id': archive.id }) }}" class="item-news">
+                  <div class="items-news-image">
+                    <img src="assets/imgs/article/{{archive.image}}" alt="{{archive.title}}">
+                  </div>
+                  <div class="items-news-title">
+                    <p>{{archive.title}}</p>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>

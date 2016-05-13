@@ -99,10 +99,16 @@ main.main-home {
 
         .news-section-title {
           display: inline-block;
-          color: rgba($black, .3);
           text-transform: uppercase;
-          &.active {
-            color: rgba($black, .8);
+          &.active,
+          &:hover {
+            h3 {
+              color: rgba($black, .8);  
+            }
+          }
+          h3 { 
+            color: rgba($black, .3);
+            transition: color .3s ease;
           }
         }
 
@@ -118,6 +124,14 @@ main.main-home {
 
         .item-news {
           margin-bottom: 15px;
+        }
+
+        .wrapper.articles,
+        .wrapper.archives {
+          display: none;
+          &.show {
+            display: block;
+          }
         }
 
       }

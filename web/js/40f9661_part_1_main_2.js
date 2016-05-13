@@ -5,7 +5,9 @@ var nav = $('header'),
     serviceSwitcher = $('.services-switch'),
     serviceSwicherLink = $('.services-switch a'),
     service = $('.service-activity'),
-    shadow = $('.shadow');
+    shadow = $('.shadow'),
+    articleSwitcher = $('.item .wrapper'),
+    articleSwitcherLink = $('.news-section-title');
 
 
 /* Handle menu */
@@ -37,6 +39,27 @@ var nav = $('header'),
     });
 
 /* END SWITCH PANELS */
+
+/* Handle switch between articles and archives */
+    
+    articleSwitcherLink.on('click', function(e) {
+        e.preventDefault();
+
+        var value = $(this).attr('href');
+
+        if(!$(this).hasClass('active')) {
+            articleSwitcherLink.removeClass('active');
+
+            $(this).addClass('active');
+
+            articleSwitcher.removeClass('show');
+
+            $('.wrapper.'+value).addClass('show');
+        }
+
+    });
+
+/* End switch */
 
 
 
