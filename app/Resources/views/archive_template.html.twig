@@ -4,22 +4,22 @@
 {% block body %}
 	<main class="main-content main-actualite">
 	  <div class="medium-wrap service">
-	  	<h3>Actualité</h3>
+	  	<h3>Archive</h3>
 	  	<div class="services-container">
 	    	<div class="service-content actualite">
-	    		<p class="actu-title">{{ article.title }}</p>
+	    		<p class="actu-title">{{ archive.title }}</p>
 					<div class="header">
-					    <img src="/assets/imgs/article/{{article.image}}" alt="{{article.title}}">
+					    <img src="/assets/imgs/article/{{archive.image}}" alt="{{archive.title}}">
 					</div>
 
 					<div class="actualite-content">
-						<p>{{ article.body | raw }}</p>
+						<p>{{ archive.body | raw }}</p>
 					</div>
 
 	    		<div class="service-documents">
     		    <h3 class="item-title">Documents</h3>
     		    <ul>
-    		    	{% for doc in article.pdf %}
+    		    	{% for doc in archive.pdf %}
 	  		        <li>
 			            <a class="button button-red button-pdf" href="assets/pdf/{{doc.file}}" download>
 			                <span>pdf</span><span class="document-name">{{doc.name}}</span>
@@ -35,14 +35,14 @@
 	    <div class="others-actualites">
 	      <a href="#" class="news-section-title active"><h3>Autres Actualités</h3></a>
 
-		  {% for article in autreArticles %}
+		  {% for archive in autreArchives %}
 
-			<a href="{{ path('actualite', {'id': article.id}) }}" class="item-news">
+			<a href="{{ path('archive', {'id': archive.id}) }}" class="item-news">
 				  <div class="items-news-image">
-					  <img src="/assets/imgs/article/{{ article.image }}" alt="les foulées du large">
+					  <img src="/assets/imgs/article/{{ archive.image }}" alt="les foulées du large">
 				  </div>
 				  <div class="items-news-title">
-					  <p>{{ article.title }}</p>
+					  <p>{{ archive.title }}</p>
 				  </div>
 			  </a>
 		  {% endfor %}

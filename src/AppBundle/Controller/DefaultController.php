@@ -188,6 +188,27 @@ class DefaultController extends Controller
     }
 
     /**
+    * @Route("/archive/{id}", name="archive")
+    */
+    public function archiveAction(Request $request, $id)
+    {
+        $archive = $this->getDoctrine()
+            ->getRepository('AppBundle:Archive')
+            ->find($id);
+
+        $autreArchives = $this->getDoctrine()
+            ->getRepository('AppBundle:Archive')
+            ->findAll();
+
+        return $this->render('archive_template.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle' =>  'Archive',
+            'archive' =>  $archive,
+            'autreArchives' => $autreArchives,
+        ));
+    }
+
+    /**
      * @Route("redirect/{page}/{slug}", name="redirect")
      */
     public function redirectServiceAction(Request $request, $page, $slug)
