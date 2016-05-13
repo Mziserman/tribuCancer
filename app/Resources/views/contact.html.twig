@@ -11,23 +11,23 @@
               <h6>Si vous souhaitez nous contacter, merci de remplir le formulaire suivant :</h6>
               <form action="">
                   <fieldset>
-                      <label for="last-name">Nom<span>*</span>:</label>
-                      <input type="text" name="last-name" id="last-name">
+                      <label class="required" for="last-name">Nom<span>*</span>:</label>
+                      <input required="required" type="text" name="last-name" id="last-name">
                   </fieldset>
 
                   <fieldset>
-                      <label for="first-name">Prénom<span>*</span>:</label>
-                      <input type="text" name="first-name" id="first-name">
+                      <label class="required" for="first-name">Prénom<span>*</span>:</label>
+                      <input required="required"  type="text" name="first-name" id="first-name">
                   </fieldset>
 
                   <fieldset class="full-size">
-                      <label for="email">Email<span>*</span>:</label>
-                      <input type="email" name="email" id="email">
+                      <label class="required" for="email">Email<span>*</span>:</label>
+                      <input required="required"  type="email" name="email" id="email">
                   </fieldset>
 
                   <fieldset class="full-size">
-                      <label for="message">Message<span>*</span>:</label>
-                      <textarea name="message" id="message"></textarea>
+                      <label class="required" for="message">Message<span>*</span>:</label>
+                      <textarea required="required"  name="message" id="message"></textarea>
                   </fieldset>
 
                   <input type="hidden" id="form-slug" value="contact">

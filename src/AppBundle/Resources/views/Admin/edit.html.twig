@@ -33,7 +33,13 @@
 			{{ form_row(form.position) }}
 			{{ form_widget(form.imageFile) }}
 			{{ form_widget(form.iconFile) }}
-		{% endif %}
+		{% elseif slug == 'partner' %}
+        	{{ form_row(form.title) }}
+			{{ form_row(form.body) }}
+			{{ form_row(form.link) }}
+			{{ form_row(form.position) }}
+			{{ form_widget(form.imageFile) }}
+        {% endif %}
 
 		{% if form.pdf %}
 			<h2 class="pdf-section" >Pdf</h2>
