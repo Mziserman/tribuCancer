@@ -31,9 +31,7 @@
 			{{ form_row(form.body) }}
 			{{ form_row(form.link) }}
 			{{ form_row(form.position) }}
-			<img src="{{ asset('assets/imgs/service/'~form.vars.data.image) }}" alt="">
 			{{ form_widget(form.imageFile) }}
-			<img src="{{ asset('assets/icons/'~form.vars.data.icon) }}" alt="">
 			{{ form_widget(form.iconFile) }}
 		{% endif %}
 
