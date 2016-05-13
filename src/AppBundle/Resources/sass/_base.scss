@@ -47,19 +47,26 @@ h2, h3, h4, h5 {
   color: rgba($black, .8);
 }
 
-h1 {
+h2 {
   font-family: $font;
   font-size:44px;
   font-weight: $lato-black;
   color: $white;
 }
 
-h2 {
+h3 {
   font-size: 14px;
   letter-spacing: 0.83px;
+  &.item-title {
+    padding-bottom: 7px;
+    background-size: 40px 8px;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom, transparent 50%, $orange 50%);
+  }
 }
 
-h3 {
+h4 {
   font-size: 12px;
   letter-spacing: 1.22px;
   &.item-title {
@@ -226,7 +233,7 @@ span.strong {
     }
     img {
       display: inline-block !important;
-      margin-bottom: 0;
+      margin-bottom: -2px;
       margin-left: 3px;
       transition: all .3s ease;
     }

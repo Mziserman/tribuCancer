@@ -12,6 +12,8 @@
     transition: all .3s ease;
     //background-image: radial-gradient(50% 0%, #020A6E 0%, #010434 100%);
 
+    h3 { display: none; }
+
     h4 {
       margin-bottom: 5px;
       color: rgba($black, 0.8);

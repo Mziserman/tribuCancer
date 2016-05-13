@@ -189,18 +189,20 @@
                             <h3 class="item-title">Description</h3>
                             <p>{{service.body | raw}}</p>
                         </div>
-                        <div class="service-documents">
-                            <h3 class="item-title">Documents</h3>
-                            <ul>
-                                {% for doc in event.pdf %}
-                                    <li>
-                                        <a class="button button-{{doc.color}} button-pdf" href="assets/pdf/{{doc.file}}" download>
-                                            <span>pdf</span><span class="document-name">{{doc.name}}</span>
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                        {% if event.pdf %}
+                            <div class="service-documents">
+                                <h3 class="item-title">Documents</h3>
+                                <ul>
+                                    {% for doc in event.pdf %}
+                                        <li>
+                                            <a class="button button-{{doc.color}} button-pdf" href="assets/pdf/{{doc.file}}" download>
+                                                <span>pdf</span><span class="document-name">{{doc.name}}</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

@@ -15,6 +15,7 @@
     <main class="main-content main-home">
       <aside class="main-menu">
         <div class="main">
+          <h3>Les services tribu cancer</h3>
           <div class="menu">
             <ul>
               <h4>Rompre l'isolement</h4>
@@ -59,12 +60,12 @@
       <div class="width-wrap">
         <div class="line">
           <div class="item">
-            <h2>Rompre l'isolement</h2>
+            <h3>Rompre l'isolement</h3>
             <div class="rompre">
               {% for service in services %}
                 <div class="item-rompre">
                   <img class="icon" src="assets/icons/{{service.icon}}" alt="coaching pro">
-                  <h3 class="item-title">{{service.name}}</h3>
+                  <h4 class="item-title">{{service.name}}</h4>
                   <p>{{service.shortDesc | raw}}</p>
                   <div class="see-more">
                       <a href="{{ path('redirect', {'page': 'rompre-lisolement', 'slug': service.slug}) }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
@@ -74,7 +75,7 @@
             </div>
           </div>
           <div class="item support-us">
-            <h2>Soutenez nous</h2>
+            <h3>Soutenez nous</h3>
             <a href="{{ url('nous-soutenir') }}" class="content">
               <img src="assets/imgs/support.png" alt="faites un don pour nous soutenir">
               <p>Aucun malade ne devrait être seul face à la maladie</p>
@@ -84,13 +85,13 @@
         </div>
         <div class="line">
           <div class="item">
-              <h2>S'évader</h2>
+              <h3>S'évader</h3>
               <div class="activities-list">
                 {% for event in events %}
                   <div class="activity">
                     <span class="img"><img src="assets/imgs/event/{{event.thumbnail}}" alt="{{event.name}}"></span>
                     <div class="content">
-                      <h3 class="item-title"><a href="{{ url('sevader') }}">{{event.name}}</a></h3>
+                      <h4 class="item-title"><a href="{{ url('sevader') }}">{{event.name}}</a></h4>
                       <p>{{event.shortDesc | raw}}</p>
                       <div class="see-more">
                         <a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
@@ -101,9 +102,9 @@
               </div>
           </div>
           <div class="item">
-            <a href="" class="news-section-title active"><h2>Actualités</h2></a>
+            <a href="" class="news-section-title active"><h3>Actualités</h3></a>
             <span class="dot">
-            </span><a href="#" class="news-section-title"><h2>Faits marquants</h2></a>
+            </span><a href="#" class="news-section-title"><h3>Faits marquants</h3></a>
             {% for article in articles %}
               <a href="{{ url('actualite', {'id': article.id }) }}" class="item-news">
                 <div class="items-news-image">
