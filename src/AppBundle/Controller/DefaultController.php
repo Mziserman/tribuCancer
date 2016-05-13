@@ -150,9 +150,40 @@ class DefaultController extends Controller
      */
     public function contactAction(Request $request)
     {
+
+        if ( !empty($request->query->get('last-name')) &&
+        !empty($request->query->get('first-name')) &&
+        !empty($request->query->get('email')) &&
+        !empty($request->query->get('message')) ) {
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Tribu Cancer : Demande de contact de la part de '.$request->query->get('last-name').$request->query->get('first-name'))
+                ->setFrom($request->query->get('email'))
+                ->setTo('boris.laporte@gmail.com')
+                ->setBody($request->query->get('message'));
+            $this->get('mailer')->send($message);
+            
+
+            return $this->redirect($this->generateUrl(
+                'contact_confirm' )
+            );
+        }
+
       return $this->render('contact.html.twig', array(
        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
        'myTitle'=>  'Contact'
+      ));
+    }
+
+    /**
+     * @Route("/contact_confirm", name="contact_confirm")
+     */
+    public function contactConfirmAction(Request $request)
+    {
+
+      return $this->render('contactConfirm.html.twig', array(
+       'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+       'myTitle'=>  'ContactConfirm'
       ));
     }
 

@@ -35,6 +35,7 @@
 /vendor/
 
 # Assets and user uploads
+/web/css/
 /web/bundles/
 /web/uploads/
 /web/assets/imgs/article

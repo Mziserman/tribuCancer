@@ -19,9 +19,8 @@ class PdfType extends AbstractType
                 ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'attr' => array('class' => 'pdf-position'),
-                    'label' => 'Position',
-                'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'pdf-position input_admin'),
+                    'label' => 'Position'
                 ))
             ->add('pdfFile', 'vich_file', array(
                     'required'      => false,
@@ -36,7 +35,9 @@ class PdfType extends AbstractType
                     'blue' => 'Bleu',
                     'grey' => 'Gris',
                 ),
-                'label' => 'Couleur'))
+                'label' => 'Couleur',
+                'attr' => array('class' => 'choices_admin')
+            ))
         ;
     }
 
