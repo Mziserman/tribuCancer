@@ -16,13 +16,15 @@ footer {
           -ms-flex-pack: justify;
               justify-content: space-between;
       max-width: 1280px;
-      height: 300px;
+      height: auto;
       margin: 0 auto;
       padding-top: 60px;
+      padding-bottom: 20px;
 
       div.footer-item {
-        max-height: 170px;
-        margin-right: 80px;
+        max-height: 320px;
+        max-width: 500px;
+        margin-right: 3%;
         &:first-child,
         &:last-child {
           // flex: 1;
