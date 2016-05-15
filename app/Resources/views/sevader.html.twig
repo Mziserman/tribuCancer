@@ -23,7 +23,12 @@
                         <div class="service-content">
                             <h3 class="item-title">Photos et vidéos</h3>
                             <div class="photo-gallery">
-                                <a href="{{event.flickr}}" class="access-gallery" target="_blank">Accèder à la galerie photos/vidéos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                {% if event.flickr != "null" %}
+                                    <a href="{{event.flickr}}" class="access-gallery" target="_blank">Accèder à la galerie photos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                {% endif %}
+                                {% if event.youtube != "null" %}
+                                    <a href="{{event.youtube}}" class="access-gallery" target="_blank">Accèder aux vidéos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                {% endif %}
                                 <div class="gallery">
                                     <a href="assets/imgs/event/{{event.image.0}}" class="gallery-item"><img src="assets/imgs/event/{{event.image.0}}" alt="{{event.name}}-{{loop.index}}"></a>
                                     <a href="assets/imgs/event/{{event.image.1}}" class="gallery-item"><img src="assets/imgs/event/{{event.image.1}}" alt="{{event.name}}-{{loop.index}}"></a>

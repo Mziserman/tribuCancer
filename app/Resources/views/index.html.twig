@@ -91,7 +91,7 @@
                   <div class="activity">
                     <span class="img"><img src="assets/imgs/event/{{event.thumbnail}}" alt="{{event.name}}"></span>
                     <div class="content">
-                      <h4 class="item-title"><a href="{{ url('sevader') }}">{{event.name}}</a></h4>
+                      <h4 class="item-title"><a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">{{event.name}}</a></h4>
                       <p>{{event.shortDesc | raw}}</p>
                       <div class="see-more">
                         <a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">En savoir plus <img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>

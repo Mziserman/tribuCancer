@@ -356,7 +356,7 @@ class AdminController extends Controller
                 $em->persist($entity);
                 $em->flush();
             }
-            $this->positionUpdateAuto($entity, $position, $repository);
+            $this->positionUpdateAuto($entity, $position, $repository, $oldPosition);
       }
       if ( (is_callable(array($entity, 'getPdf'))) && !empty($entity->getPdf()) ){
         $this->positionUpdateAuto_Pdf($entity);
@@ -365,14 +365,14 @@ class AdminController extends Controller
 
     // Check if there any other entity of the same class at position given,
     // and if yes set the others to lower position one by one
-    public function positionUpdateAuto($entity, $position, $repository)
+    public function positionUpdateAuto($entity, $position, $repository, $oldPosition = null)
     {
         $nextEntity = $this->getDoctrine()
           ->getRepository($repository)
           ->findByPosition($position);
         
-        if ( !empty($nextEntity) ){
-            $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository);
+        if ( !empty($nextEntity) && $oldPosition != $position){
+            $this->positionUpdateAuto($nextEntity, ( $position + 1 ), $repository, $oldPosition);
         }
         if ( gettype($entity) != "array" ){
             $entity->setPosition($position);
