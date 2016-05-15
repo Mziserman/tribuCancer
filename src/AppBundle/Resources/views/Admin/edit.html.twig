@@ -44,7 +44,9 @@
 		{% if form.pdf %}
 			<h2 class="pdf-section" >Pdf</h2>
 			<ul class="pdf-list" data-prototype="{{ form_widget(form.pdf.vars.prototype)|e }}">
-				{{ form_widget(form.pdf) }}
+			{% for _pdf in form.pdf %}
+				<li>{{ form_widget(_pdf) }}</li>
+			{% endfor %}
 			</ul>
 		{% endif %}
 		<div class="submit-div">

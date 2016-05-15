@@ -210,6 +210,7 @@ class AdminController extends Controller
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
+                $oldPdf = $entity->getPdf();
                 $form = $this->createForm(ServiceEdit::class, $entity);
                 break;
             case 'event':
@@ -266,7 +267,10 @@ class AdminController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $this->prePersist($entity, $repository, $oldPosition, $em);
+            $this->perPersistEdit($entity, $oldPdf, $em);
+
+            $this->prePersist($entity, $repository, $oldPosition, $em, $oldPdf);
+
 
             $em->persist($entity);
             $em->flush();
@@ -347,7 +351,7 @@ class AdminController extends Controller
 
     //FONCTIONS DIVERSES
 
-    public function prePersist($entity, $repository, $oldPosition = null, $em = null)
+    public function prePersist($entity, $repository, $oldPosition = null, $em = null, $oldPdf = null)
     {
       if ( is_callable(array($entity, 'getPosition')) ){
         $position = $entity->getPosition();
@@ -359,7 +363,16 @@ class AdminController extends Controller
             $this->positionUpdateAuto($entity, $position, $repository, $oldPosition);
       }
       if ( (is_callable(array($entity, 'getPdf'))) && !empty($entity->getPdf()) ){
-        $this->positionUpdateAuto_Pdf($entity);
+        $this->positionUpdateAuto_Pdf($entity, $oldPdf);
+      }
+    }
+
+    public function perPersistEdit($entity, $oldPdf, $em)
+    {
+      for ($i = 0; $i < count($oldPdf); $i++ ) {
+        if ( !array_key_exists( $i , $entity->getPdf()) ){
+          $em->remove($oldPdf[$i]);
+        }
       }
     }
 
@@ -398,16 +411,22 @@ class AdminController extends Controller
 
     // Regulate the pdf positions
     // for example if there 1 3 4, will convert TO 1 2 3 or even 4 2 2 TO 3 1 2
-    public function positionUpdateAuto_Pdf($entity)
+    public function positionUpdateAuto_Pdf($entity, $oldPdf = null)
     {
       $pdfs = $entity->getPdf();
       $tri = [];
       $index = 0;
-      foreach ($pdfs as $value) {
+      foreach ($pdfs as $key=>$value) {
+        if ( $key != $index ){
+          $pdfs[$index] = $pdfs[$key];
+          unset($pdfs[$key]);
+        }
         $tri[$index] = [];
         $tri[$index]['pos'] = $value->getPosition();
         $tri[$index]['id'] = $index;
+        $tri[$index]['realId'] = $key;
         $index = $index + 1;
+        
       }
 
       for ( $i = 0; $i < count($tri); $i ++ ){
@@ -419,11 +438,13 @@ class AdminController extends Controller
           }
         }
       }
-      
+
       $index = 0;
       for ( $i = 0; $i < count($tri); $i ++ ){
-        $entity->getPdf()[$tri[$index]['id']]->setPosition($index + 1);
-        $index = $index + 1;
+        if ( array_key_exists ( $tri[$index]['realId'] , $entity->getPdf() ) ){
+          $entity->getPdf()[$tri[$index]['realId']]->setPosition($index + 1);
+          $index = $index + 1;
+        }
       }
     }
 }

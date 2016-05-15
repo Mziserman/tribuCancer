@@ -62,7 +62,12 @@ FormPdf.prototype =
         this.newLinkLi.before(newFormLi);
 
 
+
         var newFormPosition = $($(newFormLi)[0]).find('.pdf-position');
+        var newFormInputFile = $($(newFormLi)[0]).find('.pdf_admin');
+                
+
+        $($(newFormInputFile)[0]).attr('required', 'required');
         $($(newFormPosition)[0]).attr('value',index + 1);
 
         this.addPdfFormDeleteButton(newFormLi);
