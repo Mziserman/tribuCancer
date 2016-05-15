@@ -50,21 +50,21 @@ class EventType extends AbstractType
                     'attr' => array('class' => 'image_admin')
                 ))
             ->add('imageFile1', 'vich_image', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Première image',
                     'attr' => array('class' => 'image_admin')
                 ))
             ->add('imageFile2', 'vich_image', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Seconde image',
                     'attr' => array('class' => 'image_admin')
                 ))
             ->add('imageFile3', 'vich_image', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => true, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                     'label' => 'Troisième image',
