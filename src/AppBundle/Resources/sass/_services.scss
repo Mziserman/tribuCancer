@@ -138,6 +138,14 @@
         font-size: 14px;
         line-height: 21px;
       }
+      .p1 {
+        a { 
+          font-weight: $lato-black;
+          &:hover {
+            color: rgba($black, .7);
+          }
+        }
+      }
     }
     .service-documents {
       margin-top: 50px;

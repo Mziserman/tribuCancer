@@ -140,6 +140,10 @@ span.strong {
     background-color: $orange;
     &:hover { background-color: rgba($orange, .8); }
   }
+  &.button-yellow {
+    background-color: $yellow;
+    &:hover { background-color: rgba($yellow, .8); }
+  }
   &.button-blue {
     background-color: $blue;
     font-weight: $lato-black;
