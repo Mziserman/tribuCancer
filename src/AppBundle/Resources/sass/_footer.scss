@@ -98,6 +98,15 @@ footer {
         }
       }
     }
+
+    .mentions-div{
+      line-height: 85px;
+
+      a{
+        color: rgba($white, .3);
+        text-transform: uppercase;
+      }
+    }
   }
 }
 
