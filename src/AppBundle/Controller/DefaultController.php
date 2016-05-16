@@ -88,6 +88,18 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/mentions-legales", name="mentions-legales")
+     */
+    public function mentionsLegalesAction(Request $request)
+    {
+
+      return $this->render('mentions-legales.html.twig', array(
+        'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        'myTitle'=> 'Mentions légales'
+      ));
+    }
+
+    /**
      * @Route("/rompre-lisolement", name="rompre-lisolement")
      */
     public function rompreAction(Request $request)
@@ -279,6 +291,48 @@ class DefaultController extends Controller
             'myTitle' =>  'Archive',
             'archive' =>  $archive,
             'autreArchives' => $autreArchives,
+            'partner' => $partner
+        ));
+    }
+
+    /**
+    * @Route("/archives", name="archives")
+    */
+    public function archivesAction(Request $request)
+    {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
+        $archives = $this->getDoctrine()
+            ->getRepository('AppBundle:Archive')
+            ->findAll();
+
+        return $this->render('articles_list_template.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle' =>  'Archive',
+            'archives' => $archives,
+            'partner' => $partner
+        ));
+    }
+
+    /**
+    * @Route("/actualites", name="actualites")
+    */
+    public function articlesAction(Request $request)
+    {
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findAll();
+
+        return $this->render('articles_list_template.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle' =>  'Archive',
+            'articles' => $articles,
             'partner' => $partner
         ));
     }
