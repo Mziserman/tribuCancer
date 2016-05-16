@@ -88,7 +88,7 @@ class Event
     private $inscription;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image1;
@@ -100,7 +100,7 @@ class Event
     private $imageFile1;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image2;
@@ -112,7 +112,7 @@ class Event
     private $imageFile2;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image3;

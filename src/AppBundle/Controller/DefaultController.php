@@ -26,7 +26,7 @@ class DefaultController extends Controller
 
         $events = $this->getDoctrine()
             ->getRepository('AppBundle:Event')
-            ->findBy(array(), array('position' => 'ASC'), 4);
+            ->findBy(array(), array('position' => 'ASC'), 6);
         $events = $this->container->get('app.slug')->setSlugForEntities($events, $em);
 
         $archives = $this->getDoctrine()
