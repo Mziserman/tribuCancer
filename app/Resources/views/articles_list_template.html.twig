@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block headerBanner %}{% endblock %}
+
+{% block body %}
+	<main class="main-content main-articles-list">
+	  <div class="wide-wrap service">
+      {% if archives %}
+        <h3>Archives</h3>
+        <div class="archives-container">
+          {% for archive in archives %}
+            <a href="{{ url('archive', {'id': archive.id }) }}" class="item-news">
+              <div class="items-news-image">
+                <img src="assets/imgs/article/{{archive.image}}" alt="{{archive.title}}">
+              </div>
+              <div class="items-news-title">
+                <p>{{archive.title}}</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+	  	{% if articles %}
+        <h3>Articles</h3>
+        <div class="archives-container">
+          {% for article in articles %}
+            <a href="{{ url('actualite', {'id': article.id }) }}" class="item-news">
+              <div class="items-news-image">
+                <img src="assets/imgs/article/{{article.image}}" alt="{{article.title}}">
+              </div>
+              <div class="items-news-title">
+                <p>{{article.title}}</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+	  </div>
+	</main>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

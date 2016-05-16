@@ -1,0 +1,16 @@
+.main-articles-list {
+
+	h3 {
+		margin-bottom: 20px;
+	}
+
+	.archives-container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.item-news {
+		margin-bottom: 20px;
+	}
+}
