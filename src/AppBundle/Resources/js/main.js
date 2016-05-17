@@ -61,6 +61,15 @@ var nav = $('header'),
 
 /* End switch */
 
+$('#home-video').on('click', function(e) {
+    e.preventDefault();
+
+    var target = $(this).attr('href');
+
+    $('#lightbox').fadeIn();
+    $('.lightbox-container img').fadeOut();
+    $('.lightbox-container').append('<video controls autoplay><source src="/assets/videos/'+target+'.mp4" type="video/mp4"><source src="/assets/videos/'+target+'.webm" type="video/webm">Votre navigateur ne supporte pas les vidéos</video>');
+});
 
 
 $('.gallery-item').on('click', function(e) {
@@ -93,7 +102,8 @@ function openLightbox(image) {
 }
 
 function closeLightbox() {
-    $('#lightbox').fadeOut();   
+    $('#lightbox').fadeOut();
+    $('.lightbox-container video').remove();
 }
 
 
