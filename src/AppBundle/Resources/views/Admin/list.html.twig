@@ -91,14 +91,14 @@
 						<td>{{ _data.date|e }}</td>
 			        	<td class="td-image" ><img class="image-data" src="{{ asset( _data.thumbnail , 'img_event') }}" alt="image de vignette"></td>
 						<td>
-							{% if ( _data.flickr != 'null' ) %}
+							{% if ( _data.flickr != null ) %}
 								<a href="{{ _data.flickr }}">Flickr</a>
 							{% else %}
 								Pas de lien
 							{% endif %}
 						</td>
 						<td>
-							{% if ( _data.youtube != 'null' ) %}
+							{% if ( _data.youtube != null ) %}
 								<a href="{{ _data.youtube }}">Youtube</a>
 							{% else %}
 								Pas de lien
@@ -192,6 +192,7 @@
 	        	<a href="#" data-type="confirm-cancel" class="button button-red button-small button-cancel">Annuler</a>
     		</div>
     	</div>
+    	<div class="shadow"></div>
     </div>
 
 {% endblock %}

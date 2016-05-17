@@ -34,7 +34,8 @@ class EventType extends AbstractType
                     'attr' => array('class' => 'checkBox_admin')
                 ))
             ->add('date','text', array('label' => 'La date, ( une phrase ) ',
-                    'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'input_admin'),
+                    'required' =>false
                 ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
@@ -71,10 +72,12 @@ class EventType extends AbstractType
                     'attr' => array('class' => 'image_admin')
                 ))
             ->add('flickr','text', array('label' => 'Lien Flickr',
-                    'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'input_admin'),
+                    'required' => false
                 ))
             ->add('youtube','text', array('label' => 'Lien Youtube',
-                    'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'input_admin'),
+                    'required' => false
                 ))
         ;
 
