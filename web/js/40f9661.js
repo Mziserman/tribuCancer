@@ -89,8 +89,14 @@ $('.gallery-item').on('click', function(e) {
 $('#lightbox .close').on('click', function(e) {
     closeLightbox();
 });
-$('#lightbox').on('click', function(e) {
-    closeLightbox();
+$('#lightbox').on('mouseup', function(e) {
+    var video = $('.lightbox-container video');
+
+    if(!video.is(e.target)) {
+        closeLightbox();
+    } else {
+        video.get(0).paused ? video.get(0).play() : video.get(0).pause()
+    }
 });
 $(window).on('keydown', function(e) {
     if(e.keyCode == "27") {
