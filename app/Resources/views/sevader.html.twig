@@ -32,10 +32,10 @@
                             <h3 class="item-title">Photos et vidéos</h3>
                             <div class="photo-gallery">
                                 {% if event.flickr != null %}
-                                    <a href="{{event.flickr}}" class="access-gallery" target="_blank">Accèder à la galerie photos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                    <a href="{{event.flickr}}" class="access-gallery" target="_blank">Accèder à d'autres photos<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
                                 {% endif %}
                                 {% if event.youtube != null %}
-                                    <a href="{{event.youtube}}" class="access-gallery" target="_blank">Accèder aux vidéos des précédentes éditions<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
+                                    <a href="{{event.youtube}}" class="access-gallery" target="_blank">Accèder à d'autres vidéos<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
                                 {% endif %}
                                 <div class="gallery">
                                     {% if event.image.0 != null %}
