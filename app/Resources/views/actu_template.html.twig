@@ -16,18 +16,20 @@
 						<p>{{ article.body | raw }}</p>
 					</div>
 
-	    		<div class="service-documents">
-    		    <h3 class="item-title">Documents</h3>
-    		    <ul>
-    		    	{% for doc in article.pdf %}
-	  		        <li>
-			            <a class="button button-red button-pdf" href="assets/pdf/{{doc.file}}" download>
-			                <span>pdf</span><span class="document-name">{{doc.name}}</span>
-			            </a>
-	  		        </li>
-  		      	{% endfor %}
-    		    </ul>
-	    		</div>
+				{% if article.pdf %}
+		    		<div class="service-documents">
+		    		    <h3 class="item-title">Documents</h3>
+		    		    <ul>
+		    		    	{% for doc in article.pdf %}
+			  		        <li>
+					            <a class="button button-red button-pdf" href="assets/pdf/{{doc.file}}" download>
+					                <span>pdf</span><span class="document-name">{{doc.name}}</span>
+					            </a>
+			  		        </li>
+		  		      	{% endfor %}
+		    		    </ul>
+		    		</div>
+	    		{% endif %}
 
 	    	</div>
 	    </div>

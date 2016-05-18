@@ -2,10 +2,10 @@
 {% block headerBanner %}{% endblock %}
 
 {% block body %}
-	<main class="main-content main-articles-list">
-	  <div class="wide-wrap service">
+  <main class="main-content main-articles-list">
+    <div class="wide-wrap service">
       {% if archives %}
-        <h3>Archives</h3>
+        <h3>Faits marquant</h3>
         <div class="archives-container">
           {% for archive in archives %}
             <a href="{{ url('archive', {'id': archive.id }) }}" class="item-news">
@@ -20,7 +20,7 @@
         </div>
       {% endif %}
 
-	  	{% if articles %}
+      {% if articles %}
         <h3>Articles</h3>
         <div class="archives-container">
           {% for article in articles %}
@@ -35,8 +35,8 @@
           {% endfor %}
         </div>
       {% endif %}
-	  </div>
-	</main>
+    </div>
+  </main>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}

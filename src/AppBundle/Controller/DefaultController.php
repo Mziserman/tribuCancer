@@ -288,7 +288,7 @@ class DefaultController extends Controller
 
         return $this->render('archive_template.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-            'myTitle' =>  'Archive',
+            'myTitle' =>  'Faits marquant',
             'archive' =>  $archive,
             'autreArchives' => $autreArchives,
             'partner' => $partner
@@ -310,7 +310,7 @@ class DefaultController extends Controller
 
         return $this->render('articles_list_template.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-            'myTitle' =>  'Archive',
+            'myTitle' =>  'Faits marquant',
             'archives' => $archives,
             'partner' => $partner
         ));
