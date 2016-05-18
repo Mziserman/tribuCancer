@@ -34,6 +34,7 @@ class Event
                 $event->getImage2(),
                 $event->getImage3()
             ];
+            $arrayEvent[$i]['date'] = $event->getDate();
             $arrayEvent[$i]["flickr"] = $event->getFlickr();
             $arrayEvent[$i]["youtube"] = $event->getYoutube();
             $arrayEvent[$i]["inscription"] = $event->getInscription();

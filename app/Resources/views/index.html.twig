@@ -104,9 +104,10 @@
               </div>
           </div>
           <div class="item">
-            <a href="articles" class="news-section-title active"><h3>Actualités</h3></a>
-            <span class="dot"></span>
-            <a href="archives" class="news-section-title"><h3>Faits marquants</h3></a>
+            {% if articles %} <a href="articles" class="news-section-title active"><h3>Actualités</h3></a> {% endif %}
+            {% if articles and archives %}<span class="dot"></span>{% endif %}
+            {% if archives %}<a href="archives" class="news-section-title {% if not articles %} active{% endif %}"><h3>Faits marquants</h3></a>{% endif %}
+            {% if articles %}
             <div class="wrapper articles show">
               {% for article in articles %}
                 <a href="{{ url('actualite', {'id': article.id }) }}" class="item-news">
@@ -119,7 +120,9 @@
                 </a>
               {% endfor %}
             </div>
-            <div class="wrapper archives">
+            {% endif %}
+            {% if archives %}
+            <div class="wrapper archives {% if not articles %} show {% endif %}">
               {% for archive in archives %}
                 <a href="{{ url('archive', {'id': archive.id }) }}" class="item-news">
                   <div class="items-news-image">
@@ -131,6 +134,7 @@
                 </a>
               {% endfor %}
             </div>
+            {% endif %}
           </div>
         </div>
       </div>

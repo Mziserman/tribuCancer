@@ -62,43 +62,28 @@
                         <div class="service-content">
                             {% if event.inscription %}
                             <h3 class="item-title">Contact</h3>
-                                <h6>Pour vous inscrire, deux solutions: remplir le formulaire en ligne ci-dessous ou télécharger puis remplir le bulletin d'inscription dans les documents et le retourner à TribuCancer.</h6>
+                                <h6>Vous pouvez envoyer une demande d'information supplémentaire par mail en remplissant le formulaire en dessous.</h6>
                                 <div class="inscription-form">
-                                    <h6>Inscription en ligne</h6>
+                                    <h6>Demande d'information</h6>
                                     <form action="">
                                         <fieldset>
                                             <label for="last-name">Nom<span>*</span>:</label>
-                                            <input type="text" name="last-name" id="last-name">
+                                            <input type="text" name="last-name" id="last-name" required="required">
                                         </fieldset>
 
                                         <fieldset>
                                             <label for="first-name">Prénom<span>*</span>:</label>
-                                            <input type="text" name="first-name" id="first-name">
+                                            <input type="text" name="first-name" id="first-name" required="required">
                                         </fieldset>
 
                                         <fieldset>
                                             <label for="email">Email<span>*</span>:</label>
-                                            <input type="email" name="email" id="email">
+                                            <input type="email" name="email" id="email" required="required">
                                         </fieldset>
 
                                         <fieldset>
-                                            <label for="phone">Téléphone<span>*</span>:</label>
+                                            <label for="phone">Téléphone:</label>
                                             <input type="phone" name="phone" id="phone">
-                                        </fieldset>
-
-                                        <fieldset class="full-size">
-                                            <label for="adress">Adresse<span>*</span>:</label>
-                                            <input type="adress" name="adress" id="adress">
-                                        </fieldset>
-
-                                        <fieldset>
-                                            <label for="city">Ville<span>*</span>:</label>
-                                            <input type="text" name="city" id="city">
-                                        </fieldset>
-
-                                        <fieldset>
-                                            <label for="postal">Code postal<span>*</span>:</label>
-                                            <input type="text" name="postal" id="postal">
                                         </fieldset>
 
                                         <input type="hidden" id="form-slug" value="{{event.slug}}">
@@ -106,14 +91,14 @@
                                         <input type="submit" id="submit-form" class="hidden" />
                                     </form>
 
-                                    <label class="submit-button" for="submit-form">Valider mes informations et m'inscrire à {{event.name}}<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
+                                    <label class="submit-button" for="submit-form">Valider et envoyer le mail à propos de {{event.name}}<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></label>
                                 </div>
                             {% endif %}
-                            {% if event.slug == "plongee-avec-aquademie" %}
+                            {# if event.slug == "plongee-avec-aquademie" %}
                                 <h6>Pour vous inscrire, rendez-vous sur le site d’Aquadémie via le lien ci-dessous.</h6>
                                 <br/>
                                 <a href="" class="access-gallery" target="_blank">SE RENDRE SUR LE SITE INTERNET D’AQUADÉMIE<img src="assets/icons/arrow-right.svg" alt="en savoir plus"></a>
-                            {% endif %}
+                            {% endif #}
                         </div>
 
                         {% if event.pdf %}

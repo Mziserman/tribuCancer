@@ -181,7 +181,9 @@ class Event
     public function setName($name)
     {
         $this->name = $name;
+        $slugify = new Slugify();
 
+        $this->slug = $slugify->slugify($this->name);
         return $this;
     }
 
