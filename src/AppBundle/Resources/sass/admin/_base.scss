@@ -130,6 +130,12 @@ span.strong {
     background-color: $orange;
     &:hover { background-color: rgba($orange, .8); }
   }
+  &.button-gold {
+    background-color: $orange;
+    font-weight: $lato-black;
+    span:first-child {color: $orange}
+    &:hover { background-color: rgba($orange, .8); }
+  }
   &.button-blue {
     background-color: $blue;
     font-weight: $lato-black;

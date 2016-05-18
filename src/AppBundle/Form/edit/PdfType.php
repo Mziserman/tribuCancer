@@ -34,6 +34,7 @@ class PdfType extends AbstractType
                     'red' => 'Rouge',
                     'blue' => 'Bleu',
                     'grey' => 'Gris',
+                    'gold' => 'Or',
                 ),
                 'label' => 'Couleur',
                 'attr' => array('class' => 'choices_admin')
