@@ -17,8 +17,8 @@
             <div class="services-container">
                 {% for service in services %}
                     <div class="service-activity {% if loop.index == 1 and selected is empty %} show {% endif %}{% if selected == service.slug %} show {% endif %}" id="item-{{loop.index}}">
-                        <div class="header">
-                            <img src="assets/imgs/service/{{service.image}}" alt="{{service.name}} tribucancer">
+                        <div class="header" style="background-image: url('assets/imgs/service/{{service.image}}')">
+                            {# <img src="assets/imgs/service/{{service.image}}" alt="{{service.name}} tribucancer"> #}
                             <div class="content">
                                 <h2>{{service.name}}</h2>
                                 <p>{{service.short_desc | raw}}</p>
