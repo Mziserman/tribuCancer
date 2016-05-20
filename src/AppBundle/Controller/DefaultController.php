@@ -338,6 +338,40 @@ class DefaultController extends Controller
     }
 
     /**
+    * @Route("/mail", name="mail")
+    */
+    public function mailAction(Request $request)
+    {
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('martinziserman@gmail.com')
+            ->setTo('martinziserman@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'emails/hello.html.twig'
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
+        $partner = $this->getDoctrine()
+                ->getRepository('AppBundle:Partner')
+                ->findBy(array(), array('position' => 'ASC'));
+
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findAll();
+
+        return $this->render('articles_list_template.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            'myTitle' =>  'Archive',
+            'articles' => $articles,
+            'partner' => $partner
+        ));
+    }
+
+    /**
      * @Route("redirect/{page}/{slug}", name="redirect")
      */
     public function redirectServiceAction(Request $request, $page, $slug)
