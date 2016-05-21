@@ -43,11 +43,13 @@
           }
           svg path { fill: $orange; }
           h3 { color: rgba($black, .8); }
+          img { opacity: 1; }
         }
 
         &:hover {
           svg path { fill: $orange; }
           h3 { color: rgba($black, .8); }
+          img { opacity: 1; }
         }
 
         svg {
@@ -67,6 +69,8 @@
           margin: 0 auto;
           margin-bottom: 20px;
           max-height: 40px;
+          opacity: .3;
+          transition: opacity .3s ease;
         }
 
         h3 {
