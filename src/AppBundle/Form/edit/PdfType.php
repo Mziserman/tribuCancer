@@ -19,7 +19,7 @@ class PdfType extends AbstractType
                 ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
-                    'attr' => array('class' => 'pdf-position input_admin'),
+                    'attr' => array('class' => 'pdf-position input_admin', 'min' => '1'),
                     'label' => 'Position'
                 ))
             ->add('pdfFile', 'vich_file', array(

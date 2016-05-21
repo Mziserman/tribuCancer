@@ -27,7 +27,7 @@ class ArchiveType extends AbstractType
                     'scale' => 0,
                     'data' => '1',
                     'label' => 'Position',
-                    'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'input_admin', 'min' => '1')
                 ))
             ->add('imageFile', 'vich_image', array(
                     'required'      => true,

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block headerBanner %}{% endblock %}
+
+{% block body %}
+	<main class="main-content main-contact">
+	  <div class="medium-wrap service">
+	  	<h2>Page non trouvée !</h2>
+	  	<div class="services-container">
+	  		<div class="service-content">
+	  			<div class="inscription-form">
+              <h6 class="success_mail_sent">Nous sommes désolée, nous n'avons pas pu trouver la page que vous désirez.</h6>
+              <a href="{{ url('homepage') }}" class="comeback button button-orange button-small">Revenir à l'accueil</a>
+          </div>
+	  		</div>
+	  	</div>
+	  </div>
+	</main>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
