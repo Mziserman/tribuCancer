@@ -27,7 +27,7 @@ class PartnerType extends AbstractType
             ->add('position', IntegerType::class, array(
                     'scale' => 0,
                     'label' => 'Position',
-                'attr' => array('class' => 'input_admin')
+                    'attr' => array('class' => 'input_admin', 'min' => '1')
                 ))
             ->add('imageFile', 'vich_image', array(
                     'required'      => false,

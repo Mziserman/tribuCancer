@@ -47,7 +47,7 @@
           </div>
           <div class="partner">
             <h4>Tribu cancer est partenaire de cancer info</h4>
-            <a href="http://www.e-cancer.fr/Patients-et-proches/Les-cancers" target="_blank">
+            <a href="http://www.e-cancer.fr/Patients-et-proches/Cancer-Info" target="_blank">
               <img src="assets/imgs/logo-cancerinfo.png" alt="cancer info toute l'info sur le cancer">
             </a>
           </div>
@@ -66,7 +66,7 @@
             <div class="rompre">
               {% for service in services %}
                 <div class="item-rompre">
-                  <img class="icon" src="assets/icons/{{service.icon}}" alt="coaching pro">
+                  <a href="{{ path('redirect', {'page': 'rompre-lisolement', 'slug': service.slug}) }}"><img class="icon" src="assets/icons/{{service.icon}}" alt="coaching pro"></a>
                   <h4 class="item-title">{{service.name}}</h4>
                   <p>{{service.shortDesc | raw}}</p>
                   <div class="see-more">

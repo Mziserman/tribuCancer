@@ -1,8 +1,8 @@
 <footer>
    <section>
        <div class="footer-item">
-           <p class="section-title large-title">A propos</p>
-           <p>L’association Tribu Cancer est née en 2004 à l’initiative de Nathalie Laporte. Atteinte d’un cancer et isolée sur la presqu’île de Quiberon , Nathalie a bénéficié d’un réseau de soutiens qui a fonctionné jour et nuit grâce à Internet. Ses souhaits : que tous les malades et leurs proches puissent bénéficier à leur tour de soutiens à distance et qu’ils puissent réaliser des projets.</p>
+          <p class="section-title large-title">A propos</p>
+          <p>L’association Tribu Cancer est née en 2004 à l’initiative de Nathalie Laporte. Atteinte d’un cancer et isolée sur la presqu’île de Quiberon, Nathalie a bénéficié d’un réseau de soutiens qui a fonctionné jour et nuit grâce à Internet. Son souhait : que tous les malades et leurs proches puissent bénéficier à leur tour de soutiens à distance au sein d’un réseau d’entraide participatif.</p>
        </div>
        <div class="footer-item">
            <p class="section-title large-title">Liens rapides</p>
@@ -29,7 +29,7 @@
             {% if index <= 0  %}
               <ul>
             {% endif %}
-            <li><a href="{{_parnter.link}}" target="_blank">{{_partner.title}}</a></li>
+            <li><a href="{{_partner.link}}" target="_blank" >{{_partner.title}}</a></li>
             {% if index >= 9 %}
               </ul>
               {% set index = 0 %}
