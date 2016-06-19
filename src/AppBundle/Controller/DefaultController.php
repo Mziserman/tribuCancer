@@ -104,10 +104,12 @@ class DefaultController extends Controller
      */
     public function rompreAction(Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository("AppBundle:Service");
+    	$em = $this->getDoctrine()->getManager();
 
-        $services = $this->get("app.service")->arrayFromRepository($repository);
+        $services = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findBy(array(), array('position' => 'ASC'));
+        $services = $this->container->get('app.slug')->setSlugForEntities($services, $em);
 
         $session = $request->getSession();
         $selected = $session->get("rompre-lisolement");
@@ -197,13 +199,17 @@ class DefaultController extends Controller
         !empty($request->query->get('email')) &&
         !empty($request->query->get('message')) ) {
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Tribu Cancer : Demande de contact de la part de '.$request->query->get('last-name').$request->query->get('first-name'))
-                ->setFrom($request->query->get('email'))
-                ->setTo('boris.laporte@gmail.com')
-                ->setBody($request->query->get('message'));
-            $this->get('mailer')->send($message);
-            
+            // $message = \Swift_Message::newInstance()
+            //     ->setSubject('Tribu Cancer : Demande de contact de la part de '.$request->query->get('last-name').$request->query->get('first-name'))
+            //     ->setFrom($request->query->get('email'))
+            //     ->setTo('boris.laporte@gmail.com')
+            //     ->setBody($request->query->get('message'));
+            // $this->get('mailer')->send($message);
+
+
+            $this->custom_mail($request->query->get('email'),
+             'Tribu Cancer : Demande de contact de la part de '.$request->query->get('last-name')." ".$request->query->get('first-name'),
+              $request->query->get('message'));
 
             return $this->redirect($this->generateUrl(
                 'contact_confirm' )
@@ -343,17 +349,19 @@ class DefaultController extends Controller
     public function mailAction(Request $request)
     {
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('martinziserman@gmail.com')
-            ->setTo('martinziserman@gmail.com')
-            ->setBody(
-                $this->renderView(
-                    'emails/hello.html.twig'
-                ),
-                'text/html'
-            );
-        $this->get('mailer')->send($message);
+        // $message = \Swift_Message::newInstance()
+        //     ->setSubject('Hello Email')
+        //     ->setFrom('boris.laporte@gmail.com')
+        //     ->setTo('boris.laporte@hetic.net')
+        //     ->setBody(
+        //         $this->renderView(
+        //             'emails/hello.html.twig'
+        //         ),
+        //         'text/html'
+        //     );
+        // $this->get('mailer')->send($message);
+
+        $this->custom_mail("boris.laporte@hetic.net", "petit test", "Ceci est un test");
 
         $partner = $this->getDoctrine()
                 ->getRepository('AppBundle:Partner')
@@ -380,5 +388,17 @@ class DefaultController extends Controller
         $session->set($page, $slug);
 
         return $this->redirectToRoute($page);
+    }
+
+
+    private function custom_mail($mail, $subject, $message){
+        setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
+        $date = strftime("Le %A %d/%m/%y à %X");
+        $headers = "FROM: ".$mail."\r\n";
+        $headers .= 'MIME-Version: 1.0'."\r\n";
+        $headers .= 'Content-Type: text/html; charset=UTF-8'."\r\n";
+        $subject = $subject;
+        $message = "Message envoyée ".$date."<br><br>".$message;
+        return $sent = mail("boris.laporte@gmail.com", $subject, $message, $headers);
     }
 }

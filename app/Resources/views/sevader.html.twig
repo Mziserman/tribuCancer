@@ -8,7 +8,7 @@
             {% set alreadyOne = 0 %}
                 {% for event in events %}
                     <div class="service">
-                        <a href="" class="{% if loop.index == 1 and selected is empty %} active {% set alreadyOne = 1 %} {% elseif  selected == event.slug and alreadyOne != 1 %} active {% set alreadyOne = 1 %} {% endif %}" data-item="{{event.id}}">
+                        <a href="" class="{% if loop.index == 1 and selected is empty %} active {% set alreadyOne = 1 %} {% elseif  selected == event.slug and alreadyOne != 1 %} active {% set alreadyOne = 1 %} {% endif %}" data-item="{{event.position}}">
                             <h3 class="item-title">{{event.name}}</h3>
                         </a>
                     </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="services-container">
                 {% for event in events %}
-                    <div class="service-activity {% if loop.index == 1 and selected is empty %} show {% endif %}{% if selected == event.slug %} show {% endif %}" id="item-{{event.id}}">
+                    <div class="service-activity {% if loop.index == 1 and selected is empty %} show {% endif %}{% if selected == event.slug %} show {% endif %}" id="item-{{event.position}}">
                         <div class="service-content">
                             <h3 class="item-title">Description</h3>
                             {{event.body | raw}}

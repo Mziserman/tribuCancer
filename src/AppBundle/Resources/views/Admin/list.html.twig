@@ -3,7 +3,10 @@
 
 {% block body %}
 	<main class="main-list">
-		<a href="{{ path('admin_create', {'slug': slug}) }}" class="button button-blue button-small button-create">Nouveau</a>
+		{% if slug != "association" %}
+			<a href="{{ path('admin_create', {'slug': slug}) }}" class="button button-blue button-small button-create">Nouveau</a>
+		{% endif %}
+
 	    <table class="content">
 			{% if slug == "article" or slug == 'archive' %}
 				<thead class="row row-head row-5">

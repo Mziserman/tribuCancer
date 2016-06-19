@@ -17,17 +17,21 @@ class ServiceType extends AbstractType
     {
         $builder
             ->add('name','text', array('label' => 'Nom',
-                    'attr' => array('class' => 'input_admin')
+                'required' => true,
+                'attr' => array('class' => 'input_admin')
                 ))
             ->add('shortDesc', TextareaType::class, array( 
                 'label' => 'Petite Déscription',
+                'required'      => true,
                 'attr' => array('class' => 'tinymce')
                 ))
             ->add('body', TextareaType::class, array( 
                 'label' => 'Contenu',
+                'required'      => true,
                 'attr' => array('class' => 'tinymce')
                 ))
             ->add('link','text', array('label' => 'Lien',
+                    'required'      => true,
                     'attr' => array('class' => 'input_admin')
                 ))
             ->add('position', IntegerType::class, array(

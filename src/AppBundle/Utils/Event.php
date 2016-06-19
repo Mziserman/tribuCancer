@@ -49,7 +49,7 @@ class Event
     }
 
     public function arrayFromRepository($repository) {
-        $event = $repository->findBy(array(), null, 5);
+        $event = $repository->findAll();
         $arrayEvent = $this->arrayFromEvent($event);
 
         return $arrayEvent;

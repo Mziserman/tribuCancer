@@ -18,22 +18,26 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name','text', array('label' => 'Nom',
+                'required'      => true,
                 'attr' => array('class' => 'input_admin')
                 ))
             ->add('shortDesc', TextareaType::class, array( 
                 'label' => 'Petite Déscription',
+                'required'      => true,
                 'attr' => array('class' => 'tinymce')
                 ))
             ->add('body', TextareaType::class, array( 
                 'label' => 'Contenu',
+                'required'      => true,
                 'attr' => array('class' => 'tinymce')
                 ))
             ->add('inscription', CheckboxType::class, array(
                     'label'    => 'Formulaire de demande de contact',
-                    'required' => false,
+                    'required' => false
                 ))
             ->add('date','text', array('label' => 'La date, ( une phrase )',
-                'attr' => array('class' => 'input_admin')
+                'attr' => array('class' => 'input_admin'),
+                'required' => false
                 ))
             ->add('position', IntegerType::class, array(
                     'scale' => 0,

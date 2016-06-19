@@ -7,7 +7,7 @@
             <div class="services-switch">
                 {% for service in services %}
                     <div class="service">
-                        <a href="" class="{% if loop.index == 1 and selected is empty %} active {% endif %}{% if selected == service.slug %} active {% endif %}" data-item="{{service.id}}">
+                        <a href="" class="{% if loop.index == 1 and selected is empty %} active {% endif %}{% if selected == service.slug %} active {% endif %}" data-item="{{service.position}}">
                             <img src="/assets/icons/{{service.icon}}" alt="{{service.name}}">
                             <h3 class="item-title">{{service.name}}</h3>
                         </a>

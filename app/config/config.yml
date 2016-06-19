@@ -69,14 +69,15 @@ parameters:
   app.path.images_service: /assets/imgs/service
   app.path.images_partner: /assets/partenaires
   app.path.pdf_files: /assets/pdf
-
-swiftmailer: 
-  host: "%mailer_host%"
-  password: "%mailer_password%"
-  spool: 
-    type: memory
-  transport: "%mailer_transport%"
-  username: "%mailer_user%"
+  
+swiftmailer:
+    transport: "%mailer_transport%"
+    auth_mode: "%mailer_auth_mode%"
+    host:      "%mailer_host%"
+    port:      "%mailer_port%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
 
 fos_user:
   db_driver: orm
