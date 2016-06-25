@@ -138,6 +138,25 @@ class DefaultController extends Controller
             ->getDoctrine()
             ->getRepository("AppBundle:Event");
 
+        if ( !empty($request->query->get('last-name')) &&
+        !empty($request->query->get('first-name')) &&
+        !empty($request->query->get('email')) &&
+        !empty($request->query->get('slug')) ) {
+
+            $phone = $request->query->get('phone');
+            if ( empty($phone) ){
+                $phone = "non renseigné";
+            }
+
+            $this->custom_mail($request->query->get('email'),
+             'Tribu Cancer : Information à propos de '.$request->query->get('slug').' par '.$request->query->get('last-name')." ".$request->query->get('first-name'),
+              $request->query->get('last-name')." ".$request->query->get('first-name').' souhaite en savoir plus sur '.$request->query->get('slug').'<br> Ses informations :<br>Nom : '.$request->query->get('last-name').'<br>Prénom : '.$request->query->get('first-name').'<br>Mail : '.$request->query->get('email').'<br>Téléphone : '.$phone);
+
+            return $this->redirect($this->generateUrl(
+                'contact_confirm' )
+            );
+        }
+
         $events = $this->get("app.event")->arrayFromRepository($repository);
 
         $session = $request->getSession();
