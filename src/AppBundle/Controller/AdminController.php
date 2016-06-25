@@ -210,7 +210,6 @@ class AdminController extends Controller
                 $entity = $this->getDoctrine()
                     ->getRepository($repository)
                     ->find($id);
-                $oldPdf = $entity->getPdf();
                 $form = $this->createForm(ServiceEdit::class, $entity);
                 break;
             case 'event':
@@ -247,6 +246,11 @@ class AdminController extends Controller
                 break;
             default:
                 return $this->redirect($this->generateUrl('admin_404'));
+        }
+
+        $oldPdf = null;
+        if ( $slug != "partner"){
+          $oldPdf = $entity->getPdf();
         }
 
         $form->add('submit', SubmitType::class, array(
