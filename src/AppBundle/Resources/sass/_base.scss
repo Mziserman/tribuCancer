@@ -129,6 +129,7 @@ span.strong {
   font-weight: $lato-regular;
   color: $white;
   transition: all .3s ease;
+  text-decoration: none !important;
 
   &.button-red {
     background-color: $red;

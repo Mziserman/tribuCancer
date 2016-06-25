@@ -22,7 +22,7 @@
 		    		    <ul>
 		    		    	{% for doc in archive.pdf %}
 			  		        <li>
-					            <a class="button button-red button-pdf" href="assets/pdf/{{doc.file}}" download>
+					            <a class="button button-red button-pdf" href={{ asset( doc.file , 'pdf') }} download>
 					                <span>pdf</span><span class="document-name">{{doc.name}}</span>
 					            </a>
 			  		        </li>

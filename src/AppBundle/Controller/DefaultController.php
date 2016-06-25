@@ -343,41 +343,41 @@ class DefaultController extends Controller
         ));
     }
 
-    /**
-    * @Route("/mail", name="mail")
-    */
-    public function mailAction(Request $request)
-    {
+    // /**
+    // * @Route("/mail", name="mail")
+    // */
+    // public function mailAction(Request $request)
+    // {
 
-        // $message = \Swift_Message::newInstance()
-        //     ->setSubject('Hello Email')
-        //     ->setFrom('boris.laporte@gmail.com')
-        //     ->setTo('boris.laporte@hetic.net')
-        //     ->setBody(
-        //         $this->renderView(
-        //             'emails/hello.html.twig'
-        //         ),
-        //         'text/html'
-        //     );
-        // $this->get('mailer')->send($message);
+    //     // $message = \Swift_Message::newInstance()
+    //     //     ->setSubject('Hello Email')
+    //     //     ->setFrom('boris.laporte@gmail.com')
+    //     //     ->setTo('boris.laporte@hetic.net')
+    //     //     ->setBody(
+    //     //         $this->renderView(
+    //     //             'emails/hello.html.twig'
+    //     //         ),
+    //     //         'text/html'
+    //     //     );
+    //     // $this->get('mailer')->send($message);
 
-        $this->custom_mail("boris.laporte@hetic.net", "petit test", "Ceci est un test");
+    //     $this->custom_mail("boris.laporte@hetic.net", "petit test", "Ceci est un test");
 
-        $partner = $this->getDoctrine()
-                ->getRepository('AppBundle:Partner')
-                ->findBy(array(), array('position' => 'ASC'));
+    //     $partner = $this->getDoctrine()
+    //             ->getRepository('AppBundle:Partner')
+    //             ->findBy(array(), array('position' => 'ASC'));
 
-        $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Article')
-            ->findAll();
+    //     $articles = $this->getDoctrine()
+    //         ->getRepository('AppBundle:Article')
+    //         ->findAll();
 
-        return $this->render('articles_list_template.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-            'myTitle' =>  'Archive',
-            'articles' => $articles,
-            'partner' => $partner
-        ));
-    }
+    //     return $this->render('articles_list_template.html.twig', array(
+    //         'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+    //         'myTitle' =>  'Archive',
+    //         'articles' => $articles,
+    //         'partner' => $partner
+    //     ));
+    // }
 
     /**
      * @Route("redirect/{page}/{slug}", name="redirect")
@@ -399,6 +399,6 @@ class DefaultController extends Controller
         $headers .= 'Content-Type: text/html; charset=UTF-8'."\r\n";
         $subject = $subject;
         $message = "Message envoyée ".$date."<br><br>".$message;
-        return $sent = mail("boris.laporte@gmail.com", $subject, $message, $headers);
+        return $sent = mail("contact@tribucancer.org", $subject, $message, $headers);
     }
 }

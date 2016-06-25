@@ -24,6 +24,13 @@ main.main-home {
                   flex: 1;
         }
 
+        .img{
+          img{
+            width: 100%;
+            height: auto;
+          }
+        }
+
         .rompre {
 
           display: -webkit-flex;

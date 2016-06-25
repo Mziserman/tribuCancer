@@ -124,6 +124,10 @@
       margin-top: 10px;
 
       h3 { margin-bottom: 10px; }
+      a {
+        text-decoration: underline;
+        font-weight: $lato-black;
+        }
       p {
         line-height: 21px;
         margin-bottom: 10px;

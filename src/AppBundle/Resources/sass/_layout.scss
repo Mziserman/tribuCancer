@@ -131,7 +131,7 @@ main {
     &:hover {
       .items-news-image {
         img {
-          transform: scale(1.03);
+          transform: scale(1.03) translateY(-50%);
         }
       }     
     }
@@ -141,10 +141,13 @@ main {
       width: 100%;
       height: 145px;
       overflow: hidden;
+      position: relative;
       img {
+        position: absolute;
         width: 100%;
         height: auto;
-        transform: scale(1);
+        top: 50%;
+        transform: scale(1) translateY(-50%);
         transition: all .7s ease;
       }
     }
