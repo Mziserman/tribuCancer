@@ -15,6 +15,14 @@
     <main class="main-content main-home">
       <aside class="main-menu">
         <div class="main">
+          <div class="maildenuit-min">
+            <span class="shadow"></span>
+            <img src="assets/imgs/maildenuit-banner.png" alt="mail de nuit le soutien psychologique">
+            <h4>Mail de nuit</h4>
+            <p>Pour ne plus être seul avec la maladie</p><br>
+            <p>Avec le soutien de Roche</p>
+            <a href="http://www.maildenuit.com" class="button button-orange" target="_blank">Accèder au service</a>
+          </div>
           <h3>Les services tribu cancer</h3>
           <div class="menu">
             <ul>
@@ -29,14 +37,6 @@
                  <li><a href="{{ path('redirect', {'page': 'sevader', 'slug': event.slug}) }}">{{event.name}}</a></li>
               {% endfor %}
             </ul>
-          </div>
-          <div class="maildenuit-min">
-            <span class="shadow"></span>
-            <img src="assets/imgs/maildenuit-banner.png" alt="mail de nuit le soutien psychologique">
-            <h4>Mail de nuit</h4>
-            <p>Pour ne plus être seul avec la maladie</p><br>
-            <p>En partenariat avec Roche</p>
-            <a href="http://www.maildenuit.com" class="button button-orange" target="_blank">Accèder au service</a>
           </div>
           {#}
           <div class="newsletter">
@@ -108,8 +108,8 @@
           </div>
           <div class="item">
             {% if articles %} <a href="articles" class="news-section-title active"><h3>Actualités</h3></a> {% endif %}
-            {% if articles and archives %}<span class="dot"></span>{% endif %}
-            {% if archives %}<a href="archives" class="news-section-title {% if not articles %} active{% endif %}"><h3>Faits marquants</h3></a>{% endif %}
+           <!--  {% if articles and archives %}<span class="dot"></span>{% endif %}
+            {% if archives %}<a href="archives" class="news-section-title {% if not articles %} active{% endif %}"><h3>Faits marquants</h3></a>{% endif %} -->
             {% if articles %}
             <div class="wrapper articles show">
               {% for article in articles %}
@@ -123,7 +123,7 @@
                 </a>
               {% endfor %}
             </div>
-            {% endif %}
+            {% endif %}<!-- 
             {% if archives %}
             <div class="wrapper archives {% if not articles %} show {% endif %}">
               {% for archive in archives %}
@@ -137,7 +137,7 @@
                 </a>
               {% endfor %}
             </div>
-            {% endif %}
+            {% endif %} -->
           </div>
         </div>
       </div>
