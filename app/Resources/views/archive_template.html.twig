@@ -16,6 +16,28 @@
 						<p>{{ archive.body | raw }}</p>
 					</div>
 
+					{% if ( ( archive.image1 != null ) or
+                            ( archive.image2 != null ) or
+                            ( archive.image3 != null )
+
+                            ) %}
+                            <h3 class="item-title">Photos et vidéos</h3>
+                            <div class="photo-gallery">
+                                <div class="gallery">
+                                    {% if archive.image1 != null %}
+                                        <a href="/assets/imgs/article/{{archive.image1}}" class="gallery-item"><img src="/assets/imgs/article/{{archive.image1}}" alt="{{archive.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                    {% if archive.image2 != null %}
+                                        <a href="/assets/imgs/article/{{archive.image2}}" class="gallery-item"><img src="/assets/imgs/article/{{archive.image2}}" alt="{{archive.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                    {% if archive.image3 != null %}
+                                        <a href="/assets/imgs/article/{{archive.image3}}" class="gallery-item"><img src="/assets/imgs/article/{{archive.image3}}" alt="{{archive.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="gallery-view-box"></div>
+                            </div>
+                            {% endif %}
+
 				{% if archive.pdf %}
 		    		<div class="service-documents">
 		    		    <h3 class="item-title">Documents</h3>
@@ -41,7 +63,7 @@
 
 			<a href="{{ path('archive', {'id': archive.id}) }}" class="item-news">
 				  <div class="items-news-image">
-					  <img src="/assets/imgs/article/{{ archive.image }}" alt="les foulées du large">
+					  <img src="//assets/imgs/article/{{ archive.image }}" alt="les foulées du large">
 				  </div>
 				  <div class="items-news-title">
 					  <p>{{ archive.title }}</p>

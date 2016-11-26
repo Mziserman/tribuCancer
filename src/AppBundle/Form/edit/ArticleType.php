@@ -35,6 +35,27 @@ class ArticleType extends AbstractType
                     'label' => 'Image',
                     'attr' => array('class' => 'image_admin')
                 ))
+            ->add('imageFile1', 'vich_image', array(
+                    'required'      => false,
+                    'allow_delete'  => true, // not mandatory, default is true
+                    'download_link' => true, // not mandatory, default is true
+                    'label' => 'Première image',
+                    'attr' => array('class' => 'image_admin')
+                ))
+            ->add('imageFile2', 'vich_image', array(
+                    'required'      => false,
+                    'allow_delete'  => true, // not mandatory, default is true
+                    'download_link' => true, // not mandatory, default is true
+                    'label' => 'Seconde image',
+                    'attr' => array('class' => 'image_admin')
+                ))
+            ->add('imageFile3', 'vich_image', array(
+                    'required'      => false,
+                    'allow_delete'  => true, // not mandatory, default is true
+                    'download_link' => true, // not mandatory, default is true
+                    'label' => 'Troisième image',
+                    'attr' => array('class' => 'image_admin')
+                ))
         ;
 
         $builder->add('pdf', CollectionType::class, array(

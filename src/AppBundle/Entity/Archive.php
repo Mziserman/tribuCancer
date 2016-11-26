@@ -277,4 +277,133 @@ class Archive
     {
         return $this->updatedAt;
     }
+
+    
+
+// PICTURES IN PAGE
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image1;
+
+    /**
+     * @Vich\UploadableField(mapping="images_article", fileNameProperty="image1")
+     * @var File
+     */
+    private $imageFile1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image2;
+
+    /**
+     * @Vich\UploadableField(mapping="images_article", fileNameProperty="image2")
+     * @var File
+     */
+    private $imageFile2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image3;
+
+    /**
+     * @Vich\UploadableField(mapping="images_article", fileNameProperty="image3")
+     * @var File
+     */
+    private $imageFile3;
+
+
+
+    public function setImageFile1(File $image = null)
+    {
+        $this->imageFile1 = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile1()
+    {
+        return $this->imageFile1;
+    }
+
+    public function setImage1($image)
+    {
+        $this->image1 = $image;
+    }
+
+    public function getImage1()
+    {
+        return $this->image1;
+    }
+
+    public function setImageFile2(File $image = null)
+    {
+        $this->imageFile2 = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile2()
+    {
+        return $this->imageFile2;
+    }
+
+    public function setImage2($image)
+    {
+        $this->image2 = $image;
+    }
+
+    public function getImage2()
+    {
+        return $this->image2;
+    }
+
+    public function setImageFile3(File $image = null)
+    {
+        $this->imageFile3 = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile3()
+    {
+        return $this->imageFile3;
+    }
+
+    public function setImage3($image)
+    {
+        $this->image3 = $image;
+    }
+
+    public function getImage3()
+    {
+        return $this->image3;
+    }
+
+    
 }
+

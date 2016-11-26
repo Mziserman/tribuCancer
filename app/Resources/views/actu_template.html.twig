@@ -16,6 +16,31 @@
 						<p>{{ article.body | raw }}</p>
 					</div>
 
+					
+
+					{% if ( ( article.image1 != null ) or
+                            ( article.image2 != null ) or
+                            ( article.image3 != null )
+
+                            ) %}
+                            <h3 class="item-title">Photos et vidéos</h3>
+                            <div class="photo-gallery">
+                                <div class="gallery">
+                                    {% if article.image1 != null %}
+                                        <a href="assets/imgs/article/{{article.image1}}" class="gallery-item"><img src="/assets/imgs/article/{{article.image1}}" alt="{{article.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                    {% if article.image2 != null %}
+                                        <a href="assets/imgs/article/{{article.image2}}" class="gallery-item"><img src="/assets/imgs/article/{{article.image2}}" alt="{{article.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                    {% if article.image3 != null %}
+                                        <a href="assets/imgs/article/{{article.image3}}" class="gallery-item"><img src="/assets/imgs/article/{{article.image3}}" alt="{{article.name}}-{{loop.index}}"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="gallery-view-box"></div>
+
+                            </div>
+                            {% endif %}
+
 				{% if article.pdf %}
 		    		<div class="service-documents">
 		    		    <h3 class="item-title">Documents</h3>
